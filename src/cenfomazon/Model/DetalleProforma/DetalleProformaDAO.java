@@ -1,4 +1,4 @@
-package Model.DetalleProforma;
+package cenfomazon.Model.DetalleProforma;
 import cenfomazon.Creacional.Singleton.ConexionBD;
 
 public class DetalleProformaDAO {

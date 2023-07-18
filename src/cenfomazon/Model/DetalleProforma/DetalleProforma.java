@@ -1,4 +1,4 @@
-package Model.DetalleProforma;
+package cenfomazon.Model.DetalleProforma;
 
 public class DetalleProforma {
 
