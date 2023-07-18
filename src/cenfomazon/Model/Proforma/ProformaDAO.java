@@ -1,4 +1,4 @@
-package Model.Proforma;
+package cenfomazon.Model.Proforma;
 import cenfomazon.Creacional.Singleton.ConexionBD;
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,15 +9,14 @@ public class ProformaDAO {
 
         ConexionBD con = new ConexionBD();
         String sql;
-        int pidproforma= proforma.getId_proforma();
         int pidCliente= proforma.getId_Cliente();
         int pidVendedor= proforma.getId_Vendedor();
-        String pestado= "Nueva";
+        String pestado= "'Nueva'";
 
-        sql = "INSERT INTO jKM_Proformas (id_proforma,id_Cliente,id_Vendedor,estado) VALUES (9,1,1,'Nueva')";
-
+        sql = "INSERT INTO jKM_Proformas (id_Cliente,id_Vendedor,estado) VALUES ("+pidCliente+","+pidVendedor+","+pestado+")";
+       
         try {
-            con.postConnection(sql);
+           con.postConnection(sql);
         } catch (Exception e) {
            e.printStackTrace();
         }

@@ -1,7 +1,7 @@
 package cenfomazon;
 
-import Model.Proforma.Proforma;
-import Model.Proforma.ProformaDAO;
+import cenfomazon.Model.Proforma.Proforma;
+import cenfomazon.Model.Proforma.ProformaDAO;
 
 import java.util.List;
 import java.util.Objects;
