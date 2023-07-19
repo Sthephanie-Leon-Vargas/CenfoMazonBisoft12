@@ -1,20 +1,24 @@
-package cenfomazon.Model.Repuesto;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package cenfomazon.Model.MarcaRepuesto;
 
 import cenfomazon.Creacional.Singleton.Conexion;
 import java.util.ArrayList;
+ 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RepuestoDAO {
+public class MarcaRepuestoDAO {
     
-    
-    public ArrayList<Repuesto> listarRepuesto(int id_MarcaRepuesto){
-        ArrayList<Repuesto> listaRepuesto = new ArrayList<>();
+    public ArrayList<MarcaRepuesto> listarMarca(){
+        ArrayList<MarcaRepuesto> listaMarcaR = new ArrayList<>();
         Conexion con = new Conexion();
         String sql;
         
-        sql = "SELECT Nombre FROM `jKM_Repuesto` WHERE id_MarcaRepuesto="+id_MarcaRepuesto+";";
+        sql = "SELECT Marca FROM `jKM_MarcaRespuesto`";
         con.conectarBD("GET",sql);
         System.out.println("Response body: " + con.getResponse().body());
         
@@ -24,15 +28,15 @@ public class RepuestoDAO {
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
             for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonMarca = jsonArray.getJSONObject(i);
-            String nombreRepuesto = jsonMarca.getString("Nombre");
-            Repuesto repuesto = new Repuesto(nombreRepuesto);
-            listaRepuesto.add(repuesto);
+            String nombreMarca = jsonMarca.getString("Marca");
+            MarcaRepuesto marca = new MarcaRepuesto(nombreMarca);
+            listaMarcaR.add(marca);
         }
        
     } catch (JSONException e) {
         e.printStackTrace();
     }        
-        return  listaRepuesto;
+        return  listaMarcaR;
     }
     
 }
