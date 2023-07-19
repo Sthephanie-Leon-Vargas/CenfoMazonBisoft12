@@ -7,10 +7,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RepuestoDAO {
+
     
     
-    public ArrayList<Repuesto> listarRepuesto(int id_MarcaRepuesto){
-        ArrayList<Repuesto> listaRepuesto = new ArrayList<>();
+    public ArrayList<RepuestoC> listarRepuesto(int id_MarcaRepuesto){
+        ArrayList<RepuestoC> listaRepuesto = new ArrayList<>();
         Conexion con = new Conexion();
         String sql;
         
@@ -25,7 +26,7 @@ public class RepuestoDAO {
             for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonMarca = jsonArray.getJSONObject(i);
             String nombreRepuesto = jsonMarca.getString("Nombre");
-            Repuesto repuesto = new Repuesto(nombreRepuesto);
+            RepuestoC repuesto = new RepuestoC(nombreRepuesto);
             listaRepuesto.add(repuesto);
         }
        
@@ -34,5 +35,5 @@ public class RepuestoDAO {
     }        
         return  listaRepuesto;
     }
-    
+
 }
