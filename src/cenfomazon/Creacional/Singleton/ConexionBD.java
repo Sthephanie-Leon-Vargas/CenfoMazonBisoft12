@@ -17,60 +17,8 @@ import java.util.Map;
 
 public class ConexionBD {
 
-    private Connection connection = null;
-
-    /*public static List<JsonElement> getConnection(String query){
-        List<JsonElement> results = new ArrayList<>();
-        try {
-            HttpClient httpClient = HttpClient.newHttpClient();
-
-            // Datos de conexión
-            String baseUrl = "http://eeds.club/BISOFT-12/";
-            String usr = "G02";
-            String pwd = "BISOFT_jKM_G02";
-
-            // Codificar los parámetros de la URL
-            String encodedUrl = baseUrl +
-                    "?usuario=" + URLEncoder.encode(usr, StandardCharsets.UTF_8) +
-                    "&clave=" + URLEncoder.encode(pwd, StandardCharsets.UTF_8) +
-                    "&query=" + URLEncoder.encode(query, StandardCharsets.UTF_8);
-
-
-
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(encodedUrl))
-                    .header("Content-Type", "application/text")
-                    .GET()
-                    .build();
-
-            HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            int statusCode = response.statusCode();
-            String jsonResponse = response.body();
-
-            /// Procesar la respuesta JSON
-            if (statusCode == 200) {
-                // Crear un objeto Gson
-                Gson gson = new Gson();
-
-                // Convertir la respuesta JSON en un JsonObject
-                JsonObject jsonObject = gson.fromJson(jsonResponse, JsonObject.class);
-
-                // Agregar cada elemento del JsonObject a la lista de resultados
-                for (String key : jsonObject.keySet()) {
-                    JsonElement jsonElement = jsonObject.get(key);
-                    results.add(jsonElement);
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return results;
-    }*/
-
-    public static void postConnection(String query) {
-        try {
+    /*public static void postConnection(String query) {
+      
             HttpClient httpClient = HttpClient.newHttpClient();
 
             // Datos de conexión
@@ -111,15 +59,8 @@ public class ConexionBD {
             System.out.println("Response headers: " + headers);
             System.out.println("Response body: " + jsonResponse);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    }*/
 
-    public void desconectarDB(){
-        try{
-            connection.close();
-        } catch (Exception e){}
-    }
+    
 
 }

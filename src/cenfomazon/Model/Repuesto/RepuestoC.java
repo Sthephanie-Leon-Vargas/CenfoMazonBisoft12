@@ -75,6 +75,12 @@ public class RepuestoC {
         this.marcaRepuesto = marcaRepuesto;
     }
 
+    public Repuesto(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Repuesto{" +
