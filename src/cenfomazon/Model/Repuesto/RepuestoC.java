@@ -2,14 +2,14 @@ package cenfomazon.Model.Repuesto;
 
 public class RepuestoC {
     private int idRepuesto;
-    private String tipoRepuesto;
+    private int tipoRepuesto;
     private String nombre;
     private String descripcion;
     private String categoria;
     private double precio;
-    private String marcaRepuesto;
+    private int marcaRepuesto;
 
-    public RepuestoC(int idRepuesto, String tipoRepuesto, String nombre, String descripcion, String categoria, double precio, String marcaRepuesto) {
+    public RepuestoC(int idRepuesto, int tipoRepuesto, String nombre, String descripcion, String categoria, double precio, int marcaRepuesto) {
         this.idRepuesto = idRepuesto;
         this.tipoRepuesto = tipoRepuesto;
         this.nombre = nombre;
@@ -27,11 +27,11 @@ public class RepuestoC {
         this.idRepuesto = idRepuesto;
     }
 
-    public String getTipoRepuesto() {
+    public int getTipoRepuesto() {
         return tipoRepuesto;
     }
 
-    public void setTipoRepuesto(String tipoRepuesto) {
+    public void setTipoRepuesto(int tipoRepuesto) {
         this.tipoRepuesto = tipoRepuesto;
     }
 
@@ -67,18 +67,18 @@ public class RepuestoC {
         this.precio = precio;
     }
 
-    public String getMarcaRepuesto() {
+    public int getMarcaRepuesto() {
         return marcaRepuesto;
     }
 
-    public void setMarcaRepuesto(String marcaRepuesto) {
+    public void setMarcaRepuesto(int marcaRepuesto) {
         this.marcaRepuesto = marcaRepuesto;
     }
 
-    public Repuesto(String nombre) {
+    public RepuestoC(String nombre) {
         this.nombre = nombre;
     }
-    
+
     
 
     @Override

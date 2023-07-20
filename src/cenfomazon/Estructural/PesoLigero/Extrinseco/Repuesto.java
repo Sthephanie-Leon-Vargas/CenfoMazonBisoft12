@@ -10,12 +10,9 @@ public class Repuesto {
     private String descripcion;
     private double precio;
 
-    public Repuesto(int idRepuesto, String nombre, String descripcion, double precio, String tipoRepuesto, String categoria, String marcaRepuesto) {
+    public Repuesto(int idRepuesto, String nombre, String descripcion, double precio, int tipoRepuesto, String categoria, int marcaRepuesto) {
         datosIntrinsecos = RepuestoFactory.obtenerRepuesto(tipoRepuesto, categoria, marcaRepuesto);
-        this.idRepuesto = idRepuesto;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
+        setDatosExtrinsecos(idRepuesto, nombre, descripcion, precio);
     }
 
     public String MostrarCaracteristicas() {
