@@ -15,7 +15,7 @@ public class RepuestoDAO {
         Conexion con = new Conexion();
         String sql;
         
-        sql = "SELECT Nombre FROM `jKM_Repuesto` WHERE id_MarcaRepuesto="+id_MarcaRepuesto+";";
+        sql = "SELECT * FROM `jKM_Repuesto` WHERE id_MarcaRepuesto="+id_MarcaRepuesto+";";
         con.conectarBD("GET",sql);
         System.out.println("Response body: " + con.getResponse().body());
         

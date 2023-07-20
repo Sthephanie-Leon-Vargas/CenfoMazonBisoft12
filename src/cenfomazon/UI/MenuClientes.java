@@ -5,6 +5,11 @@
  */
 package cenfomazon.UI;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author sleon
@@ -83,6 +88,11 @@ public class MenuClientes extends javax.swing.JFrame {
 
         btn_ListaInventario.setFont(new java.awt.Font("Artifakt Element Light", 0, 12)); // NOI18N
         btn_ListaInventario.setText("Ver proformas");
+        btn_ListaInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ListaInventarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout btn_CrearProformaLayout = new javax.swing.GroupLayout(btn_CrearProforma);
         btn_CrearProforma.setLayout(btn_CrearProformaLayout);
@@ -136,6 +146,12 @@ public class MenuClientes extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_crearProformaActionPerformed
 
+    private void btn_ListaInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ListaInventarioActionPerformed
+      ListarProformas lstProforma= new ListarProformas();
+      lstProforma.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_ListaInventarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -166,7 +182,18 @@ public class MenuClientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuClientes().setVisible(true);
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    new MenuClientes().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(MenuClientes.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(MenuClientes.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(MenuClientes.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(MenuClientes.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

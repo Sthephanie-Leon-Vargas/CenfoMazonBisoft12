@@ -65,6 +65,14 @@ public class Vendedor {
         this.rol = rol;
     }
 
+    public Vendedor(int id_usuario, String nombre, String apellido1) {
+        this.id_usuario = id_usuario;
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Vendedor{" +
