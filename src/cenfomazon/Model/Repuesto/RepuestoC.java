@@ -1,6 +1,6 @@
 package cenfomazon.Model.Repuesto;
 
-public class Repuesto {
+public class RepuestoC {
     private int idRepuesto;
     private String tipoRepuesto;
     private String nombre;
@@ -9,7 +9,7 @@ public class Repuesto {
     private double precio;
     private String marcaRepuesto;
 
-    public Repuesto(int idRepuesto, String tipoRepuesto, String nombre, String descripcion, String categoria, double precio, String marcaRepuesto) {
+    public RepuestoC(int idRepuesto, String tipoRepuesto, String nombre, String descripcion, String categoria, double precio, String marcaRepuesto) {
         this.idRepuesto = idRepuesto;
         this.tipoRepuesto = tipoRepuesto;
         this.nombre = nombre;
@@ -74,6 +74,12 @@ public class Repuesto {
     public void setMarcaRepuesto(String marcaRepuesto) {
         this.marcaRepuesto = marcaRepuesto;
     }
+
+    public RepuestoC(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
 
     @Override
     public String toString() {

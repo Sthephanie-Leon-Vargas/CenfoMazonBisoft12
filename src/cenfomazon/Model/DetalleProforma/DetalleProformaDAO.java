@@ -1,10 +1,11 @@
 package cenfomazon.Model.DetalleProforma;
-import cenfomazon.Creacional.Singleton.ConexionBD;
+import cenfomazon.Creacional.Singleton.Conexion;
+
 
 public class DetalleProformaDAO {
 
     public void registroDetalleProforma(DetalleProforma detalleProforma) {
-        ConexionBD con = new ConexionBD();
+        Conexion con = new Conexion();
         String sql;
 
         int piddetalle = detalleProforma.get_id_detalle();
@@ -15,10 +16,7 @@ public class DetalleProformaDAO {
 
         sql = "INSERT INTO jKM_Proformas (id_Cliente,id_Vendedor,estado) VALUES ("+piddetalle+","+pidproforma+","+prepuesto+","+prazonrechazo+","+pestado+")";
         System.out.println(sql);
-        try {
-            con.postConnection(sql);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        con.conectarBD("POST", sql);
+        System.out.println("Response body: " + con.getResponse().body());
     }
 }
