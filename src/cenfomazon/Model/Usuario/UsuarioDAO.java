@@ -25,8 +25,11 @@ public class UsuarioDAO {
         String username = usuario.getUsername();
         String password = usuario.getPassword();
 
-        sql = "insert into jKM_Usuarios (id_rol,nombre,apellido1,apellido2,telefono,Username,Password) values(2, \"+nombre+\", \"+apellido1+\", \"+apellido2+\", \"+telefono+\", \"+username+\", \"+password+\")";
+        sql = "insert into jKM_Usuarios (id_rol,nombre,apellido1,apellido2,telefono,username,password) values (2,'"+nombre+"', '"+apellido1+"', '"+apellido2+"', '"+telefono+"', '"+username+"', '"+password+"')";
+
         con.conectarBD("POST", sql);
+        System.out.println("code status: " + con.getCodigoEstado());
+        System.out.println("Response body: " + con.getResponse().body());
 
     }
 }

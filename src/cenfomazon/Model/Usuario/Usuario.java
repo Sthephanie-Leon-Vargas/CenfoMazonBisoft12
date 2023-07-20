@@ -26,7 +26,20 @@ public class Usuario {
     public Usuario() {
     }
 
-    public void UsuarioCliente(int id_usuario, String nombre, String apellido1, String apellido2, String telefono, String username, String password, int rol, ArrayList<Nave> listaNaves) {
+    public Usuario(String nombre, String apellido1, String apellido2, String telefono, String username, String password) {
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.telefono = telefono;
+        this.username = username;
+        this.password = password;
+    }
+
+  
+    
+    
+
+    public void UsuarioCliente(int id_usuario, String nombre, String apellido1, String apellido2, String telefono, String username, String password, int rol) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellido1 = apellido1;
@@ -35,7 +48,7 @@ public class Usuario {
         this.username = username;
         this.password = password;
         this.rol = rol;
-        this.listaNaves = listaNaves;
+        this.listaNaves = new ArrayList<>();
     }
 
 
