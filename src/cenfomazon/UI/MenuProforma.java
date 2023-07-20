@@ -3,13 +3,20 @@ package cenfomazon.UI;
 
 import cenfomazon.Gestor;
 import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
+import cenfomazon.Model.Usuario.Usuario;
+import cenfomazon.Model.Repuesto.RepuestoC;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 public class MenuProforma extends javax.swing.JFrame {
-
+    DefaultListModel miModel = new DefaultListModel();  
+    
     public MenuProforma() {
         initComponents();
         llenarMarcas();
+        llenarVendedor();
+        lst_Repuestos.setModel(miModel);
+        
     }
 
    
@@ -24,12 +31,12 @@ public class MenuProforma extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_idproforma = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbo_VendedorList = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         cbo_marcaRepuesto = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        lst_Repuestos = new javax.swing.JList<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
@@ -87,26 +94,43 @@ public class MenuProforma extends javax.swing.JFrame {
         txt_idproforma.setFont(new java.awt.Font("Artifakt Element Light", 1, 14)); // NOI18N
         txt_idproforma.setText("Número");
 
-        jComboBox1.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_VendedorList.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
+        cbo_VendedorList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         jLabel4.setText("Lista de repuestos:");
 
         cbo_marcaRepuesto.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         cbo_marcaRepuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_marcaRepuesto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbo_marcaRepuestoMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cbo_marcaRepuestoMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cbo_marcaRepuestoMouseReleased(evt);
+            }
+        });
+        cbo_marcaRepuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_marcaRepuestoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         jLabel5.setText("Marca de repuesto:");
 
         jScrollPane2.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+        lst_Repuestos.setFont(new java.awt.Font("Artifakt Element Light", 0, 12)); // NOI18N
+        lst_Repuestos.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Elige marca de repuesto" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(lst_Repuestos);
 
         jScrollPane3.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
 
@@ -138,7 +162,7 @@ public class MenuProforma extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbo_VendedorList, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,7 +192,7 @@ public class MenuProforma extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_idproforma)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbo_VendedorList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -235,6 +259,31 @@ public class MenuProforma extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_VolverMouseClicked
 
+    private void cbo_marcaRepuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoActionPerformed
+        System.out.println(cbo_marcaRepuesto.getSelectedItem());
+        //MarcaRepuesto marcaRepuesto =  (MarcaRepuesto) cbo_marcaRepuesto.getSelectedItem();
+        Gestor gestor = new Gestor();                
+        ArrayList<RepuestoC> listaRepuestos = gestor.listarRepuestos(1);
+            
+            for (int i=0; i <listaRepuestos.size();i++) {
+               miModel.addElement(listaRepuestos.get(i).getNombre());
+            }
+    }//GEN-LAST:event_cbo_marcaRepuestoActionPerformed
+
+    private void cbo_marcaRepuestoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoMouseClicked
+        
+    }//GEN-LAST:event_cbo_marcaRepuestoMouseClicked
+
+    private void cbo_marcaRepuestoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoMouseReleased
+        
+    }//GEN-LAST:event_cbo_marcaRepuestoMouseReleased
+
+    private void cbo_marcaRepuestoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoMouseExited
+        
+      
+        
+    }//GEN-LAST:event_cbo_marcaRepuestoMouseExited
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -269,38 +318,53 @@ public class MenuProforma extends javax.swing.JFrame {
         });
     }
     
+    
     private void llenarMarcas(){
    
-     Gestor gestor = new Gestor();
-     ArrayList<MarcaRepuesto> listaMarcaR = gestor.listaMarcaR();
+        Gestor gestor = new Gestor();
+        ArrayList<MarcaRepuesto> listaMarcaR = gestor.listaMarcaR();
+
+        cbo_marcaRepuesto.removeAllItems();
+        cbo_marcaRepuesto.addItem("");
+
+        for (int i=0; i <listaMarcaR.size();i++) {
+           cbo_marcaRepuesto.addItem(listaMarcaR.get(i).getMarca());
+    }
      
-     cbo_marcaRepuesto.removeAllItems();
-     cbo_marcaRepuesto.addItem("");
-     
-     for (int i=0; i <listaMarcaR.size();i++) {
-        cbo_marcaRepuesto.addItem(listaMarcaR.get(i).getMarca());
-   }
+   
  }
+    
+    private void llenarVendedor(){
+   
+            Gestor gestor = new Gestor();
+            ArrayList<Usuario> listaVendedores = gestor.listarVendedor();
+            cbo_VendedorList.removeAllItems();
+            cbo_VendedorList.addItem("");
+
+         for (int i=0; i <listaVendedores.size();i++) {
+            cbo_VendedorList.addItem(listaVendedores.get(i).getNombre()+" "+listaVendedores.get(i).getApellido1());
+       }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Volver;
+    private javax.swing.JComboBox<String> cbo_VendedorList;
     private javax.swing.JComboBox<String> cbo_marcaRepuesto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JList<String> lst_Repuestos;
     private javax.swing.JLabel txt_idproforma;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,8 +75,10 @@ public class RepuestoC {
         this.marcaRepuesto = marcaRepuesto;
     }
 
-    public Repuesto(String nombre) {
+    public RepuestoC(int idRepuesto,String nombre,String marcaRepuesto) {
+        this.idRepuesto = idRepuesto;
         this.nombre = nombre;
+        this.marcaRepuesto = marcaRepuesto;
     }
     
     
