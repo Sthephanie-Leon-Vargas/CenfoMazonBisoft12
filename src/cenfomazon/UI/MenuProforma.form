@@ -287,9 +287,13 @@
             </Property>
           </Properties>
           <Events>
+<<<<<<< HEAD
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cbo_marcaRepuestoMouseClicked"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cbo_marcaRepuestoMouseExited"/>
             <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cbo_marcaRepuestoMouseReleased"/>
+=======
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbo_marcaRepuestoItemStateChanged"/>
+>>>>>>> master
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbo_marcaRepuestoActionPerformed"/>
           </Events>
           <AuxValues>

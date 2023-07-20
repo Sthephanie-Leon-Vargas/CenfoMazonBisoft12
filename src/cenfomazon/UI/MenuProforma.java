@@ -102,6 +102,7 @@ public class MenuProforma extends javax.swing.JFrame {
 
         cbo_marcaRepuesto.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         cbo_marcaRepuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+<<<<<<< HEAD
         cbo_marcaRepuesto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbo_marcaRepuestoMouseClicked(evt);
@@ -111,6 +112,11 @@ public class MenuProforma extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 cbo_marcaRepuestoMouseReleased(evt);
+=======
+        cbo_marcaRepuesto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbo_marcaRepuestoItemStateChanged(evt);
+>>>>>>> master
             }
         });
         cbo_marcaRepuesto.addActionListener(new java.awt.event.ActionListener() {
@@ -260,6 +266,7 @@ public class MenuProforma extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_VolverMouseClicked
 
     private void cbo_marcaRepuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoActionPerformed
+<<<<<<< HEAD
         System.out.println(cbo_marcaRepuesto.getSelectedItem());
         //MarcaRepuesto marcaRepuesto =  (MarcaRepuesto) cbo_marcaRepuesto.getSelectedItem();
         Gestor gestor = new Gestor();                
@@ -283,6 +290,17 @@ public class MenuProforma extends javax.swing.JFrame {
       
         
     }//GEN-LAST:event_cbo_marcaRepuestoMouseExited
+=======
+
+        //get select value
+        //String marcaSeleccionda = cbo_marcaRepuesto.getSelectedItem().toString();
+        //txt_idproforma.setText(marcaSeleccionda);        
+    }//GEN-LAST:event_cbo_marcaRepuestoActionPerformed
+
+    private void cbo_marcaRepuestoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoItemStateChanged
+
+    }//GEN-LAST:event_cbo_marcaRepuestoItemStateChanged
+>>>>>>> master
 
 
     public static void main(String args[]) {
