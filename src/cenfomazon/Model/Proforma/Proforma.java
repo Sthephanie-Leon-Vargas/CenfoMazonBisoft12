@@ -5,7 +5,7 @@
  */
 package cenfomazon.Model.Proforma;
 
-import cenfomazon.Model.Cliente.Cliente;
+
 
 /**
  *
@@ -19,20 +19,7 @@ public class Proforma {
     private int _id_Vendedor;
     private String _estado;
 
-    private Cliente cliente;
 
-    public Cliente getInfoClientes(Cliente cliente) {
-        return cliente;
-    }
-
-    public String getCliente() {
-        return cliente.getNombre();
-    }
-
-    public void setCliente(String nombre) {
-//        this.cliente = cliente;
-        cliente.setNombre(nombre);
-    }
 
     public int getId_proforma() {
         return _id_proforma;
