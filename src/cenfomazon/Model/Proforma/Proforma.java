@@ -5,18 +5,34 @@
  */
 package cenfomazon.Model.Proforma;
 
+import cenfomazon.Model.Cliente.Cliente;
+
 /**
  *
  * @author sleon
  */
 public class Proforma {
-    
+
     private int _id_proforma;
     private int _id_Cliente;
 
-    private  int _id_Vendedor;
+    private int _id_Vendedor;
     private String _estado;
 
+    private Cliente cliente;
+
+    public Cliente getInfoClientes(Cliente cliente) {
+        return cliente;
+    }
+
+    public String getCliente() {
+        return cliente.getNombre();
+    }
+
+    public void setCliente(String nombre) {
+//        this.cliente = cliente;
+        cliente.setNombre(nombre);
+    }
 
     public int getId_proforma() {
         return _id_proforma;
@@ -50,10 +66,17 @@ public class Proforma {
         this._estado = _estado;
     }
 
-
-    public Proforma(int id_Cliente,int id_Vendedor, String estado) {
+    public Proforma(int id_Cliente, int id_Vendedor, String estado) {
         this._id_Cliente = id_Cliente;
         this._id_Vendedor = id_Vendedor;
+        this._estado = estado;
+
+    }
+
+    public Proforma(int idCliente, String estado) {
+//        this.cliente.setNombre(nombreCliente);
+//        setCliente(nombreCliente);
+        this._id_Cliente = idCliente;
         this._estado = estado;
 
     }
