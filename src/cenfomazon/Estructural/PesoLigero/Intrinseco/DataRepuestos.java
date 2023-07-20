@@ -1,21 +1,21 @@
 package cenfomazon.Estructural.PesoLigero.Intrinseco;
 
 public abstract class DataRepuestos {
-    private String tipoRepuesto;
+    private int tipoRepuesto;
     private String categoria;
-    private String marcaRepuesto;
+    private int marcaRepuesto;
 
-    public DataRepuestos(String tipoRepuesto, String categoria, String marcaRepuesto) {
+    public DataRepuestos(int tipoRepuesto, String categoria, int marcaRepuesto) {
         this.tipoRepuesto = tipoRepuesto;
         this.categoria = categoria;
         this.marcaRepuesto = marcaRepuesto;
     }
 
-    public String getTipoRepuesto() {
+    public int getTipoRepuesto() {
         return tipoRepuesto;
     }
 
-    public void setTipoRepuesto(String tipoRepuesto) {
+    public void setTipoRepuesto(int tipoRepuesto) {
         this.tipoRepuesto = tipoRepuesto;
     }
 
@@ -27,11 +27,11 @@ public abstract class DataRepuestos {
         this.categoria = categoria;
     }
 
-    public String getMarcaRepuesto() {
+    public int getMarcaRepuesto() {
         return marcaRepuesto;
     }
 
-    public void setMarcaRepuesto(String marcaRepuesto) {
+    public void setMarcaRepuesto(int marcaRepuesto) {
         this.marcaRepuesto = marcaRepuesto;
     }
 
