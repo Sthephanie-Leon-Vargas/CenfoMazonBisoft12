@@ -95,6 +95,16 @@ public class MenuProforma extends javax.swing.JFrame {
 
         cbo_marcaRepuesto.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         cbo_marcaRepuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_marcaRepuesto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbo_marcaRepuestoItemStateChanged(evt);
+            }
+        });
+        cbo_marcaRepuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_marcaRepuestoActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         jLabel5.setText("Marca de repuesto:");
@@ -234,6 +244,17 @@ public class MenuProforma extends javax.swing.JFrame {
         volver.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_VolverMouseClicked
+
+    private void cbo_marcaRepuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoActionPerformed
+
+        //get select value
+        //String marcaSeleccionda = cbo_marcaRepuesto.getSelectedItem().toString();
+        //txt_idproforma.setText(marcaSeleccionda);        
+    }//GEN-LAST:event_cbo_marcaRepuestoActionPerformed
+
+    private void cbo_marcaRepuestoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoItemStateChanged
+
+    }//GEN-LAST:event_cbo_marcaRepuestoItemStateChanged
 
 
     public static void main(String args[]) {

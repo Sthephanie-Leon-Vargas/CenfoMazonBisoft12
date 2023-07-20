@@ -4,6 +4,9 @@ import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
 import cenfomazon.Model.MarcaRepuesto.MarcaRepuestoDAO;
 import cenfomazon.Model.Proforma.Proforma;
 import cenfomazon.Model.Proforma.ProformaDAO;
+import cenfomazon.Model.Repuesto.RepuestoC;
+import cenfomazon.Model.Repuesto.RepuestoDAO;
+import cenfomazon.Model.Vendedor.Vendedor;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -13,11 +16,14 @@ public class Gestor {
 
     private final ProformaDAO proformaDAO;
     private final MarcaRepuestoDAO marcaRepuestoDAO;
-    
+    private final RepuestoDAO repuestoDAO;
+  
 
     public Gestor() {
         proformaDAO = new ProformaDAO();
         marcaRepuestoDAO = new MarcaRepuestoDAO();
+        repuestoDAO = new RepuestoDAO();
+
     }
 
     public void crearProforma(Proforma proforma){
@@ -42,5 +48,15 @@ public class Gestor {
         listaMarcaR= marcaRepuestoDAO.listarMarca();
         return listaMarcaR;
     }
+    
+    
+     public ArrayList<RepuestoC> listaRepuesto(){
+        ArrayList<RepuestoC> listaRepuestos = new ArrayList<>();
+        
+        listaRepuestos= repuestoDAO.listarRepuesto(1);
+        return listaRepuestos;
+    }
+     
+     
 
 }
