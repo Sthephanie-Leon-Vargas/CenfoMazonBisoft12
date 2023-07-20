@@ -20,7 +20,7 @@ public class MarcaRepuestoDAO {
         
         sql = "SELECT * FROM `jKM_MarcaRespuesto`";
         con.conectarBD("GET",sql);
-        System.out.println("Response body: " + con.getResponse().body());
+
         
 
         try {
