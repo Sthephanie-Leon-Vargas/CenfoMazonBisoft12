@@ -1,5 +1,6 @@
 package cenfomazon;
 
+import cenfomazon.Estructural.PesoLigero.Extrinseco.Repuesto;
 import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
 import cenfomazon.Model.MarcaRepuesto.MarcaRepuestoDAO;
 import cenfomazon.Model.Proforma.Proforma;
@@ -10,6 +11,8 @@ import cenfomazon.Model.Usuario.Usuario;
 import cenfomazon.Model.Usuario.UsuarioDAO;
 import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.Model.Repuesto.RepuestoDAO;
+import cenfomazon.Model.TipoRepuesto.TipoRepuesto;
+import cenfomazon.Model.TipoRepuesto.TipoRepuestoDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,7 @@ public class Gestor {
     private final MarcaRepuestoDAO marcaRepuestoDAO;
     private final RepuestoDAO repuestoDAO;
     private final UsuarioDAO usuarioDAO;
+    private final TipoRepuestoDAO tipoRepuestoDAO;
 
 
     
@@ -30,7 +34,7 @@ public class Gestor {
         marcaRepuestoDAO = new MarcaRepuestoDAO();
         repuestoDAO = new RepuestoDAO();
         usuarioDAO = new UsuarioDAO();
-
+        tipoRepuestoDAO = new TipoRepuestoDAO();
 
     }
 
@@ -82,5 +86,11 @@ public class Gestor {
         return listaRepuestos;
     }
 
+    public ArrayList<TipoRepuesto> listarTipoRepuestos(){
+        return tipoRepuestoDAO.listarTiposR();
+    }
 
+    public void crearRepuesto(Repuesto repuesto) {
+        repuestoDAO.registroRepuesto(repuesto);
+    }
 }
