@@ -1,3 +1,4 @@
+import cenfomazon.Estructural.PesoLigero.Extrinseco.Repuesto;
 import cenfomazon.Gestor;
 import cenfomazon.Model.Proforma.Proforma;
 
@@ -10,7 +11,9 @@ public class Main {
        
        //gestor.listaMarcaR();
         //gestor.listarProformas();
-        
+        int precio = Integer.parseInt("4");
+        System.out.println(precio+2);
+        Repuesto repuesto = null;
 
     }
 }

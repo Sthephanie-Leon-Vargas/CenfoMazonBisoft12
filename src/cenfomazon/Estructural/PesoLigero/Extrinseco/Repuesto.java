@@ -12,7 +12,11 @@ public class Repuesto {
 
     public Repuesto(int idRepuesto, String nombre, String descripcion, double precio, int tipoRepuesto, String categoria, int marcaRepuesto) {
         datosIntrinsecos = RepuestoFactory.obtenerRepuesto(tipoRepuesto, categoria, marcaRepuesto);
-        setDatosExtrinsecos(idRepuesto, nombre, descripcion, precio);
+        setDatosExtrinsecosConId(idRepuesto, nombre, descripcion, precio);
+    }
+    public Repuesto(String nombre, String descripcion, double precio, int tipoRepuesto, String categoria, int marcaRepuesto) {
+        datosIntrinsecos = RepuestoFactory.obtenerRepuesto(tipoRepuesto, categoria, marcaRepuesto);
+        setDatosExtrinsecos(nombre, descripcion, precio);
     }
 
     public String MostrarCaracteristicas() {
@@ -62,8 +66,13 @@ public class Repuesto {
      * instancias). Estas funciones son para manejar los datos EXTRINSECOS
      * ********************************************************************** */
 
-    public void setDatosExtrinsecos(int idRepuesto, String nombre, String descripcion, double precio) {
+    public void setDatosExtrinsecosConId(int idRepuesto, String nombre, String descripcion, double precio) {
         setIdRepuesto(idRepuesto);
+        setNombre(nombre);
+        setDescripcion(descripcion);
+        setPrecio(precio);
+    }
+    public void setDatosExtrinsecos(String nombre, String descripcion, double precio) {
         setNombre(nombre);
         setDescripcion(descripcion);
         setPrecio(precio);
@@ -82,5 +91,17 @@ public class Repuesto {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public int getTipoRepuesto() {
+        return datosIntrinsecos.getTipoRepuesto();
+    }
+
+    public String getCategoria() {
+        return datosIntrinsecos.getCategoria();
+    }
+
+    public int getMarcaRepuesto() {
+        return datosIntrinsecos.getMarcaRepuesto();
     }
 }
