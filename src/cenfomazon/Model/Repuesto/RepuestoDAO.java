@@ -21,7 +21,7 @@ public class RepuestoDAO {
 
         con.conectarBD("GET",sql);
 
-        System.out.println("Response body: " + con.getResponse().body());
+        
 
 
 

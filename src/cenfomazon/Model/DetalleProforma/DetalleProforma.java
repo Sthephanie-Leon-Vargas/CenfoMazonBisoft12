@@ -49,8 +49,8 @@ public class DetalleProforma {
         this._estado = _estado;
     }
 
-    public DetalleProforma(int _id_detalle, int _id_proforma, int _id_repuesto, int _id_razonRechazo, String _estado) {
-        this._id_detalle = _id_detalle;
+    public DetalleProforma(int _id_proforma, int _id_repuesto, int _id_razonRechazo, String _estado) {
+       
         this._id_proforma = _id_proforma;
         this._id_repuesto = _id_repuesto;
         this._id_razonRechazo = _id_razonRechazo;
