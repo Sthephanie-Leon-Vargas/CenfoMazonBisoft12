@@ -69,12 +69,12 @@ public class Proforma {
         setUser(user);
     }
 
-    
-    public Proforma(int idProforma, int idVendedor, String nombre, String apellido1) {
-//        this.cliente.setNombre(nombreCliente);
-//        setCliente(nombreCliente);
-
+       public Proforma(int _id_proforma, int _id_Vendedor, String _estado) {
+        this._id_proforma = _id_proforma;
+        this._id_Vendedor = _id_Vendedor;
+        this._estado = _estado;
     }
+ 
 
     public Proforma(int _id_proforma, int _id_Cliente, int _id_Vendedor, String _estado) {
         this._id_proforma = _id_proforma;
