@@ -8,6 +8,8 @@ package cenfomazon.UI;
 import cenfomazon.Model.Proforma.ProformaDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -28,13 +30,6 @@ public class ListarProformas extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         proformaDao.listarProforma(jTable1);
-        ajustarDatosTabla();
-    }
-
-    public void ajustarDatosTabla() {
-        tcr.setHorizontalAlignment((int) CENTER_ALIGNMENT);
-        jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        jTable1.getColumnModel().getColumn(1).setCellRenderer(tcr);
     }
 
     /**
@@ -58,32 +53,40 @@ public class ListarProformas extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id Cliente", "Estado"
+                "Id Proforma", "Id Vendedor", "Nombre", "Apellido 1", "Estado", "Editar"
             }
         ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
@@ -126,6 +129,23 @@ public class ListarProformas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int col = jTable1.getColumnModel().getColumnIndexAtX(evt.getX());
+        int fila = evt.getY() / jTable1.getRowHeight();
+        if (fila < jTable1.getRowCount() && fila >= 0 && col < jTable1.getColumnCount() && col >= 0) {
+            Object valor = jTable1.getValueAt(fila, col);
+            if (valor instanceof JButton) {
+                ((JButton) valor).doClick();
+                JButton boton = (JButton) valor;
+                if (boton.getName().equals("btn_editar")) {
+                    //ACCIONES DEL BOTON EDITAR!
+                    JOptionPane.showMessageDialog(null, "Clic en boton Editar!");
+
+                }
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
