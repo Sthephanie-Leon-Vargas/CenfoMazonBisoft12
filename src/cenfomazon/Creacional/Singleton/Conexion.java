@@ -35,7 +35,7 @@ public class Conexion {
     public Conexion() {
     }
 
-    public Conexion conectarBD(String peticion, String query) {
+    public void conectarBD(String peticion, String query) {
         if (con == null) {
             try {
 
@@ -56,7 +56,7 @@ public class Conexion {
                 Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return con;
+//        return con;
     }
 
     private void ejecutarPost(String cadenaConexion) {

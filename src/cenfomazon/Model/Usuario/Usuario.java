@@ -26,6 +26,12 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String nombre, String apellido1) {
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+    }
+
+    
     public void UsuarioCliente(int id_usuario, String nombre, String apellido1, String apellido2, String telefono, String username, String password, int rol, ArrayList<Nave> listaNaves) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
