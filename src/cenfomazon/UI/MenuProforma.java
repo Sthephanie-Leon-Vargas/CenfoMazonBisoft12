@@ -11,6 +11,9 @@ import cenfomazon.Model.Proforma.Proforma;
 import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.Model.Usuario.Usuario;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 
 /**
@@ -309,13 +312,18 @@ public class MenuProforma extends javax.swing.JFrame {
         Proforma pProforma = new Proforma(11,vendedorC,"Nueva");        
         gestor.crearProforma(pProforma);
         
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MenuProforma.class.getName()).log(Level.SEVERE, null, ex);
+        }
         for (int i=0; i <dlm.getSize() ;i++) {
-            
-          int codigoProforma = codigoProforma();
+          System.out.println(codigoProforma());
+          int codigoProforma = codigoProforma()-1;
           RepuestoC repuesto = (RepuestoC) dlm.get(i);
           int repuestoC = repuesto.getIdRepuesto();
           DetalleProforma DP = new DetalleProforma(codigoProforma,repuestoC); 
-          System.out.println(DP.toString());
+
           gestor.registrarDetalleProforma(DP);
         }
         

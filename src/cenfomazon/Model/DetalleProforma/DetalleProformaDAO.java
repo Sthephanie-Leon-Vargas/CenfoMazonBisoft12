@@ -13,10 +13,9 @@ public class DetalleProformaDAO {
         int pidproforma = detalleProforma.get_id_proforma();
         int prepuesto = detalleProforma.get_id_repuesto();
         int prazonrechazo = 3;
-        String pestado = "Pendiente";
+        String pestado = "'Pendiente'";
 
-        sql = "INSERT INTO jKM_DetalleProforma (id_proforma,id_repuesto,id_razonRechazo,estado) VALUES ("+pidproforma+","+prepuesto+","+prazonrechazo+","+pestado+")";
-        System.out.println(sql);
+        sql = "INSERT INTO jKM_DetalleProforma (id_proforma,id_repuesto,id_razonRechazo,estado) VALUES (" + pidproforma + "," + prepuesto +","+ prazonrechazo + "," +pestado+ ")";         
         con.conectarBD("POST", sql);
        
     }
