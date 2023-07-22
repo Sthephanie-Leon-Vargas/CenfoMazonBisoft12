@@ -57,6 +57,12 @@ public class DetalleProforma {
         this._estado = _estado;
     }
 
+    public DetalleProforma(int _id_proforma, int _id_repuesto) {
+        this._id_proforma = _id_proforma;
+        this._id_repuesto = _id_repuesto;
+    }
+    
+
     public DetalleProforma() {
     }
 

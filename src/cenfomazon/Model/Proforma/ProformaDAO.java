@@ -34,7 +34,6 @@ public class ProformaDAO {
         con.conectarBD("GET", sql);
         
         String jsonSql = con.getResponse().body();
-        System.out.println("Response body: " + jsonSql);
         
         DefaultTableModel model = new DefaultTableModel();
         
@@ -48,9 +47,7 @@ public class ProformaDAO {
                 JSONObject jsonObj = jsonArray.getJSONObject(i);
                 int idCliente = jsonObj.getInt("id_Cliente");
                 String estado = jsonObj.getString("estado");
-                System.out.println("nombre: " + idCliente);
-                System.out.println("estado: " + estado);
-                
+
                 Proforma proforma = new Proforma(idCliente,estado);
                 
                 Object fila[] = new Object[2];//31
@@ -70,12 +67,25 @@ public class ProformaDAO {
         }
         return lista;
     }
-    /*public List<Proforma> listarProformas() {
-        List<Proforma> proformas = new ArrayList<>();
+
+    public int ultimaProforma() {
         Conexion con = new Conexion();
         String sql;
-        sql = "SELECT * jKM_Proformas";
+        int codigo = 0;
         
-        return proformas;
-    }*/
+        sql = "SELECT id_proforma FROM `jKM_Proformas` ORDER BY id_proforma DESC LIMIT 1;";
+        con.conectarBD("GET",sql);
+          try {
+            JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
+            
+            JSONObject jsonMarca = jsonArray.getJSONObject(0);
+            int idproforma = jsonMarca.getInt("id_proforma");
+            codigo = idproforma + 1;
+                } catch (JSONException e) {
+                     e.printStackTrace();
+                }        
+     
+        return codigo;       
+    }
 }

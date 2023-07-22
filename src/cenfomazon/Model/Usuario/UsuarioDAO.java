@@ -33,8 +33,7 @@ public class UsuarioDAO {
         
         sql = "SELECT * FROM `jKM_Usuarios` WHERE id_rol=2";
         con.conectarBD("GET",sql);
-        System.out.println("Response body: " + con.getResponse().body());
-        
+      
 
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
@@ -52,6 +51,28 @@ public class UsuarioDAO {
                  e.printStackTrace();
             }        
         return  listaUsuarios;
+    }
+
+    public int vendedorRamdom() {
+       
+        Conexion con = new Conexion();
+        String sql;
+        int codigo =1;
+        
+        sql = "SELECT id_usuario FROM `jKM_Usuarios` WHERE id_rol=2 ORDER BY RAND() LIMIT 1;";
+        con.conectarBD("GET",sql);
+          try {
+            JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
+            
+            JSONObject jsonMarca = jsonArray.getJSONObject(0);
+            int idusuario = jsonMarca.getInt("id_usuario");
+            codigo = idusuario;
+                } catch (JSONException e) {
+                     e.printStackTrace();
+                }        
+     
+        return codigo;
     }
             
     

@@ -21,8 +21,6 @@ public class MarcaRepuestoDAO {
         sql = "SELECT * FROM `jKM_MarcaRespuesto`";
         con.conectarBD("GET",sql);
 
-        
-
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
@@ -38,6 +36,21 @@ public class MarcaRepuestoDAO {
         e.printStackTrace();
     }        
         return  listaMarcaR;
+    }
+    
+    public int Buscar_idMarcaRepuesto(String pMarca){
+        String sql;
+        int resultado;
+        Conexion con = new Conexion();
+        sql = "SELECT idMarcaRspuesto FROM `jKM_MarcaRespuesto` WHERE Marca="+pMarca+")";                                                                                     
+        try {
+            JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
+             System.out.println();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }  
+        return resultado=0;
     }
     
 }

@@ -78,22 +78,18 @@ public class RepuestoC {
 
     public RepuestoC(int idRepuesto,String nombre,int marcaRepuesto) {
         this.idRepuesto = idRepuesto;
+        this.nombre = nombre;
         this.marcaRepuesto = marcaRepuesto;
 
+    }
+
+    public RepuestoC() {
     }
 
     
 
     @Override
     public String toString() {
-        return "Repuesto{" +
-                "idRepuesto=" + idRepuesto +
-                ", tipoRepuesto='" + tipoRepuesto + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", precio=" + precio +
-                ", marcaRepuesto='" + marcaRepuesto + '\'' +
-                '}';
+        return nombre;
     }
 }

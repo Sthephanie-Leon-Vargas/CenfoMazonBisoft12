@@ -33,8 +33,6 @@ public class MarcaRepuesto {
         this.Marca = Marca;
     }
 
-    public MarcaRepuesto() {
-    }
 
     public MarcaRepuesto(int idMarcaRepuesto) {
         this.idMarcaRepuesto = idMarcaRepuesto;
@@ -45,5 +43,13 @@ public class MarcaRepuesto {
     }
 
     
-        
+    public MarcaRepuesto() {
+        this.Marca = "";
+    }   
+
+    @Override
+    public String toString() {
+        return getMarca();
+    }
+    
 }
