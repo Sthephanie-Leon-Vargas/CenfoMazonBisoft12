@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package cenfomazon.Model.Proforma;
-
-//import cenfomazon.Model.Cliente.Cliente;
 import cenfomazon.Model.Usuario.Usuario;
 
 /**
