@@ -24,25 +24,25 @@ public class RepuestoDAO {
 
         con.conectarBD("GET", sql);
 
-        System.out.println("Response body: " + con.getResponse().body());
+        
 
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonMarca = jsonArray.getJSONObject(i);
-                int idRepuesto = jsonMarca.getInt("id_Repuesto");
-                String pnombre = jsonMarca.getString("nombre");
-                int idMarca = jsonMarca.getInt("id_MarcaRespuesto");
-                RepuestoC repuesto = new RepuestoC(idRepuesto, pnombre, idMarca);
-                listaRepuesto.add(repuesto);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return listaRepuesto;
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonMarca = jsonArray.getJSONObject(i);
+                    int idRepuesto = jsonMarca.getInt("id_Repuesto");
+                    String pnombre = jsonMarca.getString("nombre");
+                    int idMarca = jsonMarca.getInt("id_MarcaRespuesto");
+                    RepuestoC repuesto = new RepuestoC(idRepuesto,pnombre,idMarca);
+                    listaRepuesto.add(repuesto);
+                }
+             
+            } catch (JSONException e) {
+                e.printStackTrace();
+        }      
+        return  listaRepuesto;
     }
 
     public void registroRepuesto(Repuesto repuesto) {
