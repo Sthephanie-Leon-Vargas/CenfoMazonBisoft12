@@ -1,3 +1,4 @@
+import cenfomazon.Estructural.PesoLigero.Extrinseco.Repuesto;
 import cenfomazon.Gestor;
 import cenfomazon.Model.Proforma.Proforma;
 
@@ -10,8 +11,7 @@ public class Main {
        
        //gestor.listaMarcaR();
         //gestor.listarProformas();
-         
-        //System.out.println(gestor.codigoProfroma());
+
 
     }
 }

@@ -149,6 +149,11 @@ public class MenuProforma extends javax.swing.JFrame {
 
         cbo_VendedorList.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         cbo_VendedorList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_VendedorList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_VendedorListActionPerformed(evt);
+            }
+        });
 
         cbo_marcaRepuesto.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         cbo_marcaRepuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -269,6 +274,7 @@ public class MenuProforma extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_VolverMouseClicked
 
+
     private void cbo_marcaRepuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoActionPerformed
         // TODO add your handling code here:
 
@@ -337,6 +343,11 @@ public class MenuProforma extends javax.swing.JFrame {
         dlm.removeElementAt(index);
         
     }//GEN-LAST:event_btn_removerActionPerformed
+
+    private void cbo_VendedorListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_VendedorListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbo_VendedorListActionPerformed
+
 
     /**
      * @param args the command line arguments
