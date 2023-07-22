@@ -5,7 +5,8 @@
  */
 package cenfomazon.Model.Proforma;
 
-import cenfomazon.Model.Cliente.Cliente;
+//import cenfomazon.Model.Cliente.Cliente;
+import cenfomazon.Model.Usuario.Usuario;
 
 /**
  *
@@ -19,19 +20,14 @@ public class Proforma {
     private int _id_Vendedor;
     private String _estado;
 
-    private Cliente cliente;
+    private Usuario user;
 
-    public Cliente getInfoClientes(Cliente cliente) {
-        return cliente;
+    public Usuario getUser() {
+        return user;
     }
 
-    public String getCliente() {
-        return cliente.getNombre();
-    }
-
-    public void setCliente(String nombre) {
-//        this.cliente = cliente;
-        cliente.setNombre(nombre);
+    public void setUser(Usuario user) {
+        this.user = user;
     }
 
     public int getId_proforma() {
@@ -66,18 +62,19 @@ public class Proforma {
         this._estado = _estado;
     }
 
-    public Proforma(int id_Cliente, int id_Vendedor, String estado) {
-        this._id_Cliente = id_Cliente;
-        this._id_Vendedor = id_Vendedor;
-        this._estado = estado;
 
+
+    public Proforma(int _id_proforma,int _id_Vendedor,Usuario user,String _estado) {
+        this._id_proforma = _id_proforma;
+        this._id_Vendedor = _id_Vendedor;
+        this._estado = _estado;
+        setUser(user);
     }
 
-    public Proforma(int idCliente, String estado) {
+    
+    public Proforma(int idProforma, int idVendedor, String nombre, String apellido1) {
 //        this.cliente.setNombre(nombreCliente);
 //        setCliente(nombreCliente);
-        this._id_Cliente = idCliente;
-        this._estado = estado;
 
     }
 
@@ -100,4 +97,11 @@ public class Proforma {
 
     public Proforma() {
     }
+
+    @Override
+    public String toString() {
+        return "Proforma{" + "_id_proforma=" + _id_proforma + ", _id_Cliente=" + _id_Cliente + ", _id_Vendedor=" + _id_Vendedor + ", _estado=" + _estado + ", user=" + user + '}';
+    }
+    
+    
 }
