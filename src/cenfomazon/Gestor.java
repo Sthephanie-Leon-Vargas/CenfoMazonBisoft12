@@ -93,7 +93,8 @@ public class Gestor {
     public void registrarDetalleProforma(DetalleProforma  detalleProforma){
         detalleproformaDAO.registroDetalleProforma(detalleProforma);
 
-
+    }
+    
     public ArrayList<TipoRepuesto> listarTipoRepuestos(){
         return tipoRepuestoDAO.listarTiposR();
     }

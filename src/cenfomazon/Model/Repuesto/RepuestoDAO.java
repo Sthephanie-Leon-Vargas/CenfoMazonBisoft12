@@ -41,21 +41,6 @@ public class RepuestoDAO {
             } catch (JSONException e) {
                 e.printStackTrace();
         }      
-         
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObj = jsonArray.getJSONObject(i);
-                int idRepuesto = jsonObj.getInt("id_Repuesto");
-                String nombreRepuesto = jsonObj.getString("nombre");
-                int idMarcaRepuesto= jsonObj.getInt("id_MarcaRespuesto");
-                RepuestoC repuesto = new RepuestoC(idRepuesto,nombreRepuesto,idMarcaRepuesto);
-                listaRepuesto.add(repuesto);
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         return  listaRepuesto;
     }
 

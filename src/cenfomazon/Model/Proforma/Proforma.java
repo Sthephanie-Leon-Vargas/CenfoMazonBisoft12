@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cenfomazon.Model.Proforma;
+
 import cenfomazon.Model.Usuario.Usuario;
 
 /**
@@ -60,20 +61,18 @@ public class Proforma {
         this._estado = _estado;
     }
 
+    public Proforma(int id_Cliente, int id_Vendedor, String estado) {
+        this._id_Cliente = id_Cliente;
+        this._id_Vendedor = id_Vendedor;
+        this._estado = estado;
 
+    }
 
-    public Proforma(int _id_proforma,int _id_Vendedor,Usuario user,String _estado) {
+    public Proforma(int _id_proforma, int _id_Vendedor, Usuario user, String _estado) {
         this._id_proforma = _id_proforma;
         this._id_Vendedor = _id_Vendedor;
         this._estado = _estado;
         setUser(user);
-    }
-
-    
-    public Proforma(int idProforma, int idVendedor, String nombre, String apellido1) {
-//        this.cliente.setNombre(nombreCliente);
-//        setCliente(nombreCliente);
-
     }
 
     public Proforma(int _id_proforma, int _id_Cliente, int _id_Vendedor, String _estado) {
@@ -100,6 +99,5 @@ public class Proforma {
     public String toString() {
         return "Proforma{" + "_id_proforma=" + _id_proforma + ", _id_Cliente=" + _id_Cliente + ", _id_Vendedor=" + _id_Vendedor + ", _estado=" + _estado + ", user=" + user + '}';
     }
-    
-    
+
 }
