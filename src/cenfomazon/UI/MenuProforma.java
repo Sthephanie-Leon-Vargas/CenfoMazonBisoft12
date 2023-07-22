@@ -5,9 +5,13 @@
 package cenfomazon.UI;
 
 import cenfomazon.Gestor;
+import cenfomazon.Model.DetalleProforma.DetalleProforma;
 import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
+import cenfomazon.Model.Proforma.Proforma;
+import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.Model.Usuario.Usuario;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -22,6 +26,7 @@ public class MenuProforma extends javax.swing.JFrame {
         initComponents();
         llenarMarcas();
         llenarVendedor();
+        Lbl_NoProforma.setText(String.valueOf(codigoProforma()));
         
     }
 
@@ -44,15 +49,15 @@ public class MenuProforma extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList_Agregar = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jList_Repuesto = new javax.swing.JList<>();
+        btn_Add = new javax.swing.JButton();
+        btn_remover = new javax.swing.JButton();
         cbo_VendedorList = new javax.swing.JComboBox<>();
         cbo_marcaRepuesto = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        Lbl_NoProforma = new javax.swing.JLabel();
+        btn_Guardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,7 +87,7 @@ public class MenuProforma extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Volver)
-                .addGap(20, 20, 20))
+                .addGap(76, 76, 76))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,25 +116,36 @@ public class MenuProforma extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         jLabel6.setText("Lista de repuestos:");
 
-        jList1.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+        jList_Agregar.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
+        jList_Agregar.setModel(new javax.swing.AbstractListModel<Object>() {
+            String[] strings = { "No se ha agregado respuestos" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jList_Agregar.setToolTipText("");
+        jScrollPane1.setViewportView(jList_Agregar);
 
-        jList2.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+        jList_Repuesto.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
+        jList_Repuesto.setModel(new javax.swing.AbstractListModel<Object>() {
+            String[] strings = { "Selecciona Marca Repuesto" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(jList_Repuesto);
 
-        jButton1.setText(">>");
+        btn_Add.setText(">>");
+        btn_Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AddActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("<<");
+        btn_remover.setText("<<");
+        btn_remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_removerActionPerformed(evt);
+            }
+        });
 
         cbo_VendedorList.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         cbo_VendedorList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -141,9 +157,14 @@ public class MenuProforma extends javax.swing.JFrame {
 
         cbo_marcaRepuesto.setFont(new java.awt.Font("Artifakt Element Light", 0, 14)); // NOI18N
         cbo_marcaRepuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_marcaRepuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_marcaRepuestoActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setFont(new java.awt.Font("Artifakt Element Light", 1, 14)); // NOI18N
-        jLabel7.setText("Nombre");
+        Lbl_NoProforma.setFont(new java.awt.Font("Artifakt Element Light", 1, 14)); // NOI18N
+        Lbl_NoProforma.setText("####");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -161,7 +182,7 @@ public class MenuProforma extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Lbl_NoProforma, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(66, 66, 66)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -174,8 +195,8 @@ public class MenuProforma extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(btn_Add, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btn_remover, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,7 +211,7 @@ public class MenuProforma extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(cbo_VendedorList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(Lbl_NoProforma))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -204,13 +225,18 @@ public class MenuProforma extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btn_Add)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(btn_remover)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jButton3.setText("Guardar");
+        btn_Guardar.setText("Guardar");
+        btn_Guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_GuardarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,7 +250,7 @@ public class MenuProforma extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(264, 264, 264)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -234,7 +260,7 @@ public class MenuProforma extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(btn_Guardar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -248,9 +274,80 @@ public class MenuProforma extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_VolverMouseClicked
 
+
+    private void cbo_marcaRepuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoActionPerformed
+        // TODO add your handling code here:
+
+       if (cbo_marcaRepuesto.getSelectedItem()== null){
+         System.out.println("Inicializar");
+       }else{
+           Object marcaRepuesto = cbo_marcaRepuesto.getSelectedItem();
+           MarcaRepuesto marcaR = (MarcaRepuesto) marcaRepuesto;
+          
+           llenarRepuestos(marcaR.getIdMarcaRepuesto());
+       }
+       
+
+    }//GEN-LAST:event_cbo_marcaRepuestoActionPerformed
+    
+    private void btn_GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_GuardarMouseClicked
+        // TODO add your handling code here:
+        Gestor gestor = new Gestor();
+        int vendedorC = 0;
+        if (cbo_VendedorList.getSelectedItem() == ""){
+            vendedorC = gestor.codigoVendedor();
+            System.out.println(vendedorC); 
+           
+        } else {          
+          
+          Object vendedorCode = cbo_VendedorList.getSelectedItem();
+           Usuario vendedor = (Usuario) vendedorCode;
+           vendedorC = vendedor.getId_usuario();
+           System.out.println(vendedorC);
+        }
+        
+        Proforma pProforma = new Proforma(11,vendedorC,"Nueva");        
+        gestor.crearProforma(pProforma);
+        
+        for (int i=0; i <dlm.getSize() ;i++) {
+            
+          int codigoProforma = codigoProforma();
+          RepuestoC repuesto = (RepuestoC) dlm.get(i);
+          int repuestoC = repuesto.getIdRepuesto();
+          DetalleProforma DP = new DetalleProforma(codigoProforma,repuestoC); 
+          System.out.println(DP.toString());
+          gestor.registrarDetalleProforma(DP);
+        }
+        
+        MenuClientes abrir = new MenuClientes();
+        abrir.setVisible(true);
+        this.setVisible(false);
+                 
+        
+    }//GEN-LAST:event_btn_GuardarMouseClicked
+    private DefaultListModel<Object> dlm = new DefaultListModel();
+ 
+    private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
+        
+        System.out.println(jList_Repuesto.getSelectedValue());
+        Object repuestoS = jList_Repuesto.getSelectedValue();        
+        RepuestoC repuesto = (RepuestoC) repuestoS;
+
+        
+        jList_Agregar.setModel(dlm);
+        dlm.add(0,repuesto);
+    }//GEN-LAST:event_btn_AddActionPerformed
+
+    private void btn_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removerActionPerformed
+        int index = jList_Agregar.getSelectedIndex();
+        dlm.removeElementAt(index);
+        
+    }//GEN-LAST:event_btn_removerActionPerformed
+
     private void cbo_VendedorListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_VendedorListActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbo_VendedorListActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -288,21 +385,21 @@ public class MenuProforma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Lbl_NoProforma;
+    private javax.swing.JButton btn_Add;
+    private javax.swing.JButton btn_Guardar;
     private javax.swing.JButton btn_Volver;
-    private javax.swing.JComboBox<String> cbo_VendedorList;
-    private javax.swing.JComboBox<String> cbo_marcaRepuesto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_remover;
+    private javax.swing.JComboBox<Object> cbo_VendedorList;
+    private javax.swing.JComboBox<Object> cbo_marcaRepuesto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<Object> jList_Agregar;
+    private javax.swing.JList<Object> jList_Repuesto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -314,10 +411,10 @@ public class MenuProforma extends javax.swing.JFrame {
         ArrayList<MarcaRepuesto> listaMarcaR = gestor.listaMarcaR();
 
         cbo_marcaRepuesto.removeAllItems();
-        cbo_marcaRepuesto.addItem("");
-
+        
         for (int i=0; i <listaMarcaR.size();i++) {
-           cbo_marcaRepuesto.addItem(listaMarcaR.get(i).getMarca());
+           cbo_marcaRepuesto.addItem(listaMarcaR.get(i));
+           
         }
     }
 
@@ -328,7 +425,29 @@ public class MenuProforma extends javax.swing.JFrame {
             cbo_VendedorList.addItem("");
 
          for (int i=0; i <listaVendedores.size();i++) {
-            cbo_VendedorList.addItem(listaVendedores.get(i).getNombre()+" "+listaVendedores.get(i).getApellido1());
+            //cbo_VendedorList.addItem(listaVendedores.get(i).getNombre()+" "+listaVendedores.get(i).getApellido1());
+            cbo_VendedorList.addItem(listaVendedores.get(i));
        }
     }
+
+    private void llenarRepuestos(int codigo) {
+            Gestor gestor = new Gestor();         
+            ArrayList<RepuestoC> listaRepuesto = gestor.listarRepuestos(codigo);
+            DefaultListModel listModel = new DefaultListModel();
+            for(int i=0; i<listaRepuesto.size(); i++) {
+                //Añadir cada elemento del ArrayList en el modelo de la lista
+                //listModel.add(i, listaRepuesto.get(i).getNombre());
+                listModel.addElement(listaRepuesto.get(i));
+             
+            }
+            jList_Repuesto.setModel(listModel);
+    }
+
+    private int codigoProforma() {
+        Gestor gestor = new Gestor();
+        int codigo = gestor.codigoProfroma();
+        return codigo;
+    }
+
+
 }

@@ -139,17 +139,9 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Objeto.Usuario{" +
-                "id_usuario=" + this.id_usuario +
-                ", nombre='" + this.nombre + '\'' +
-                ", apellido1='" + this.apellido1 + '\'' +
-                ", apellido2='" + this.apellido2 + '\'' +
-                ", telefono='" + this.telefono + '\'' +
-                ", rol='" + this.rol + '\'' +
-                ", username='" + this.username + '\'' +
-                ", password='" + this.password + '\'' +
-                ", listaNaves=" + listaNaves +
-                '}';
+        return  this.nombre + ' ' + this.apellido1 ;
+               
+             
     }
 
 }

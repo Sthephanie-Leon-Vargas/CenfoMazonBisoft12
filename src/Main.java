@@ -11,9 +11,7 @@ public class Main {
        
        //gestor.listaMarcaR();
         //gestor.listarProformas();
-        int precio = Integer.parseInt("4");
-        System.out.println(precio+2);
-        Repuesto repuesto = null;
+
 
     }
 }

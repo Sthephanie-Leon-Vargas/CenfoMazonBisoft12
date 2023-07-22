@@ -42,6 +42,7 @@ public class ProformaDAO {
         sql = "SELECT pro.id_Proforma,pro.id_Vendedor, us.nombre, us.apellido1, pro.estado FROM  jKM_Proformas pro, jKM_Usuarios us WHERE pro.id_Cliente=us.id_usuario;";
         con.conectarBD("GET", sql);
         String jsonSql = con.getResponse().body();
+      
         _tablaModel.addColumn("Id Proforma");
         _tablaModel.addColumn("Id Vendedor");
         _tablaModel.addColumn("Nombre");
@@ -50,7 +51,6 @@ public class ProformaDAO {
         _tablaModel.addColumn("Actualizar");
         JButton btnEditar = new JButton("Editar");
         btnEditar.setName("btn_editar");
-
         try {
             JSONObject jsonResponse = new JSONObject(jsonSql);
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
@@ -61,7 +61,7 @@ public class ProformaDAO {
                 String nombre = jsonObj.getString("nombre");
                 String apellido1 = jsonObj.getString("apellido1");
                 String estado = jsonObj.getString("estado");
-
+              
                 Usuario user = new Usuario(nombre, apellido1);
                 Proforma proforma = new Proforma(idProforma, idVendedor, user, estado);
 
@@ -90,4 +90,28 @@ public class ProformaDAO {
         }
         return lista;
     }
+
+
+    public int ultimaProforma() {
+        Conexion con = new Conexion();
+        String sql;
+        int codigo = 0;
+        
+        sql = "SELECT id_proforma FROM `jKM_Proformas` ORDER BY id_proforma DESC LIMIT 1;";
+        con.conectarBD("GET",sql);
+          try {
+            JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
+            
+            JSONObject jsonMarca = jsonArray.getJSONObject(0);
+            int idproforma = jsonMarca.getInt("id_proforma");
+            codigo = idproforma + 1;
+                } catch (JSONException e) {
+                     e.printStackTrace();
+                }        
+     
+        return codigo;       
+    }
+  
+  
 }

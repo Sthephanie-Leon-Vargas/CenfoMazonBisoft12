@@ -1,5 +1,7 @@
 package cenfomazon;
 
+
+import cenfomazon.Model.DetalleProforma.DetalleProforma;
 import cenfomazon.Estructural.PesoLigero.Extrinseco.Repuesto;
 import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
 import cenfomazon.Model.MarcaRepuesto.MarcaRepuestoDAO;
@@ -11,12 +13,13 @@ import cenfomazon.Model.Usuario.Usuario;
 import cenfomazon.Model.Usuario.UsuarioDAO;
 import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.Model.Repuesto.RepuestoDAO;
+import cenfomazon.Model.DetalleProforma.DetalleProformaDAO;
 import cenfomazon.Model.TipoRepuesto.TipoRepuesto;
 import cenfomazon.Model.TipoRepuesto.TipoRepuestoDAO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 public class Gestor {
 
@@ -24,7 +27,9 @@ public class Gestor {
     private final MarcaRepuestoDAO marcaRepuestoDAO;
     private final RepuestoDAO repuestoDAO;
     private final UsuarioDAO usuarioDAO;
+    private final DetalleProformaDAO detalleproformaDAO;
     private final TipoRepuestoDAO tipoRepuestoDAO;
+
 
 
     
@@ -34,16 +39,13 @@ public class Gestor {
         marcaRepuestoDAO = new MarcaRepuestoDAO();
         repuestoDAO = new RepuestoDAO();
         usuarioDAO = new UsuarioDAO();
+        detalleproformaDAO = new DetalleProformaDAO();
         tipoRepuestoDAO = new TipoRepuestoDAO();
+
 
     }
 
     public void crearProforma(Proforma proforma){
-
-        if (Objects.equals(proforma.getId_Vendedor(), null)){
-            System.out.println(("Aqui falta formula ramdom de vendedor"));
-            proforma.setId_Vendedor(1);
-        }
         proformaDAO.registroProforma(proforma);
 
     }
@@ -61,13 +63,6 @@ public class Gestor {
         return listaMarcaR;
     }
 
-     public ArrayList<RepuestoC> listaRepuesto(){
-        ArrayList<RepuestoC> listaRepuestos = new ArrayList<>();
-        
-        listaRepuestos= repuestoDAO.listarRepuesto(1);
-        return listaRepuestos;
-    }
-
     public void crearUsuario(Usuario usuario){
         usuarioDAO.registroCliente(usuario);
 
@@ -80,11 +75,24 @@ public class Gestor {
     }
     
     
-    public ArrayList<RepuestoC> listarRepuestos(int idMarcaRepuesto){
+    public ArrayList<RepuestoC> listarRepuestos(int codigo){
         ArrayList<RepuestoC> listaRepuestos = new ArrayList<>();
-        listaRepuestos = repuestoDAO.listarRepuesto(idMarcaRepuesto);
+        listaRepuestos = repuestoDAO.listarRepuestos(codigo);
         return listaRepuestos;
     }
+
+    
+    public int codigoVendedor (){
+        return usuarioDAO.vendedorRamdom();
+    }
+    
+    public int codigoProfroma(){
+        return proformaDAO.ultimaProforma();
+    }
+    
+    public void registrarDetalleProforma(DetalleProforma  detalleProforma){
+        detalleproformaDAO.registroDetalleProforma(detalleProforma);
+
 
     public ArrayList<TipoRepuesto> listarTipoRepuestos(){
         return tipoRepuestoDAO.listarTiposR();
@@ -92,5 +100,6 @@ public class Gestor {
 
     public void crearRepuesto(Repuesto repuesto) {
         repuestoDAO.registroRepuesto(repuesto);
+
     }
 }
