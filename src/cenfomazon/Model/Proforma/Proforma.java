@@ -75,6 +75,7 @@ public class Proforma {
         setUser(user);
     }
 
+
     public Proforma(int _id_proforma, int _id_Cliente, int _id_Vendedor, String _estado) {
         this._id_proforma = _id_proforma;
         this._id_Cliente = _id_Cliente;
