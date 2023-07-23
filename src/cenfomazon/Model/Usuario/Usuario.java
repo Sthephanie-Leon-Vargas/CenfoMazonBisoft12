@@ -39,7 +39,13 @@ public class Usuario {
     
     
 
-    public void UsuarioCliente(int id_usuario, String nombre, String apellido1, String apellido2, String telefono, String username, String password, int rol) {
+    public Usuario(String nombre, String apellido1) {
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+    }
+
+    
+    public void UsuarioCliente(int id_usuario, String nombre, String apellido1, String apellido2, String telefono, String username, String password, int rol, ArrayList<Nave> listaNaves) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.apellido1 = apellido1;
@@ -62,6 +68,15 @@ public class Usuario {
         this.password = password;
         this.rol = rol;
     }
+
+    public Usuario(int id_usuario,int rol, String nombre, String apellido1) {
+        this.id_usuario = id_usuario;
+        this.rol = rol;
+        this.nombre = nombre;
+        this.apellido1 = apellido1;
+    }
+    
+    
 
     public int getId_usuario() {
         return id_usuario;
@@ -137,17 +152,9 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Objeto.Usuario{" +
-                "id_usuario=" + this.id_usuario +
-                ", nombre='" + this.nombre + '\'' +
-                ", apellido1='" + this.apellido1 + '\'' +
-                ", apellido2='" + this.apellido2 + '\'' +
-                ", telefono='" + this.telefono + '\'' +
-                ", rol='" + this.rol + '\'' +
-                ", username='" + this.username + '\'' +
-                ", password='" + this.password + '\'' +
-                ", listaNaves=" + listaNaves +
-                '}';
+        return  this.nombre + ' ' + this.apellido1 ;
+               
+             
     }
 
 }

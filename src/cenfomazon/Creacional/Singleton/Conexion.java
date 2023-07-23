@@ -35,7 +35,7 @@ public class Conexion {
     public Conexion() {
     }
 
-    public Conexion conectarBD(String peticion, String query) {
+    public void conectarBD(String peticion, String query) {
         if (con == null) {
             try {
 
@@ -56,13 +56,15 @@ public class Conexion {
                 Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return con;
+//        return con;
     }
 
     private void ejecutarPost(String cadenaConexion) {
         request = HttpRequest.newBuilder()
                 .uri(URI.create(cadenaConexion))
                 .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .version(HttpClient.Version.HTTP_1_1) /*es importante para que no ocurra el error: java.io.IOException: protocol error: Frame type(80) length(4740180) exceeds MAX_FRAME_SIZE(16384)*/
                 .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
     }
@@ -72,6 +74,8 @@ public class Conexion {
         request = HttpRequest.newBuilder()
                 .uri(URI.create(cadenaConexion))
                 .header("Content-Type", "application/text")
+                .header("Accept", "application/json")
+                .version(HttpClient.Version.HTTP_1_1)
                 .GET()
                 .build();
     }

@@ -35,8 +35,8 @@ public class util {
         return pKey + " " + dataR.MostrarCaracteristicas(pDatos);
     }
 
-    public static String generarKey(String tipoRepuesto, String categoria, String marcaRepuesto) {
-        return tipoRepuesto + "-" + categoria + "-" + marcaRepuesto;
+    public static String generarKey(int tipoRepuesto, String categoria, int marcaRepuesto) {
+        return String.valueOf(tipoRepuesto)  + "-" + categoria + "-" + String.valueOf(marcaRepuesto);
     }
 
     public static String imprimirMapaDatarepuestos(Map<String, DataRepuestos> dataRepuestosMap) {

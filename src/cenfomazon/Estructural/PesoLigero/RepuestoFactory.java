@@ -10,7 +10,7 @@ public class RepuestoFactory {
 
     private static Map<String, DataRepuestos> gPoolRepuesto = new HashMap<>();
 
-    public static DataRepuestos obtenerRepuesto(String tipoRepuesto, String categoria, String marcaRepuesto) {
+    public static DataRepuestos obtenerRepuesto(int tipoRepuesto, String categoria, int marcaRepuesto) {
         DataRepuestos data = null;
 
         String key = util.generarKey(tipoRepuesto, categoria, marcaRepuesto);

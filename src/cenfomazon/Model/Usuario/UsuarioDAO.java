@@ -1,19 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package cenfomazon.Model.Usuario;
 
 import cenfomazon.Creacional.Singleton.Conexion;
+import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-/**
- *
- * @author Daniel Sandoval
- */
 public class UsuarioDAO {
     
     public void registroCliente (Usuario usuario){
@@ -74,5 +67,55 @@ public class UsuarioDAO {
         return usuario;
         }
         
+    public ArrayList<Usuario> listarUsuarios(){
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+        Conexion con = new Conexion();
+        String sql;
+        
+        sql = "SELECT * FROM `jKM_Usuarios` WHERE id_rol=2";
+        con.conectarBD("GET",sql);
+      
+
+        try {
+            JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
+            for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonMarca = jsonArray.getJSONObject(i);
+            int idusuario = jsonMarca.getInt("id_usuario");
+            int idrol = jsonMarca.getInt("id_rol");
+            String nombre = jsonMarca.getString("nombre");
+            String apellido1 = jsonMarca.getString("apellido1");
+            Usuario usuario = new Usuario(idusuario,idrol,nombre,apellido1);
+            listaUsuarios.add(usuario);
+        }
+            } catch (JSONException e) {
+                 e.printStackTrace();
+            }        
+        return  listaUsuarios;
+    }
+
+    public int vendedorRamdom() {
+       
+        Conexion con = new Conexion();
+        String sql;
+        int codigo =1;
+        
+        sql = "SELECT id_usuario FROM `jKM_Usuarios` WHERE id_rol=2 ORDER BY RAND() LIMIT 1;";
+        con.conectarBD("GET",sql);
+          try {
+            JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
+            
+            JSONObject jsonMarca = jsonArray.getJSONObject(0);
+            int idusuario = jsonMarca.getInt("id_usuario");
+            codigo = idusuario;
+                } catch (JSONException e) {
+                     e.printStackTrace();
+                }        
+     
+        return codigo;
+    }
+            
+    
     
 }

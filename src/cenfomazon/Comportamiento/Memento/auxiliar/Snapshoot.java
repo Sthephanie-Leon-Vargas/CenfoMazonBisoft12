@@ -1,5 +1,6 @@
 package cenfomazon.Comportamiento.Memento.auxiliar;
 
+import cenfomazon.Model.DetalleProforma.DetalleProforma;
 import java.util.ArrayList;
 
 public class Snapshoot {
@@ -13,19 +14,27 @@ public class Snapshoot {
      *
     /**************************************************************/
 
-    public void nuevaInstantanea(String _estado){
-
-        this._estado = _estado;
+    public void nuevaInstantanea(int id_detalle,int id_proforma, int id_repuesto, int id_razonRechazo, String estado){
+        this._id_detalle = id_detalle;
+        this._id_proforma = id_proforma;
+        this._id_repuesto = id_repuesto;
+        this._id_razonRechazo = id_razonRechazo;
+        this._estado = estado;                
     }
     /****************************************************************
      * Metodo:		Obtener Instantanea
      * Descripcion: 	Obtiene los estados guardados de la instantanea
      * 			  	del objeto DetalleProforma.
-     * @return objeto
+     * @return ArrayList
      ****************************************************************/
     public ArrayList<String>  obtenerInstantanea(){
         ArrayList<String> snapshoot = new ArrayList<String>();
-        snapshoot.add(this._estado);
+        snapshoot.add(Integer.toString(this._id_detalle));
+        snapshoot.add(Integer.toString(this._id_proforma));
+        snapshoot.add(Integer.toString(this._id_repuesto));
+        snapshoot.add(Integer.toString(this._id_razonRechazo));
+        snapshoot.add(this._estado);                
+
         return snapshoot;
     }
 }

@@ -5,18 +5,29 @@
  */
 package cenfomazon.Model.Proforma;
 
+import cenfomazon.Model.Usuario.Usuario;
+
 /**
  *
  * @author sleon
  */
 public class Proforma {
-    
+
     private int _id_proforma;
     private int _id_Cliente;
 
-    private  int _id_Vendedor;
+    private int _id_Vendedor;
     private String _estado;
 
+    private Usuario user;
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
 
     public int getId_proforma() {
         return _id_proforma;
@@ -50,13 +61,20 @@ public class Proforma {
         this._estado = _estado;
     }
 
-
-    public Proforma(int id_Cliente,int id_Vendedor, String estado) {
+    public Proforma(int id_Cliente, int id_Vendedor, String estado) {
         this._id_Cliente = id_Cliente;
         this._id_Vendedor = id_Vendedor;
         this._estado = estado;
 
     }
+
+    public Proforma(int _id_proforma, int _id_Vendedor, Usuario user, String _estado) {
+        this._id_proforma = _id_proforma;
+        this._id_Vendedor = _id_Vendedor;
+        this._estado = _estado;
+        setUser(user);
+    }
+
 
     public Proforma(int _id_proforma, int _id_Cliente, int _id_Vendedor, String _estado) {
         this._id_proforma = _id_proforma;
@@ -77,4 +95,10 @@ public class Proforma {
 
     public Proforma() {
     }
+
+    @Override
+    public String toString() {
+        return "Proforma{" + "_id_proforma=" + _id_proforma + ", _id_Cliente=" + _id_Cliente + ", _id_Vendedor=" + _id_Vendedor + ", _estado=" + _estado + ", user=" + user + '}';
+    }
+
 }

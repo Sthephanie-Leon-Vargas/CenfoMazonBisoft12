@@ -1,15 +1,17 @@
 package cenfomazon.Model.Repuesto;
 
 public class RepuestoC {
+
     private int idRepuesto;
-    private String tipoRepuesto;
+    private int tipoRepuesto;
+    private String descTipoRepuesto;
     private String nombre;
     private String descripcion;
     private String categoria;
     private double precio;
-    private String marcaRepuesto;
+    private int marcaRepuesto;
 
-    public RepuestoC(int idRepuesto, String tipoRepuesto, String nombre, String descripcion, String categoria, double precio, String marcaRepuesto) {
+    public RepuestoC(int idRepuesto, int tipoRepuesto, String nombre, String descripcion, String categoria, double precio, int marcaRepuesto) {
         this.idRepuesto = idRepuesto;
         this.tipoRepuesto = tipoRepuesto;
         this.nombre = nombre;
@@ -23,6 +25,23 @@ public class RepuestoC {
         this.nombre = nombre;
     }
 
+    public RepuestoC(int idRepuesto, String descTipoRepuesto, String nombre, String descripcion, String categoria, double precio) {
+        this.idRepuesto = idRepuesto;
+        this.descTipoRepuesto = descTipoRepuesto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.precio = precio;
+    }
+
+    public String getDescTipoRepuesto() {
+        return descTipoRepuesto;
+    }
+
+    public void setDescTipoRepuesto(String descTipoRepuesto) {
+        this.descTipoRepuesto = descTipoRepuesto;
+    }
+
     public int getIdRepuesto() {
         return idRepuesto;
     }
@@ -31,11 +50,11 @@ public class RepuestoC {
         this.idRepuesto = idRepuesto;
     }
 
-    public String getTipoRepuesto() {
+    public int getTipoRepuesto() {
         return tipoRepuesto;
     }
 
-    public void setTipoRepuesto(String tipoRepuesto) {
+    public void setTipoRepuesto(int tipoRepuesto) {
         this.tipoRepuesto = tipoRepuesto;
     }
 
@@ -71,29 +90,26 @@ public class RepuestoC {
         this.precio = precio;
     }
 
-    public String getMarcaRepuesto() {
+    public int getMarcaRepuesto() {
         return marcaRepuesto;
     }
 
-    public void setMarcaRepuesto(String marcaRepuesto) {
+    public void setMarcaRepuesto(int marcaRepuesto) {
         this.marcaRepuesto = marcaRepuesto;
     }
 
-   
+    public RepuestoC(int idRepuesto, String nombre, int marcaRepuesto) {
+        this.idRepuesto = idRepuesto;
+        this.nombre = nombre;
+        this.marcaRepuesto = marcaRepuesto;
 
-   
-    
+    }
+
+    public RepuestoC() {
+    }
 
     @Override
     public String toString() {
-        return "Repuesto{" +
-                "idRepuesto=" + idRepuesto +
-                ", tipoRepuesto='" + tipoRepuesto + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", categoria='" + categoria + '\'' +
-                ", precio=" + precio +
-                ", marcaRepuesto='" + marcaRepuesto + '\'' +
-                '}';
+        return nombre;
     }
 }

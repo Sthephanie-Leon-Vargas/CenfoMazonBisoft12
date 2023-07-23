@@ -1,49 +1,40 @@
 package cenfomazon.Comportamiento.Memento;
 import cenfomazon.Comportamiento.Memento.auxiliar.Snapshoot;
+import cenfomazon.Model.DetalleProforma.DetalleProforma;
 
 import java.util.ArrayList;
 
 public class Memento {
 
     private Snapshoot _Snapshoot;
-    /****************************************************************
-     * Metodo:		get_Snapshoot
-     * Descripcion: Obtener la instancia de  _Snapshoot
-     ****************************************************************/
-    private Snapshoot get_Snapshoot() {
+    
+    /******************************************
+     * Metodo: get_Snapshoot;
+     * Obtener la instancia de _Snapshoot
+     ******************************************/
+   
+    private Snapshoot getSnapshoot(){
         return _Snapshoot;
     }
-    /****************************************************************
-     * Metodo:		Constructor
- 	 * Descripcion: 	Constructor con parametros, crea una instancia
-	 * 				nueva de _Snapshoot.
- 	 *
-    ****************************************************************/
-    public Memento(String pestado) {
-        this._Snapshoot = new Snapshoot();
-        this.get_Snapshoot().nuevaInstantanea(pestado);
+     /**********************************************************************
+     * Metodo: Constructor;
+     * Constructor con parametros, crea una instancia nueva de _Snapchoot
+     ***********************************************************************/
+    
+   public Memento(int id_detalle,int id_proforma, int id_repuesto, int id_razonRechazo, String estado){
+     this._Snapshoot = new Snapshoot();
+     this.getSnapshoot().nuevaInstantanea(id_detalle,id_proforma,id_repuesto,id_razonRechazo,estado);
+   
+   }
+   
+     /**********************************************************************
+     * Metodo: obtener_Memento;
+     * Obtiene un arraylist de objetos con el memento guardado
+     ***********************************************************************/
+    public ArrayList<String> obtenerMementoLista(){
+       return _Snapshoot.obtenerInstantanea();
     }
-    /****************************************************************
-     * Metodo:		obtener Memento
-     * Descripcion: 	Obtiene un arraylist con el memento guardado
-     *
-     * @return _Snapshoot [ArrayList<String>]
-     *****************************************************************/
-    public ArrayList<String> obtenerMemento() {
-        return _Snapshoot.obtenerInstantanea();
-    }
-
-    /****************************************************************
-     * Metodo:		obtener Memento
-     * Descripcion: 	Obtiene un valor especifico del venctor que
-     * 				contiene con el memento guardado
-     *
-     * @param	pIndex [int]
-     * @return 	_Snapshoot [ArrayList<String>]
-     *****************************************************************/
-    public String obtenerMemento(int pIndex) {
-        return _Snapshoot.obtenerInstantanea().get(pIndex);
-    }
-
-
+    
+    
+    
 }
