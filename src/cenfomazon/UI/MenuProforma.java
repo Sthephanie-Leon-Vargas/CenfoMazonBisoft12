@@ -10,11 +10,13 @@ import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
 import cenfomazon.Model.Proforma.Proforma;
 import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.Model.Usuario.Usuario;
+import cenfomazon.Comportamiento.Memento.Gestor_Memento;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+
 
 /**
  *
@@ -296,6 +298,7 @@ public class MenuProforma extends javax.swing.JFrame {
     private void btn_GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_GuardarMouseClicked
         // TODO add your handling code here:
         Gestor gestor = new Gestor();
+        /*
         int vendedorC = 0;
         if (cbo_VendedorList.getSelectedItem() == ""){
             vendedorC = gestor.codigoVendedor();
@@ -329,8 +332,20 @@ public class MenuProforma extends javax.swing.JFrame {
         
         MenuClientes abrir = new MenuClientes();
         abrir.setVisible(true);
-        this.setVisible(false);
-                 
+        this.setVisible(false);*/
+        
+        ArrayList<DetalleProforma> listaDP = new ArrayList<DetalleProforma>();
+        
+        for (int i=0; i <dlm.getSize() ;i++) {
+          
+          int codigoProforma = codigoProforma()-1;
+          RepuestoC repuesto = (RepuestoC) dlm.get(i);
+          int repuestoC = repuesto.getIdRepuesto();
+          DetalleProforma DP = new DetalleProforma(codigoProforma,repuestoC); 
+          listaDP.add(DP);
+        }      
+        Gestor_Memento gestorM = new Gestor_Memento();
+        gestorM.nuevaDetalle(listaDP);
         
     }//GEN-LAST:event_btn_GuardarMouseClicked
     private DefaultListModel<Object> dlm = new DefaultListModel();
