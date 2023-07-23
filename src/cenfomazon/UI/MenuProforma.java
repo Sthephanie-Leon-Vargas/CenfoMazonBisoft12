@@ -34,6 +34,7 @@ public class MenuProforma extends javax.swing.JFrame {
         Lbl_NoProforma.setText(String.valueOf(codigoProforma()));
         
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -279,6 +280,9 @@ public class MenuProforma extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_VolverMouseClicked
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void cbo_marcaRepuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoActionPerformed
         // TODO add your handling code here:

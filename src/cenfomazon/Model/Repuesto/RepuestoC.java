@@ -20,6 +20,10 @@ public class RepuestoC {
         this.precio = precio;
         this.marcaRepuesto = marcaRepuesto;
     }
+    
+     public RepuestoC(String nombre) {
+        this.nombre = nombre;
+    }
 
     public RepuestoC(int idRepuesto, String descTipoRepuesto, String nombre, String descripcion, String categoria, double precio) {
         this.idRepuesto = idRepuesto;
