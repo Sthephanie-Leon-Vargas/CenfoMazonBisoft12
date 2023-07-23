@@ -6,6 +6,11 @@ import cenfomazon.Model.Proforma.Proforma;
 import cenfomazon.Model.Proforma.ProformaDAO;
 import cenfomazon.Model.Usuario.Usuario;
 import cenfomazon.Model.Usuario.UsuarioDAO;
+import cenfomazon.Estructural.Proxy.AccesoReal;
+import cenfomazon.Estructural.Proxy.AcessoUsuarioProxy;
+import cenfomazon.Estructural.Proxy.InterfaceProxy.Acceso;
+
+
 
 import java.util.ArrayList;
 
@@ -17,6 +22,8 @@ public class Gestor {
     private final ProformaDAO proformaDAO;
     private final MarcaRepuestoDAO marcaRepuestoDAO;
     private final UsuarioDAO usuarioDAO;
+    private Usuario UsuarioLogin;
+    
 
     
 
@@ -53,5 +60,27 @@ public class Gestor {
         usuarioDAO.registroCliente(usuario);
 
     }
+    
+    
+    public void  ValidarLogin(String username, String password){
+            
+        this.UsuarioLogin = usuarioDAO.consultarUsuario(username, password);
+             
+    }
+    
+    
+    /*Esta seccion es para llevar el objeto a las diferentes partes del programa */
+    public Usuario getUsuarioLogin() {
+        return UsuarioLogin;
+    }
 
+    public Usuario retirarUsuario(String username, String password ){
+        return usuarioDAO.consultarUsuario(username, password);
+    }
+    
+    public String darNivelAcceso(Usuario usuario){
+    Acceso acceso = new AcessoUsuarioProxy(usuario );
+    String nivelAcceso = acceso.analizarNivelAcceso();
+    return nivelAcceso;      
+    }
 }

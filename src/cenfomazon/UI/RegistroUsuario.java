@@ -21,7 +21,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
      */
     public RegistroUsuario() {
         initComponents();
-                this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
 
     }
 
@@ -162,11 +162,15 @@ public class RegistroUsuario extends javax.swing.JFrame {
         String Telefono = telefono.getText();
         String Username = username.getText();
         String Password = password.getText();
-        Usuario usuario = new Usuario(Nombre,Apellido1,Apellido2,Telefono,Username,Password);
+        Usuario usuario = new Usuario(Nombre, Apellido1, Apellido2, Telefono, Username, Password);
         Gestor gestor = new Gestor();
         gestor.crearUsuario(usuario);
-        
+
         JOptionPane.showMessageDialog(null, "Regitrado!");
+
+        Login login = new Login();
+        login.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_RegistrarActionPerformed
 
     /**
@@ -204,7 +208,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         });
     }
 
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button Registrar;
     private javax.swing.JTextField apellido1;
