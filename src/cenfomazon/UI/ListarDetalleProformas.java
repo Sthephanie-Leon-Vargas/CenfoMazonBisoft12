@@ -16,8 +16,10 @@ import cenfomazon.Model.Repuesto.RepuestoDAO;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -94,9 +96,9 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnRestaurar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         cbo_marcaRepuesto = new javax.swing.JComboBox<>();
         cbo_Repuestos = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -136,7 +138,12 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jButton1.setText("Restaurar");
+        btnRestaurar.setText("Restaurar");
+        btnRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRestaurarActionPerformed(evt);
+            }
+        });
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +152,12 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Eliminar");
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         cbo_marcaRepuesto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbo_marcaRepuesto.addActionListener(new java.awt.event.ActionListener() {
@@ -184,11 +196,11 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
                                     .addComponent(jLabel2)
                                     .addGap(341, 341, 341)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnRestaurar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAgregar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
+                                .addComponent(btnEliminar)
                                 .addGap(126, 126, 126)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -211,9 +223,9 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
                     .addComponent(cbo_Repuestos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnRestaurar)
                     .addComponent(btnAgregar)
-                    .addComponent(jButton3))
+                    .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnGuardar)
                 .addContainerGap())
@@ -304,10 +316,31 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
     }//GEN-LAST:event_cbo_RepuestosActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-     
-        
-    
+
+
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+        if (jTable1.getSelectedRowCount() > 0) {
+
+            modelo.removeRow(jTable1.getSelectedRow());
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay filas seleccionadas o no hay datos para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
+        Gestor_Memento gm = new Gestor_Memento();
+        gm.restaurarMemento();
+
+        //Que la tabla se limpie o vacie
+
+    }//GEN-LAST:event_btnRestaurarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,11 +393,11 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnRestaurar;
     private javax.swing.JComboBox<Object> cbo_Repuestos;
     private javax.swing.JComboBox<Object> cbo_marcaRepuesto;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
