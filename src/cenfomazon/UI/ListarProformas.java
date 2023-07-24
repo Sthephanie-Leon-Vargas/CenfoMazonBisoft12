@@ -29,6 +29,8 @@ public class ListarProformas extends javax.swing.JFrame {
     public ListarProformas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setTitle("Lista de Proformas");
+         setDefaultCloseOperation(ListarProformas.DISPOSE_ON_CLOSE);
         proformaDao.listarProforma(jTable1);
     }
 
@@ -152,8 +154,16 @@ public class ListarProformas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+ListarDetalleProformas dp;
+    public static int idProforma;
+
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int clic = jTable1.rowAtPoint(evt.getPoint());
+        String idProforma = "" + jTable1.getValueAt(clic, 0);
+
+        this.idProforma = Integer.parseInt(idProforma);
+
         int col = jTable1.getColumnModel().getColumnIndexAtX(evt.getX());
         int fila = evt.getY() / jTable1.getRowHeight();
         if (fila < jTable1.getRowCount() && fila >= 0 && col < jTable1.getColumnCount() && col >= 0) {
@@ -163,7 +173,12 @@ public class ListarProformas extends javax.swing.JFrame {
                 JButton boton = (JButton) valor;
                 if (boton.getName().equals("btn_editar")) {
                     //ACCIONES DEL BOTON EDITAR!
-                    JOptionPane.showMessageDialog(null, "Click en boton Editar!");
+                    if (dp != null) {//si existe una ventana, la cierra.
+                        dp.dispose();
+                    }
+                    dp = new ListarDetalleProformas();
+                    dp.setVisible(true);
+                    this.setResizable(true);
 
                 }
             }
