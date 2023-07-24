@@ -315,8 +315,9 @@ public class MenuProforma extends javax.swing.JFrame {
            vendedorC = vendedor.getId_usuario();
            System.out.println(vendedorC);
         }
-        
-        Proforma pProforma = new Proforma(11,vendedorC,"Nueva");        
+        Usuario user = Login.getusuario();
+        int idCliente = user.getId_usuario();
+        Proforma pProforma = new Proforma(idCliente,vendedorC,"Nueva");        
         gestor.crearProforma(pProforma);
         
         try {

@@ -116,27 +116,7 @@ public class UsuarioDAO {
         return codigo;
     }
     
-    public String obtenerNombre(int pcodigo) {
-       
-        Conexion con = new Conexion();
-        String sql;
-        String name = "";
-        
-        sql = "SELECT nombre FROM `jKM_Usuarios` WHERE id_usuario="+pcodigo+" ;";
-        con.conectarBD("GET",sql);
-          try {
-            JSONObject jsonResponse = new JSONObject(con.getResponse().body());
-            JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
-            
-            JSONObject jsonMarca = jsonArray.getJSONObject(0);
-            String pnombre = jsonMarca.getString("nombre");
-            name = pnombre;
-                } catch (JSONException e) {
-                     e.printStackTrace();
-                }        
-     
-        return name;
-    }
+ 
             
     
     

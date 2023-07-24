@@ -132,7 +132,5 @@ public class Gestor {
 
     }
     
-    public String obtenerNombre(int codigo){
-        return usuarioDAO.obtenerNombre(codigo);
-    }
+ 
 }

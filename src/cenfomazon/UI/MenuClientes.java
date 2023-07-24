@@ -6,6 +6,7 @@
 package cenfomazon.UI;
 
 import cenfomazon.Gestor;
+import cenfomazon.Model.Usuario.Usuario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -28,15 +29,10 @@ public class MenuClientes extends javax.swing.JFrame {
     
      public String getUserName() {
         String name = "";
-        System.out.println(Login.Usuario.toString());
-        //int idUsuario = Login.id_Usuario;
-        try {
-            name = gestor.obtenerNombre(1);
-            return name;
-
-        } catch (java.lang.NullPointerException e) {
-            return name;
-        }
+ 
+        Usuario user = Login.getusuario();
+        name = user.getNombre();
+        return name;
     }
 
     /**
