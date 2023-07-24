@@ -1,41 +1,35 @@
 package cenfomazon.Comportamiento.Memento;
-import cenfomazon.Comportamiento.Memento.auxiliar.Snapshoot;
+import cenfomazon.Model.DetalleProforma.DetalleProforma;
+import java.util.ArrayList;
 
 public class Originator {
 
-    private Snapshoot _Estado;
+    private ArrayList<DetalleProforma> detalles;
 
-    public Originator() {
-        _Estado = new Snapshoot();
+ 
+    public Originator(ArrayList<DetalleProforma> pdetalles) {
+        this.detalles = pdetalles;
+    }
+   
+    public void setMemento(Memento m) {
+        this.detalles = m.getDetalles();
+    }
+  
+    public Memento createMemento(){
+        return new Memento(detalles);
     }
 
-    public String nuevoEstado(String estado) {
-        this._Estado.nuevaInstantanea(estado);
-
-        return "Originador> nuevo estado [Estado: "+estado+"]";
+    public ArrayList<DetalleProforma> getDetalles() {
+        return detalles;
     }
 
-    public String obtenerEstado(int pIdx) {
-        return this._Estado.obtenerInstantanea().get(pIdx);
+    public void setDetalles(ArrayList<DetalleProforma> detalles) {
+        this.detalles = detalles;
     }
-
-    public String obtenerEstado() {
-        return "Originador> estado actual [" +
-                this._Estado.obtenerInstantanea().get(0) + " ]";
-
-    }
-    /*==========================================================================
-     *						 Seccion donde usamos el memento.
-     ==========================================================================*/
-
-    public void restaurarMemento(Memento m) {
-        this._Estado.nuevaInstantanea (m.obtenerMemento(0));
-    }
-
-    public Memento crearMemento() {
-        return new Memento(this._Estado.obtenerInstantanea().get(0));
-    }
+    
 
 }
+    
+    
 
 

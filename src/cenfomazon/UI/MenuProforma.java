@@ -10,11 +10,13 @@ import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
 import cenfomazon.Model.Proforma.Proforma;
 import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.Model.Usuario.Usuario;
+import cenfomazon.Comportamiento.Memento.Gestor_Memento;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+
 
 /**
  *
@@ -32,6 +34,7 @@ public class MenuProforma extends javax.swing.JFrame {
         Lbl_NoProforma.setText(String.valueOf(codigoProforma()));
         
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -277,6 +280,9 @@ public class MenuProforma extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_VolverMouseClicked
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void cbo_marcaRepuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoActionPerformed
         // TODO add your handling code here:
@@ -296,6 +302,7 @@ public class MenuProforma extends javax.swing.JFrame {
     private void btn_GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_GuardarMouseClicked
         // TODO add your handling code here:
         Gestor gestor = new Gestor();
+        
         int vendedorC = 0;
         if (cbo_VendedorList.getSelectedItem() == ""){
             vendedorC = gestor.codigoVendedor();
@@ -330,14 +337,14 @@ public class MenuProforma extends javax.swing.JFrame {
         MenuClientes abrir = new MenuClientes();
         abrir.setVisible(true);
         this.setVisible(false);
-                 
+  
         
     }//GEN-LAST:event_btn_GuardarMouseClicked
     private DefaultListModel<Object> dlm = new DefaultListModel();
  
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
         
-        System.out.println(jList_Repuesto.getSelectedValue());
+       
         Object repuestoS = jList_Repuesto.getSelectedValue();        
         RepuestoC repuesto = (RepuestoC) repuestoS;
 

@@ -24,12 +24,11 @@ public class TipoRepuesto {
     public void setTipo(String tipo) {
         Tipo = tipo;
     }
-
+    
+    
+    
     @Override
     public String toString() {
-        return "TipoCategoria{" +
-                "idTipoRepuesto=" + idTipoRepuesto +
-                ", Tipo='" + Tipo + '\'' +
-                '}';
+        return getTipo();
     }
 }
