@@ -7,25 +7,16 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Gestor gestor = new Gestor();
-
-        //Proforma proforma = new Proforma (1,1,"Nueva");
-       // gestor.crearProforma(proforma);
+        ArrayList<DetalleProforma> detalles = new ArrayList<>();
+        detalles.add(new DetalleProforma(1,1,1,"Nueva"));
+        detalles.add(new DetalleProforma(1,1,1,"Nueva2"));
        
-       //gestor.listaMarcaR();
-        //gestor.listarProformas();
-        
-        DetalleProforma dp1 = new DetalleProforma(1,1,1,1,"Pendiente");
-        DetalleProforma dp2 = new DetalleProforma(2,2,2,2,"Pendiente");
-        DetalleProforma dp3 = new DetalleProforma(3,3,3,3,"Pendiente");
-        
-        ArrayList<DetalleProforma> LDP = new ArrayList<DetalleProforma>();
-            LDP.add(dp1);
-            LDP.add(dp2);
-            LDP.add(dp3);
-            
-        Gestor_Memento gestorM = new Gestor_Memento();
-        gestorM.actualizarDetalleProforma();
+        Gestor_Memento gm = new Gestor_Memento();
+        gm.guardarMemento(detalles);
+        System.out.println("Se completa el guardar");
+        System.out.println("Se imprime la restauracion");
+        gm.restaurarMemento();
+      
 
     }
 }

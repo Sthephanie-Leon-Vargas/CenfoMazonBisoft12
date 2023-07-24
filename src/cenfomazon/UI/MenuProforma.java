@@ -298,7 +298,7 @@ public class MenuProforma extends javax.swing.JFrame {
     private void btn_GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_GuardarMouseClicked
         // TODO add your handling code here:
         Gestor gestor = new Gestor();
-        /*
+        
         int vendedorC = 0;
         if (cbo_VendedorList.getSelectedItem() == ""){
             vendedorC = gestor.codigoVendedor();
@@ -332,27 +332,15 @@ public class MenuProforma extends javax.swing.JFrame {
         
         MenuClientes abrir = new MenuClientes();
         abrir.setVisible(true);
-        this.setVisible(false);*/
-        
-        ArrayList<DetalleProforma> listaDP = new ArrayList<DetalleProforma>();
-        
-        for (int i=0; i <dlm.getSize() ;i++) {
-          
-          int codigoProforma = codigoProforma()-1;
-          RepuestoC repuesto = (RepuestoC) dlm.get(i);
-          int repuestoC = repuesto.getIdRepuesto();
-          DetalleProforma DP = new DetalleProforma(codigoProforma,repuestoC); 
-          listaDP.add(DP);
-        }      
-        Gestor_Memento gestorM = new Gestor_Memento();
-        gestorM.nuevaDetalle(listaDP);
+        this.setVisible(false);
+  
         
     }//GEN-LAST:event_btn_GuardarMouseClicked
     private DefaultListModel<Object> dlm = new DefaultListModel();
  
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
         
-        System.out.println(jList_Repuesto.getSelectedValue());
+       
         Object repuestoS = jList_Repuesto.getSelectedValue();        
         RepuestoC repuesto = (RepuestoC) repuestoS;
 

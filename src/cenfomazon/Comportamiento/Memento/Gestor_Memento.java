@@ -10,48 +10,73 @@ import cenfomazon.Model.DetalleProforma.DetalleProforma;
 import java.util.ArrayList;
 
 public class Gestor_Memento {
+        private Originator originator;
+        private Caretaker caretaker;
+        private ArrayList<DetalleProforma> detalles;
 
-    private DetalleProforma _DetalleProforma;
-    private Originator _Creador;
-    private Caretaker _Vigilante;
+    public Gestor_Memento() {
+        originator = new Originator(detalles);
+        caretaker = new Caretaker();
+    }
+        
     
-    public Gestor_Memento(){
-        this._Creador = new Originator();
-        this._Vigilante = new Caretaker();
+        
+        
     
+    public void guardarMemento(ArrayList<DetalleProforma> detalles) {
+        //Crea el objeto originador/creador
+        originator = new Originator(detalles);
+        //Crea el objeto gestor/vigilante del Memento
+        caretaker = new Caretaker();
+        //Crea el Memento y asocia al objeto gestor
+        caretaker.setMemento(originator.createMemento());
+        System.out.println("Se crea el memento y se muestra");
+        //Muestra los datos del creador
+        for (int i=0;i < originator.getDetalles().size();i++){
+            DetalleProforma DP = originator.getDetalles().get(i);
+            System.out.println(DP.toString());
+        
+        }
+        
+        /*===========================
+        System.out.println("Se modifican los datos y se muestra");
+        // Agrego datos nuevos
+        detalles.add(new DetalleProforma(1,1,1,"Nueva3"));
+        
+        //Muestro los datos del creador de nuevo
+            for (int i=0;i < creador.getDetalles().size();i++){
+                DetalleProforma DP = creador.getDetalles().get(i);
+                System.out.println(DP.toString());
+        
+             }
+        //Restauro el memento
+        System.out.println("Se restaura el objeto inicial");
+        creador.setMemento(vigilante.getMemento());
+        
+       
+        //Muestro los datos del creador de restaurados
+                for (int i=0;i < creador.getDetalles().size();i++){
+            DetalleProforma DP = creador.getDetalles().get(i);
+            System.out.println(DP.toString());
+        
+        }*/
     }
     
-public String nuevaDetalle(ArrayList<DetalleProforma> objetosDetalle){
-    for (int i=0; i <objetosDetalle.size() ;i++) {
-        DetalleProforma dp = objetosDetalle.get(i);
-        System.out.println(dp.toString());
-        this._DetalleProforma = new DetalleProforma(dp.get_id_detalle(),dp.get_id_proforma(),dp.get_id_repuesto(),dp.get_id_razonRechazo(),dp.get_estado());
+    
+    
+    
+    public ArrayList<DetalleProforma> restaurarMemento()    {
         
-        _Creador.nuevoEstado(dp.get_id_detalle(),dp.get_id_proforma(),dp.get_id_repuesto(),dp.get_id_razonRechazo(),dp.get_estado());
+        originator.setMemento(caretaker.getMemento());
+                
+
+        ArrayList<DetalleProforma> detalles = originator.getDetalles();
+        for (int i=0;i < originator.getDetalles().size();i++){
+            DetalleProforma DP = originator.getDetalles().get(i);
+            System.out.println(DP.toString());
         
-        
-    }
-    return "El objeto DetalleProforma fie instanciada y 'mementada'";
-}
-
-
-/*========SECCION DONDE USAMOS EL MEMENTO============*/
-
-
-    public String actualizarDetalleProforma(){
-
-
-        Actualizar_Memento();
-        
-    return "Memento Actualizado";
+        }
+    return detalles;    
     }
 
-    private void Actualizar_Memento(){
-      _Vigilante.setMemento(_Creador.crearMemento());
-    }
-
-
-    public void Restaurar_Memento(){
-        _Creador.restaurarMemento(_Vigilante.getMemento());
-    }
 }
