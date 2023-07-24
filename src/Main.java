@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<DetalleProforma> detalles = new ArrayList<>();
+        /*ArrayList<DetalleProforma> detalles = new ArrayList<>();
         detalles.add(new DetalleProforma(1,1,1,"Nueva"));
         detalles.add(new DetalleProforma(1,1,1,"Nueva2"));
        
@@ -15,7 +15,7 @@ public class Main {
         gm.guardarMemento(detalles);
         System.out.println("Se completa el guardar");
         System.out.println("Se imprime la restauracion");
-        gm.restaurarMemento();
+        gm.restaurarMemento();*/
       
 
     }

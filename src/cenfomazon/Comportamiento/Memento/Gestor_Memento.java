@@ -19,10 +19,6 @@ public class Gestor_Memento {
         caretaker = new Caretaker();
     }
         
-    
-        
-        
-    
     public void guardarMemento(ArrayList<DetalleProforma> detalles) {
         //Crea el objeto originador/creador
         originator = new Originator(detalles);

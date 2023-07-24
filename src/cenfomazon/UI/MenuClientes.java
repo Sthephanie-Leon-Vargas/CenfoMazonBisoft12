@@ -5,6 +5,7 @@
  */
 package cenfomazon.UI;
 
+import cenfomazon.Gestor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -19,8 +20,23 @@ public class MenuClientes extends javax.swing.JFrame {
     /**
      * Creates new form MenuClientes
      */
+    Gestor gestor = new Gestor();
     public MenuClientes() {
         initComponents();
+        txt_NombreUsuario.setText(getUserName());
+    }
+    
+     public String getUserName() {
+        String name = "";
+        System.out.println(Login.Usuario.toString());
+        //int idUsuario = Login.id_Usuario;
+        try {
+            name = gestor.obtenerNombre(1);
+            return name;
+
+        } catch (java.lang.NullPointerException e) {
+            return name;
+        }
     }
 
     /**
