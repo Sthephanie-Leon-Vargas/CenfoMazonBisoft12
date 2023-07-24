@@ -15,17 +15,15 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author sleon
  */
-public class ListarRepuestos extends javax.swing.JFrame {
+public class ListarNaves extends javax.swing.JFrame {
 
-    RepuestoDAO repuestoDao = new RepuestoDAO();
 
     /**
      * Creates new form ListarProformas
      */
-    public ListarRepuestos() {
+    public ListarNaves() {
         initComponents();
         this.setLocationRelativeTo(null);
-        repuestoDao.listarRepuestos(jTable1);
     }
 
     /**
@@ -49,12 +47,12 @@ public class ListarRepuestos extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Id Repuesto", "Tipo Repuesto", "Nombre", "Descripción", "Categoría", "Precio"
+                "Id Nave"
             }
         ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -68,11 +66,6 @@ public class ListarRepuestos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -92,7 +85,7 @@ public class ListarRepuestos extends javax.swing.JFrame {
 
         txt_Bienvenido1.setFont(new java.awt.Font("Artifakt Element Light", 1, 18)); // NOI18N
         txt_Bienvenido1.setForeground(new java.awt.Color(255, 255, 255));
-        txt_Bienvenido1.setText("Lista de Repuestos");
+        txt_Bienvenido1.setText("Lista de Naves");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -163,14 +156,16 @@ public class ListarRepuestos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarRepuestos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarNaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarRepuestos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarNaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarRepuestos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarNaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarRepuestos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarNaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -179,15 +174,15 @@ public class ListarRepuestos extends javax.swing.JFrame {
             public void run() {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    new ListarRepuestos().setVisible(true);
+                    new ListarNaves().setVisible(true);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ListarRepuestos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarNaves.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(ListarRepuestos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarNaves.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(ListarRepuestos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarNaves.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (UnsupportedLookAndFeelException ex) {
-                    Logger.getLogger(ListarRepuestos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarNaves.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

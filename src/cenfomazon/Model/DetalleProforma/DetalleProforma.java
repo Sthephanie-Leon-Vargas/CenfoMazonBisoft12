@@ -1,5 +1,7 @@
 package cenfomazon.Model.DetalleProforma;
 
+import cenfomazon.Model.Repuesto.RepuestoC;
+
 public class DetalleProforma {
 
 
@@ -8,6 +10,7 @@ public class DetalleProforma {
     private int _id_repuesto;
     private int _id_razonRechazo;
     private String _estado;
+    private RepuestoC repuesto;
 
     public int get_id_detalle() {
         return _id_detalle;
@@ -47,6 +50,19 @@ public class DetalleProforma {
 
     public void set_estado(String _estado) {
         this._estado = _estado;
+    }
+
+    public RepuestoC getRepuesto() {
+        return repuesto;
+    }
+
+    public void setRepuesto(RepuestoC repuesto) {
+        this.repuesto = repuesto;
+    }
+
+    public DetalleProforma(int _id_detalle, RepuestoC repuesto) {
+        this._id_detalle = _id_detalle;
+        this.repuesto = repuesto;
     }
 
     public DetalleProforma(int _id_proforma, int _id_repuesto, int _id_razonRechazo, String _estado) {
