@@ -131,4 +131,8 @@ public class Gestor {
         repuestoDAO.registroRepuesto(repuesto);
 
     }
+    
+    public String obtenerNombre(int codigo){
+        return usuarioDAO.obtenerNombre(codigo);
+    }
 }

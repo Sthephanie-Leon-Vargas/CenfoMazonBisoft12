@@ -100,4 +100,39 @@ public class DetalleProformaDAO {
         }
         return lista;
     }
+    
+    
+    public ArrayList<DetalleProforma> listarDetalleProformasRaw(int codigo){
+    ArrayList<DetalleProforma> lp = new ArrayList<>();
+        Conexion con = new Conexion();
+        String sql;
+
+        sql = "SELECT * FROM `jKM_DetalleProforma` WHERE id_proforma=" + codigo + "";
+
+        con.conectarBD("GET", sql);
+
+        
+
+        try {
+            JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonMarca = jsonArray.getJSONObject(i);
+                    int idRepuesto = jsonMarca.getInt("id_detalle");
+                    int idProforma = jsonMarca.getInt("id_proforma");
+                    int idRepuestos = jsonMarca.getInt("id_repuesto");
+                    int idRazon = jsonMarca.getInt("id_razonRechazo");
+                    String pestado = jsonMarca.getString("estado");
+                    DetalleProforma dp = new DetalleProforma(idRepuesto,idProforma,idRepuestos,idRazon,pestado);
+                    lp.add(dp);
+                }
+             
+            } catch (JSONException e) {
+                e.printStackTrace();
+        }      
+        return  lp;
+    }
+    
+    
 }

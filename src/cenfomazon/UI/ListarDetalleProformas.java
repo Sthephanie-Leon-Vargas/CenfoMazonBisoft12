@@ -5,7 +5,9 @@
  */
 package cenfomazon.UI;
 
+import cenfomazon.Comportamiento.Memento.Gestor_Memento;
 import cenfomazon.Gestor;
+import cenfomazon.Model.DetalleProforma.DetalleProforma;
 import cenfomazon.Model.DetalleProforma.DetalleProformaDAO;
 import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
 import cenfomazon.Model.Proforma.ProformaDAO;
@@ -37,6 +39,11 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
         detalleProformaDao.listarDetalleProformas(jTable1, getIdProformas());
         llenarMarcas();
         lblIdProforma.setText("Id Proforma: " + getIdProformas());
+        
+        ArrayList<DetalleProforma> detalles = new ArrayList<>();
+        detalles = detalleProformaDao.listarDetalleProformasRaw(getIdProformas());
+        Gestor_Memento gm = new Gestor_Memento();
+        gm.guardarMemento(detalles);
     }
 
     public int getIdProformas() {
