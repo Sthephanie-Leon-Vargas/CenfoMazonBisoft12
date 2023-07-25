@@ -157,12 +157,12 @@ public class MenuVendedor extends javax.swing.JFrame {
             btn_CrearProforma5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_CrearProforma5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(btn_CrearProforma5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
+                .addGroup(btn_CrearProforma5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(btn_CrearProforma5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1)
                         .addComponent(jButton2)
-                        .addComponent(jButton3)))
+                        .addComponent(jButton3))
+                    .addComponent(jButton4))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -187,14 +187,12 @@ public class MenuVendedor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btn_CrearProforma5.getAccessibleContext().setAccessibleName("Menu de Vendedor");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_VolverMouseClicked
         // TODO add your handling code here:
-        MenuInicio volver = new MenuInicio();
+        Login volver = new Login();
         volver.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_VolverMouseClicked
@@ -247,28 +245,8 @@ public class MenuVendedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btn_CrearProforma;
-    private javax.swing.JPanel btn_CrearProforma1;
-    private javax.swing.JPanel btn_CrearProforma2;
-    private javax.swing.JPanel btn_CrearProforma3;
-    private javax.swing.JPanel btn_CrearProforma4;
     private javax.swing.JPanel btn_CrearProforma5;
-    private javax.swing.JButton btn_ListaInventario;
-    private javax.swing.JButton btn_ListaInventario1;
-    private javax.swing.JButton btn_ListaInventario2;
-    private javax.swing.JButton btn_ListaInventario3;
-    private javax.swing.JButton btn_ListaInventario4;
-    private javax.swing.JButton btn_RegistrarNaves;
-    private javax.swing.JButton btn_RegistrarNaves1;
-    private javax.swing.JButton btn_RegistrarNaves2;
-    private javax.swing.JButton btn_RegistrarNaves3;
-    private javax.swing.JButton btn_RegistrarNaves4;
     private javax.swing.JButton btn_Volver;
-    private javax.swing.JButton btn_crearProforma;
-    private javax.swing.JButton btn_crearProforma1;
-    private javax.swing.JButton btn_crearProforma2;
-    private javax.swing.JButton btn_crearProforma3;
-    private javax.swing.JButton btn_crearProforma4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
