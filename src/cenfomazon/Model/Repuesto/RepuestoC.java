@@ -29,6 +29,10 @@ public class RepuestoC {
         this.categoria = categoria;
         this.precio = precio;
     }
+    
+    public RepuestoC(String nombreRepuesto){
+        this.nombre = nombreRepuesto;
+    }
 
     public String getDescTipoRepuesto() {
         return descTipoRepuesto;

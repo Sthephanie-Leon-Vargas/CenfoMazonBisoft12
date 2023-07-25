@@ -62,6 +62,11 @@ public class DetalleProforma {
         this._id_repuesto = _id_repuesto;
     }
     
+    public DetalleProforma(int id_detalle, int id_proforma, int id_repuesto) {
+        this._id_detalle = id_detalle;
+        this._id_proforma = id_proforma;
+        this._id_repuesto = id_repuesto;
+    }
 
     public DetalleProforma() {
     }
