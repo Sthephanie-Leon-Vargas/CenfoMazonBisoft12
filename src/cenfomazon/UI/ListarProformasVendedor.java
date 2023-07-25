@@ -29,7 +29,7 @@ public class ListarProformasVendedor extends javax.swing.JFrame {
     public ListarProformasVendedor() {
         initComponents();
         this.setLocationRelativeTo(null);
-        proformaDao.listarProformaVendedor(jTable1, Login.getusuario());
+        proformaDao.listarProformaVendedor(jTable1, Login.getusuario().getId_usuario());
     }
 
     /**
