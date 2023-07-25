@@ -132,5 +132,8 @@ public class Gestor {
 
     }
     
+    public void borrarDetalle(int codigo){
+        detalleproformaDAO.borrarDatos(codigo);
+    }
  
 }

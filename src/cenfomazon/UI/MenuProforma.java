@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -357,6 +358,7 @@ public class MenuProforma extends javax.swing.JFrame {
     private void btn_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removerActionPerformed
         int index = jList_Agregar.getSelectedIndex();
         dlm.removeElementAt(index);
+
         
     }//GEN-LAST:event_btn_removerActionPerformed
 

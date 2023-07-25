@@ -27,7 +27,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListarDetalleProformas extends javax.swing.JFrame {
 
+    public static ArrayList<DetalleProforma> detalles= new ArrayList<>();
     DetalleProformaDAO detalleProformaDao = new DetalleProformaDAO();
+    Gestor_Memento gm = new Gestor_Memento();
+    
+   
 
 //    int p=ListarProformas.idProforma;
     /**
@@ -39,13 +43,13 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setDefaultCloseOperation(ListarDetalleProformas.DISPOSE_ON_CLOSE);
         detalleProformaDao.listarDetalleProformas(jTable1, getIdProformas());
+        ocultarColumnas();
+        txt_Monto.setText(calcular());
         llenarMarcas();
         lblIdProforma.setText("Id Proforma: " + getIdProformas());
-        
-        ArrayList<DetalleProforma> detalles = new ArrayList<>();
-        detalles = detalleProformaDao.listarDetalleProformasRaw(getIdProformas());
-        Gestor_Memento gm = new Gestor_Memento();
+        this.detalles = detalleProformaDao.listarDetalleProformasRaw(getIdProformas());        
         gm.guardarMemento(detalles);
+        
     }
 
     public int getIdProformas() {
@@ -104,6 +108,9 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        txt_Monto = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txt_Bienvenido1 = new javax.swing.JLabel();
         lblIdProforma = new javax.swing.JLabel();
@@ -114,12 +121,12 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", "", "", null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"", "", "", null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id Detalle", "Nombre Repuesto", "Marca", "Precio"
+                "Id Detalle", "Nombre Repuesto", "Marca", "Precio", "Id Repuesto"
             }
         ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -136,6 +143,7 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
         }
 
         btnRestaurar.setText("Restaurar");
@@ -178,6 +186,22 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
         jLabel3.setText("Repuestos");
 
         btnGuardar.setText("Guardar Cambios");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnCancelar.setText("Cancelar Cambios");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Total: $");
+
+        txt_Monto.setText("0.00");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -190,7 +214,7 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(cbo_marcaRepuesto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbo_marcaRepuesto, 0, 363, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel2)
@@ -204,11 +228,17 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
                                 .addGap(126, 126, 126)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(cbo_Repuestos, 0, 359, Short.MAX_VALUE)))
+                            .addComponent(cbo_Repuestos, 0, 361, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnGuardar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_Monto, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +257,11 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
                     .addComponent(btnAgregar)
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnGuardar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnCancelar)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_Monto))
                 .addContainerGap())
         );
 
@@ -317,7 +351,7 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
 
-
+        txt_Monto.setText(calcular());
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -330,18 +364,80 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No hay filas seleccionadas o no hay datos para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-
+        txt_Monto.setText(calcular());
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
-        Gestor_Memento gm = new Gestor_Memento();
-        gm.restaurarMemento();
 
-        //Que la tabla se limpie o vacie
+        System.out.println("separar");
+        gm.restaurarMemento();
+        
+        limpiarTabla();
+        detalleProformaDao.listarDetalleProformas(jTable1, getIdProformas());
+        txt_Monto.setText(calcular());
 
     }//GEN-LAST:event_btnRestaurarActionPerformed
 
+    public void ocultarColumnas(){
+      
+    System.out.println("Se completa el guardar");
+    jTable1.getColumnModel().getColumn(4).setMaxWidth(0);
+    jTable1.getColumnModel().getColumn(4).setMinWidth(0);
+    jTable1.getColumnModel().getColumn(4).setPreferredWidth(0);
+        
+    }
+    
+    
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        
+        Gestor gestor = new Gestor();
+        gestor.borrarDetalle(getIdProformas());
+        
+        
+        for (int i=0; i <jTable1.getRowCount() ;i++) {
+          
+          int codigoProforma = getIdProformas();
+          String codigoR = jTable1.getValueAt(i, 4)+"";
+          int codigoRepuesto= Integer.parseInt(codigoR);
+          DetalleProforma DP = new DetalleProforma(codigoProforma,codigoRepuesto); 
+
+          gestor.registrarDetalleProforma(DP);
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    public String calcular(){
+        String monto = "";
+        double suma = 0;
+        for (int i=0; i <jTable1.getRowCount() ;i++) {
+          String datoS =  jTable1.getValueAt(i, 3)+"";
+          double dato = Double.parseDouble(datoS);
+          suma = suma + dato;
+        }
+        monto = String.valueOf(suma);
+        return monto;
+    }
+    
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    public void limpiarTabla(){
+    
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        for (int i=0; i <jTable1.getRowCount();i++){
+            modelo.removeRow(i);
+            i=-1;
+        }
+    
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -393,11 +489,13 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRestaurar;
     private javax.swing.JComboBox<Object> cbo_Repuestos;
     private javax.swing.JComboBox<Object> cbo_marcaRepuesto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -407,5 +505,6 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblIdProforma;
     private javax.swing.JLabel txt_Bienvenido1;
+    private javax.swing.JLabel txt_Monto;
     // End of variables declaration//GEN-END:variables
 }
