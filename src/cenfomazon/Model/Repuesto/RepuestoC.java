@@ -22,6 +22,21 @@ public class RepuestoC {
     
      public RepuestoC(String nombre) {
         this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.categoria = categoria;
+        this.precio = precio;
+    }
+    
+    public RepuestoC(String nombreRepuesto){
+        this.nombre = nombreRepuesto;
+    }
+
+    public String getDescTipoRepuesto() {
+        return descTipoRepuesto;
+    }
+
+    public void setDescTipoRepuesto(String descTipoRepuesto) {
+        this.descTipoRepuesto = descTipoRepuesto;
     }
 
     public int getIdRepuesto() {
