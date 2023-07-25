@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -34,6 +35,7 @@ public class MenuProforma extends javax.swing.JFrame {
         Lbl_NoProforma.setText(String.valueOf(codigoProforma()));
         
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -279,6 +281,9 @@ public class MenuProforma extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_VolverMouseClicked
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void cbo_marcaRepuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_marcaRepuestoActionPerformed
         // TODO add your handling code here:
@@ -298,7 +303,7 @@ public class MenuProforma extends javax.swing.JFrame {
     private void btn_GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_GuardarMouseClicked
         // TODO add your handling code here:
         Gestor gestor = new Gestor();
-        /*
+        
         int vendedorC = 0;
         if (cbo_VendedorList.getSelectedItem() == ""){
             vendedorC = gestor.codigoVendedor();
@@ -311,8 +316,9 @@ public class MenuProforma extends javax.swing.JFrame {
            vendedorC = vendedor.getId_usuario();
            System.out.println(vendedorC);
         }
-        
-        Proforma pProforma = new Proforma(11,vendedorC,"Nueva");        
+        Usuario user = Login.getusuario();
+        int idCliente = user.getId_usuario();
+        Proforma pProforma = new Proforma(idCliente,vendedorC,"Nueva");        
         gestor.crearProforma(pProforma);
         
         try {
@@ -332,27 +338,15 @@ public class MenuProforma extends javax.swing.JFrame {
         
         MenuClientes abrir = new MenuClientes();
         abrir.setVisible(true);
-        this.setVisible(false);*/
-        
-        ArrayList<DetalleProforma> listaDP = new ArrayList<DetalleProforma>();
-        
-        for (int i=0; i <dlm.getSize() ;i++) {
-          
-          int codigoProforma = codigoProforma()-1;
-          RepuestoC repuesto = (RepuestoC) dlm.get(i);
-          int repuestoC = repuesto.getIdRepuesto();
-          DetalleProforma DP = new DetalleProforma(codigoProforma,repuestoC); 
-          listaDP.add(DP);
-        }      
-        Gestor_Memento gestorM = new Gestor_Memento();
-        gestorM.nuevaDetalle(listaDP);
+        this.setVisible(false);
+  
         
     }//GEN-LAST:event_btn_GuardarMouseClicked
     private DefaultListModel<Object> dlm = new DefaultListModel();
  
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
         
-        System.out.println(jList_Repuesto.getSelectedValue());
+       
         Object repuestoS = jList_Repuesto.getSelectedValue();        
         RepuestoC repuesto = (RepuestoC) repuestoS;
 
@@ -364,6 +358,7 @@ public class MenuProforma extends javax.swing.JFrame {
     private void btn_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removerActionPerformed
         int index = jList_Agregar.getSelectedIndex();
         dlm.removeElementAt(index);
+
         
     }//GEN-LAST:event_btn_removerActionPerformed
 

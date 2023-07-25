@@ -21,11 +21,52 @@ public class UsuarioDAO {
         String username = usuario.getUsername();
         String password = usuario.getPassword();
 
-        sql = "insert into jKM_Usuarios (id_rol,nombre,apellido1,apellido2,telefono,Username,Password) values(2, \"+nombre+\", \"+apellido1+\", \"+apellido2+\", \"+telefono+\", \"+username+\", \"+password+\")";
+        sql = "insert into jKM_Usuarios (id_rol,nombre,apellido1,apellido2,telefono,username,password) values (2,'"+nombre+"', '"+apellido1+"', '"+apellido2+"', '"+telefono+"', '"+username+"', '"+password+"')";
+
         con.conectarBD("POST", sql);
+        System.out.println("code status: " + con.getCodigoEstado());
+        System.out.println("Response body: " + con.getResponse().body());
 
     }
     
+    
+   
+        public Usuario consultarUsuario(String username, String password) {
+            Usuario usuario = new Usuario(); 
+        Conexion con = new Conexion();
+        String sql;
+       
+        sql = "select * from jKM_Usuarios WHERE username='"+username+"' && password='"+password+"'";
+
+        con.conectarBD("GET", sql);
+        System.out.println("code status: " + con.getCodigoEstado());
+        String JsonSql = con.getResponse().body();
+        System.out.println("Response body: " + con.getResponse().body());
+        
+       try{
+            JSONObject object = new JSONObject(JsonSql);
+            JSONArray jsonArray = object.getJSONObject("data").getJSONArray("result");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonobj = jsonArray.getJSONObject(i);
+                usuario.setId_usuario(jsonobj.getInt("id_usuario"));
+                usuario.setRol(jsonobj.getInt("id_rol"));
+                usuario.setNombre(jsonobj.getString("nombre"));
+                usuario.setApellido1(jsonobj.getString("apellido1"));
+                usuario.setApellido2(jsonobj.getString("apellido2"));
+                usuario.setTelefono(jsonobj.getString("telefono"));
+                usuario.setUsername(jsonobj.getString("Username"));
+                usuario.setPassword(jsonobj.getString("Password"));
+                
+            }
+
+        }catch(JSONException e){
+            e.printStackTrace();
+            
+        }
+        
+        return usuario;
+        }
+        
     public ArrayList<Usuario> listarUsuarios(){
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
         Conexion con = new Conexion();
@@ -74,6 +115,8 @@ public class UsuarioDAO {
      
         return codigo;
     }
+    
+ 
             
     
     

@@ -42,7 +42,8 @@ public class ProformaDAO {
         ArrayList<Proforma> lista = new ArrayList<>();
         Conexion con = new Conexion();
         String sql;
-        sql = "SELECT pro.id_Proforma,pro.id_Vendedor, us.nombre, us.apellido1, pro.estado FROM  jKM_Proformas pro, jKM_Usuarios us WHERE pro.id_Cliente=us.id_usuario;";
+        sql = "SELECT pro.id_Proforma,pro.id_Vendedor, us.nombre, us.apellido1, pro.estado "
+            + "FROM  jKM_Proformas pro, jKM_Usuarios us WHERE pro.id_Vendedor=us.id_usuario;";
         con.conectarBD("GET", sql);
         String jsonSql = con.getResponse().body();
       

@@ -5,33 +5,25 @@
  */
 package cenfomazon.UI;
 
-import cenfomazon.Model.Proforma.ProformaDAO;
+import cenfomazon.Model.Repuesto.RepuestoDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
  * @author sleon
  */
-public class ListarProformas extends javax.swing.JFrame {
+public class ListarNaves extends javax.swing.JFrame {
 
-    ProformaDAO proformaDao = new ProformaDAO();
-    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
 
     /**
      * Creates new form ListarProformas
      */
-    public ListarProformas() {
+    public ListarNaves() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Lista de Proformas");
-        setDefaultCloseOperation(ListarProformas.DISPOSE_ON_CLOSE);
-        proformaDao.listarProforma(jTable1);
     }
 
     /**
@@ -55,15 +47,17 @@ public class ListarProformas extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Id Proforma", "Id Vendedor", "Nombre", "Apellido 1", "Estado Proforma", "Actualizar"
+                "Id Nave"
             }
         ));
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.getTableHeader().setResizingAllowed(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -72,10 +66,6 @@ public class ListarProformas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -88,15 +78,14 @@ public class ListarProformas extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
 
         txt_Bienvenido1.setFont(new java.awt.Font("Artifakt Element Light", 1, 18)); // NOI18N
         txt_Bienvenido1.setForeground(new java.awt.Color(255, 255, 255));
-        txt_Bienvenido1.setText("Lista de Proformas");
+        txt_Bienvenido1.setText("Lista de Naves");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -134,35 +123,21 @@ public class ListarProformas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int clic = jTable1.rowAtPoint(evt.getPoint());
-        String idProforma = "" + jTable1.getValueAt(clic, 0);
-
-        this.idProforma = Integer.parseInt(idProforma);
-
-        int col = jTable1.getColumnModel().getColumnIndexAtX(evt.getX());
-        int fila = evt.getY() / jTable1.getRowHeight();
-        if (fila < jTable1.getRowCount() && fila >= 0 && col < jTable1.getColumnCount() && col >= 0) {
-            Object valor = jTable1.getValueAt(fila, col);
-            if (valor instanceof JButton) {
-                ((JButton) valor).doClick();
-                JButton boton = (JButton) valor;
-                if (boton.getName().equals("btn_editar")) {
-                    //ACCIONES DEL BOTON EDITAR!
-
-                    if (dp != null) {//si existe una ventana, la cierra.
-                        dp.dispose();
-                    }
-                    dp = new ListarDetalleProformas();
-                    dp.setVisible(true);
-                    this.setResizable(true);
-
-                }
-            }
-        }
-
+//        int col = jTable1.getColumnModel().getColumnIndexAtX(evt.getX());
+//        int fila = evt.getY() / jTable1.getRowHeight();
+//        if (fila < jTable1.getRowCount() && fila >= 0 && col < jTable1.getColumnCount() && col >= 0) {
+//            Object valor = jTable1.getValueAt(fila, col);
+//            if (valor instanceof JButton) {
+//                ((JButton) valor).doClick();
+//                JButton boton = (JButton) valor;
+//                if (boton.getName().equals("btn_editar")) {
+//                    //ACCIONES DEL BOTON EDITAR!
+//                    JOptionPane.showMessageDialog(null, "Clic en boton Editar!");
+//
+//                }
+//            }
+//        }
     }//GEN-LAST:event_jTable1MouseClicked
-    ListarDetalleProformas dp;
-    public static int idProforma;
 
     /**
      * @param args the command line arguments
@@ -181,14 +156,17 @@ public class ListarProformas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarProformas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarNaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarProformas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarNaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarProformas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarNaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarProformas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarNaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -196,15 +174,15 @@ public class ListarProformas extends javax.swing.JFrame {
             public void run() {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    new ListarProformas().setVisible(true);
+                    new ListarNaves().setVisible(true);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ListarProformas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarNaves.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(ListarProformas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarNaves.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(ListarProformas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarNaves.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (UnsupportedLookAndFeelException ex) {
-                    Logger.getLogger(ListarProformas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarNaves.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

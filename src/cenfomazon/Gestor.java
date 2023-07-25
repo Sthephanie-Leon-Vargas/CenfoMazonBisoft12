@@ -11,6 +11,11 @@ import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.Model.Repuesto.RepuestoDAO;
 import cenfomazon.Model.Usuario.Usuario;
 import cenfomazon.Model.Usuario.UsuarioDAO;
+import cenfomazon.Estructural.Proxy.AccesoReal;
+import cenfomazon.Estructural.Proxy.AcessoUsuarioProxy;
+import cenfomazon.Estructural.Proxy.InterfaceProxy.Acceso;
+
+
 import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.Model.Repuesto.RepuestoDAO;
 import cenfomazon.Model.DetalleProforma.DetalleProformaDAO;
@@ -27,6 +32,8 @@ public class Gestor {
     private final MarcaRepuestoDAO marcaRepuestoDAO;
     private final RepuestoDAO repuestoDAO;
     private final UsuarioDAO usuarioDAO;
+    private Usuario UsuarioLogin;
+    
     private final DetalleProformaDAO detalleproformaDAO;
     private final TipoRepuestoDAO tipoRepuestoDAO;
 
@@ -68,6 +75,18 @@ public class Gestor {
 
     }
     
+    
+    public void  ValidarLogin(String username, String password){
+            
+        this.UsuarioLogin = usuarioDAO.consultarUsuario(username, password);
+             
+    }
+    
+    
+    /*Esta seccion es para llevar el objeto a las diferentes partes del programa */
+    public Usuario getUsuarioLogin() {
+        return UsuarioLogin;
+    }   
     public ArrayList<Usuario> listarVendedor(){
         ArrayList<Usuario> listaVendedor = new ArrayList<>();
         listaVendedor = usuarioDAO.listarUsuarios();
@@ -81,7 +100,16 @@ public class Gestor {
         return listaRepuestos;
     }
 
+    public Usuario retirarUsuario(String username, String password ){
+        return usuarioDAO.consultarUsuario(username, password);
+    }
     
+    public String darNivelAcceso(Usuario usuario){
+    Acceso acceso = new AcessoUsuarioProxy(usuario );
+    String nivelAcceso = acceso.analizarNivelAcceso();
+    return nivelAcceso;     
+    
+    }
     public int codigoVendedor (){
         return usuarioDAO.vendedorRamdom();
     }
@@ -103,4 +131,9 @@ public class Gestor {
         repuestoDAO.registroRepuesto(repuesto);
 
     }
+    
+    public void borrarDetalle(int codigo){
+        detalleproformaDAO.borrarDatos(codigo);
+    }
+ 
 }
