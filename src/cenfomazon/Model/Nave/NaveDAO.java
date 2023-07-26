@@ -11,7 +11,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import cenfomazon.Model.Nave.NaveDAO;
+
+import cenfomazon.UI.Login;
+
 import cenfomazon.Model.Usuario.Usuario;
+
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -138,9 +142,11 @@ public class NaveDAO {
         int id_MarcaModelo = nave.getMarcamodelo().getId_MarcaModelo();
         int id_categoria = nave.getCategoria().getId_Categoria();
         String color = nave.getColor();
+        int Id_usuario = Login.getusuario().getId_usuario();
 
-        sql = "insert into jKM_Naves (id_usuario,id_Categoria,id_MarcaModelo,codigo_identificacion,color) \n"
-                + "values(12,3,2,\"poaoa\",\"blue\");";
+        sql = "insert into jKM_Naves (id_usuario,id_Categoria,id_MarcaModelo,codigo_identificacion,color) "
+                + "values("+Id_usuario+","+id_categoria+","+id_MarcaModelo+",'"+codigoIdentificacion+"','"+color+"')";
+
 
         con.conectarBD("POST", sql);
         System.out.println("code status: " + con.getCodigoEstado());
