@@ -176,18 +176,28 @@ public class RegistroNaves extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarNaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarNaveActionPerformed
-  
+
         Object objectBR = marcaM.getSelectedItem();
         MarcaModelo br = (MarcaModelo) objectBR;
-        
+
         Object objectDR = categoriaE.getSelectedItem();
         Categoria dr = (Categoria) objectDR;
-        
+
         String codigoIdentificacion = codigoidentificacion.getText();
         String color = colorN.getText();
-        
+
+        if (br == null|| dr == null || codigoIdentificacion.isEmpty() || color.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            
         Nave nave = new Nave (codigoIdentificacion,color,br,dr);
         gestor.registrarNave(nave);
+        
+        JOptionPane.showMessageDialog(null, "Nave Regitrada!");
+
+        }
+        
     }//GEN-LAST:event_RegistrarNaveActionPerformed
 
     private void categoriaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaEActionPerformed
@@ -196,7 +206,7 @@ public class RegistroNaves extends javax.swing.JFrame {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         MenuClientes menuclientes = new MenuClientes();
-                    menuclientes.setVisible(true);
+        menuclientes.setVisible(true);
                     this.setVisible(false);    }//GEN-LAST:event_BackActionPerformed
 
     /**
