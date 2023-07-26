@@ -66,7 +66,7 @@ public class DetalleProformaDAO {
         _tablaModel.addColumn("Marca");
         _tablaModel.addColumn("precio");
         _tablaModel.addColumn("Id Repuesto");
-        System.out.println(sql);
+
         try {
             JSONObject jsonResponse = new JSONObject(jsonSql);
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");

@@ -387,16 +387,14 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
         DP = gm.restaurarMemento();        
         limpiarTabla();
         
-        //detalleProformaDao.listarDetalleProformas(jTable1, getIdProformas());
+  
         
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         for (int i = 0; i < DP.size(); i++) {
             DetalleProforma dpO = DP.get(i);            
             int id_getnombre = dpO.get_id_repuesto();
             RepuestoC rto = (RepuestoC) g.buscaRepuestoO(id_getnombre);
-            
-            int id_MarcaR = rto.getMarcaRepuesto();
-            System.out.println(id_MarcaR);
+            int id_MarcaR = rto.getMarcaRepuesto();         
             MarcaRepuesto mR = (MarcaRepuesto) g.Buscar_MarcaRepuesto(id_MarcaR);
             Object fila[] = new Object[5];
             fila[0] = dpO.get_id_detalle();
