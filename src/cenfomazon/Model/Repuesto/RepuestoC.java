@@ -1,5 +1,7 @@
 package cenfomazon.Model.Repuesto;
 
+import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
+
 public class RepuestoC {
 
     private int idRepuesto;
@@ -9,6 +11,7 @@ public class RepuestoC {
     private String categoria;
     private double precio;
     private int marcaRepuesto;
+    private MarcaRepuesto marcaNombre;
 
     public RepuestoC(int idRepuesto, int tipoRepuesto, String nombre, String descripcion, String categoria, double precio, int marcaRepuesto) {
         this.idRepuesto = idRepuesto;
@@ -71,6 +74,14 @@ public class RepuestoC {
         this.categoria = categoria;
     }
 
+    public MarcaRepuesto getMarcaNombre() {
+        return marcaNombre;
+    }
+
+    public void setMarcaNombre(MarcaRepuesto marcaNombre) {
+        this.marcaNombre = marcaNombre;
+    }
+
     public double getPrecio() {
         return precio;
     }
@@ -94,12 +105,31 @@ public class RepuestoC {
 
     }
 
-    public RepuestoC(int idRepuesto, String nombre, int marcaRepuesto, double precio) {
+    public RepuestoC(int idRepuesto, String nombre, double precio) {
+        this.idRepuesto = idRepuesto;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    public RepuestoC(int idRepuesto, String nombre, int marcaRepuesto,MarcaRepuesto marcaNombre, double precio) {
+        this.idRepuesto = idRepuesto;
+        this.nombre = nombre;
+        this.marcaRepuesto = marcaRepuesto;
+        this.marcaNombre = marcaNombre;
+        this.precio = precio;
+  
+        
+    }
+
+    
+       public RepuestoC(int idRepuesto, String nombre, int marcaRepuesto, double precio) {
         this.idRepuesto = idRepuesto;
         this.nombre = nombre;
         this.marcaRepuesto = marcaRepuesto;
         this.precio = precio;
+        
     }
+   
 
     public RepuestoC() {
     }
