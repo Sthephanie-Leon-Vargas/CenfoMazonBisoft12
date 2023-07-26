@@ -5,6 +5,7 @@
  */
 package cenfomazon.UI;
 
+import cenfomazon.Model.Nave.NaveDAO;
 import cenfomazon.Model.Repuesto.RepuestoDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +18,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class ListarNaves extends javax.swing.JFrame {
 
-
+    NaveDAO naveDao= new NaveDAO();
     /**
      * Creates new form ListarProformas
      */
@@ -47,14 +48,22 @@ public class ListarNaves extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id Nave"
+                "Id Nave", "Nombre Usuario", "Categoria", "Marca", "Modelo", "Placa", "Color"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.getTableHeader().setResizingAllowed(false);
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -66,6 +75,8 @@ public class ListarNaves extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
