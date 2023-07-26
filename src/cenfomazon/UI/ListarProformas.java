@@ -44,7 +44,9 @@ public class ListarProformas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+
         jScrollPane1 = new javax.swing.JScrollPane();
+
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         txt_Bienvenido1 = new javax.swing.JLabel();
@@ -69,6 +71,7 @@ public class ListarProformas extends javax.swing.JFrame {
                 jTable1MouseClicked(evt);
             }
         });
+
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -77,6 +80,7 @@ public class ListarProformas extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
         }
+
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,7 +217,6 @@ public class ListarProformas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel txt_Bienvenido1;
     // End of variables declaration//GEN-END:variables
