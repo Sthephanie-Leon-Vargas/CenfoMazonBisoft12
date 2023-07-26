@@ -35,9 +35,10 @@ public class Usuario {
         this.password = password;
     }
 
-  
-    
-    
+    public Usuario(String nombre) {
+        this.nombre = nombre;
+    }
+
 
     public Usuario(String nombre, String apellido1) {
         this.nombre = nombre;

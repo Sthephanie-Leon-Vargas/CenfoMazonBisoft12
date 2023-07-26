@@ -2,6 +2,7 @@ package cenfomazon.Model.Nave;
 
 import cenfomazon.Model.Categoria.Categoria;
 import cenfomazon.Model.MarcaModelo.MarcaModelo;
+import cenfomazon.Model.Usuario.Usuario;
 
 public class Nave {
     private int id_nave;
@@ -12,6 +13,8 @@ public class Nave {
     
     private MarcaModelo marcamodelo;
     private Categoria categoria;
+    
+    private Usuario us;
 
     public Nave() {
     }
@@ -24,7 +27,15 @@ public class Nave {
     }
 
     
-    
+        public Nave(int idNave,String codigoIdentificacion, String color, MarcaModelo marca, Categoria categoria, Usuario us) {
+        this.id_nave = idNave;
+        this.codigoIdentificacion = codigoIdentificacion;
+        this.color = color;
+        this.marcamodelo = marca;
+        this.categoria = categoria;
+        this.us = us;
+    }
+
     
     public Nave(String codigoIdentificacion, String color) {
        
@@ -91,6 +102,14 @@ public class Nave {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Usuario getUs() {
+        return us;
+    }
+
+    public void setUs(Usuario us) {
+        this.us = us;
     }
     
     

@@ -20,6 +20,10 @@ public class Modelo {
         this.Modelo = Modelo;
     }
 
+    public Modelo(String Modelo) {
+        this.Modelo = Modelo;
+    }
+
     public int getIdModelo() {
         return idModelo;
     }
