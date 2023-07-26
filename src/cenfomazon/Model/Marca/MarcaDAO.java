@@ -19,17 +19,18 @@ public class MarcaDAO {
     
      public ArrayList<Marca> listarMarca() {
         ArrayList<Marca> listaNavesM = new ArrayList<>();
-        Conexion con = new Conexion();
+        
         String sql;
 
         sql = "select * from jKM_Marca";
-        con.conectarBD("GET", sql);
+        Conexion con = Conexion.conectarBD("GET", sql);
         
         System.out.println("Llego " +con.getResponse().body());
         
 
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            con.desconectar();
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonNave = jsonArray.getJSONObject(i);

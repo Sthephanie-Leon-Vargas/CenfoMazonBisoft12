@@ -35,7 +35,6 @@ public class NaveDAO {
             }
         };
         ArrayList<Nave> lista = new ArrayList<>();
-        Conexion con = new Conexion();
         String sql = "";
         if (idUsuario != 0) {
             switch (rol) {
@@ -77,14 +76,14 @@ public class NaveDAO {
                             + "	and n.id_Categoria=ca.id_Categoria \n"
                             + "	and n.id_MarcaModelo=mm.id_MarcaModelo \n"
                             + "	and mm.id_Modelo=mo.idModelo \n"
-                            + "	and mm.id_Marca=ma.idMarca and us.id_rol=2  and us.id_usuario="+idUsuario;
+                            + "	and mm.id_Marca=ma.idMarca and us.id_rol=2  and us.id_usuario=" + idUsuario;
                     break;
 
             }
             System.out.println(sql);
-            con.conectarBD("GET", sql);
+            Conexion con = Conexion.conectarBD("GET", sql);
             String jsonSql = con.getResponse().body();
-
+            con.desconectar();
             _tablaModel.addColumn("Id Nave");
             _tablaModel.addColumn("Nombre Usuario");
             _tablaModel.addColumn("Categoria");
@@ -135,8 +134,6 @@ public class NaveDAO {
     }
 
     public void registroNave(Nave nave) {
-
-        Conexion con = new Conexion();
         String sql;
         String codigoIdentificacion = nave.getCodigoIdentificacion();
         int id_MarcaModelo = nave.getMarcamodelo().getId_MarcaModelo();
@@ -145,12 +142,12 @@ public class NaveDAO {
         int Id_usuario = Login.getusuario().getId_usuario();
 
         sql = "insert into jKM_Naves (id_usuario,id_Categoria,id_MarcaModelo,codigo_identificacion,color) "
-                + "values("+Id_usuario+","+id_categoria+","+id_MarcaModelo+",'"+codigoIdentificacion+"','"+color+"')";
+                + "values(" + Id_usuario + "," + id_categoria + "," + id_MarcaModelo + ",'" + codigoIdentificacion + "','" + color + "')";
 
-
-        con.conectarBD("POST", sql);
+        Conexion con = Conexion.conectarBD("POST", sql);
         System.out.println("code status: " + con.getCodigoEstado());
         System.out.println("Response body: " + con.getResponse().body());
+        con.desconectar();
 
     }
 

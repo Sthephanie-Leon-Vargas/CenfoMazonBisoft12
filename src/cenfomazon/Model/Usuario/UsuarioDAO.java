@@ -11,7 +11,7 @@ public class UsuarioDAO {
     
     public void registroCliente (Usuario usuario){
 
-        Conexion con = new Conexion();
+       
         String sql;
         int id_rol = usuario.getRol();
         String nombre = usuario.getNombre();
@@ -23,9 +23,10 @@ public class UsuarioDAO {
 
         sql = "insert into jKM_Usuarios (id_rol,nombre,apellido1,apellido2,telefono,username,password) values (2,'"+nombre+"', '"+apellido1+"', '"+apellido2+"', '"+telefono+"', '"+username+"', '"+password+"')";
 
-        con.conectarBD("POST", sql);
+       Conexion con = Conexion.conectarBD("POST", sql);
         System.out.println("code status: " + con.getCodigoEstado());
         System.out.println("Response body: " + con.getResponse().body());
+        con.desconectar();
 
     }
     
@@ -33,16 +34,16 @@ public class UsuarioDAO {
    
         public Usuario consultarUsuario(String username, String password) {
             Usuario usuario = new Usuario(); 
-        Conexion con = new Conexion();
+       
         String sql;
        
         sql = "select * from jKM_Usuarios WHERE username='"+username+"' && password='"+password+"'";
 
-        con.conectarBD("GET", sql);
+        Conexion con = Conexion.conectarBD("GET", sql);
         System.out.println("code status: " + con.getCodigoEstado());
         String JsonSql = con.getResponse().body();
         System.out.println("Response body: " + con.getResponse().body());
-        
+        con.desconectar();
        try{
             JSONObject object = new JSONObject(JsonSql);
             JSONArray jsonArray = object.getJSONObject("data").getJSONArray("result");
@@ -69,15 +70,15 @@ public class UsuarioDAO {
         
     public ArrayList<Usuario> listarUsuarios(){
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
-        Conexion con = new Conexion();
         String sql;
         
         sql = "SELECT * FROM `jKM_Usuarios` WHERE id_rol=2";
-        con.conectarBD("GET",sql);
+         Conexion con = Conexion.conectarBD("GET", sql);
       
 
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            con.desconectar();
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
             for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonMarca = jsonArray.getJSONObject(i);
@@ -96,14 +97,15 @@ public class UsuarioDAO {
 
     public int vendedorRamdom() {
        
-        Conexion con = new Conexion();
+       
         String sql;
         int codigo =1;
         
         sql = "SELECT id_usuario FROM `jKM_Usuarios` WHERE id_rol=2 ORDER BY RAND() LIMIT 1;";
-        con.conectarBD("GET",sql);
+       Conexion con = Conexion.conectarBD("GET", sql);
           try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            con.desconectar();
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
             
             JSONObject jsonMarca = jsonArray.getJSONObject(0);

@@ -22,23 +22,25 @@ import java.util.logging.Logger;
  */
 public class Conexion {
 
-    private Conexion con = null;
-    private HttpClient httpClient;
-    private HttpRequest request;
-    private int codigoEstado;
-    private HttpResponse<String> response;
-    private String baseDatos = "BISOFT-12";
-    private String url = "http://eeds.club/" + baseDatos + "/";
-    private String usuario = "G02";
-    private String contrasenna = "BISOFT_jKM_G02";
+    private static Conexion conexionAPI = null;
+    private static HttpClient httpClient;
+    private static HttpRequest request;
+    private static int codigoEstado;
+    private static HttpResponse<String> response;
+    private static String baseDatos = "BISOFT-12";
+    private static String url = "http://eeds.club/" + baseDatos + "/";
+    private static String usuario = "G02";
+    private static String contrasenna = "BISOFT_jKM_G02";
 
-    public Conexion() {
+    private Conexion(String url, String baseDatos) {
+        setUrl(url);
+        setBaseDatos(baseDatos);
     }
 
-    public void conectarBD(String peticion, String query) {
-        if (con == null) {
+    public static Conexion conectarBD(String peticion, String query) {
+        if (conexionAPI == null) {
             try {
-
+                conexionAPI = new Conexion(url, baseDatos);
                 httpClient = HttpClient.newHttpClient();
                 String cadenaConexion = getUrl()
                         + "?usuario=" + URLEncoder.encode(getUsuario(), StandardCharsets.UTF_8)
@@ -56,10 +58,11 @@ public class Conexion {
                 Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-//        return con;
+
+        return conexionAPI;
     }
 
-    private void ejecutarPost(String cadenaConexion) {
+    private static void ejecutarPost(String cadenaConexion) {
         request = HttpRequest.newBuilder()
                 .uri(URI.create(cadenaConexion))
                 .header("Content-Type", "application/json")
@@ -69,7 +72,7 @@ public class Conexion {
                 .build();
     }
 
-    private void ejecutarGet(String cadenaConexion) {
+    private static void ejecutarGet(String cadenaConexion) {
 
         request = HttpRequest.newBuilder()
                 .uri(URI.create(cadenaConexion))
@@ -80,7 +83,7 @@ public class Conexion {
                 .build();
     }
 
-    private void ejecutarPeticion(String peticion, String cadenaConexion) {
+    private static void ejecutarPeticion(String peticion, String cadenaConexion) {
 
         switch (peticion) {
             case "POST":
@@ -93,9 +96,10 @@ public class Conexion {
         }
     }
 
-//    public void desconectar() {
-//        con = null;
-//    }
+    public static void desconectar() {
+        conexionAPI = null;
+    }
+
     public int getCodigoEstado() {
         return codigoEstado;
     }
@@ -104,19 +108,19 @@ public class Conexion {
         this.codigoEstado = codigoEstado;
     }
 
-    public HttpClient getHttpClient() {
+    private HttpClient getHttpClient() {
         return httpClient;
     }
 
-    public void setHttpClient(HttpClient httpClient) {
+    private void setHttpClient(HttpClient httpClient) {
         this.httpClient = httpClient;
     }
 
-    public HttpRequest getRequest() {
+    private HttpRequest getRequest() {
         return request;
     }
 
-    public void setRequest(HttpRequest request) {
+    private void setRequest(HttpRequest request) {
         this.request = request;
     }
 
@@ -128,7 +132,7 @@ public class Conexion {
         this.response = response;
     }
 
-    public String getUrl() {
+    public static String getUrl() {
         return url;
     }
 
@@ -136,7 +140,7 @@ public class Conexion {
         this.url = url;
     }
 
-    public String getUsuario() {
+    public static String getUsuario() {
         return usuario;
     }
 
@@ -144,12 +148,20 @@ public class Conexion {
         this.usuario = usuario;
     }
 
-    public String getContrasenna() {
+    public static String getContrasenna() {
         return contrasenna;
     }
 
     public void setContrasenna(String contrasenna) {
         this.contrasenna = contrasenna;
+    }
+
+    public static String getBaseDatos() {
+        return baseDatos;
+    }
+
+    public static void setBaseDatos(String baseDatos) {
+        Conexion.baseDatos = baseDatos;
     }
 
 }

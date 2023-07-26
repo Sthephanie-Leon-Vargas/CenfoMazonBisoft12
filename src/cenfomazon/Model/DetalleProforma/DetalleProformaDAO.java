@@ -16,7 +16,7 @@ public class DetalleProformaDAO {
     DefaultTableModel _tablaModel = new DefaultTableModel();
 
     public void registroDetalleProforma(DetalleProforma detalleProforma) {
-        Conexion con = new Conexion();
+
         String sql;
 
         int pidproforma = detalleProforma.get_id_proforma();
@@ -25,7 +25,8 @@ public class DetalleProformaDAO {
         String pestado = "'Pendiente'";
 
         sql = "INSERT INTO jKM_DetalleProforma (id_proforma,id_repuesto,id_razonRechazo,estado) VALUES (" + pidproforma + "," + prepuesto + "," + prazonrechazo + "," + pestado + ")";
-        con.conectarBD("POST", sql);
+        Conexion con = Conexion.conectarBD("POST", sql);
+        con.desconectar();
 
     }
 
@@ -40,7 +41,7 @@ public class DetalleProformaDAO {
             }
         };
         ArrayList<DetalleProforma> lista = new ArrayList<>();
-        Conexion con = new Conexion();
+
         String sql;
         sql = "SELECT r.id_Repuesto,dp.id_detalle, \n"
                 + "		r.nombre as nombre_repuesto, \n"
@@ -58,9 +59,9 @@ public class DetalleProformaDAO {
                 + "	and r.id_TipoRepuesto=tr.idTipoRepuesto \n"
                 + "	and r.id_MarcaRespuesto=mr.idMarcaRespuesto\n"
                 + "	and dp.id_proforma=" + idProforma + ";";
-        con.conectarBD("GET", sql);
+        Conexion con = Conexion.conectarBD("GET", sql);
         String jsonSql = con.getResponse().body();
-
+        con.desconectar();
         _tablaModel.addColumn("Id Detalle");
         _tablaModel.addColumn("Nombre Repuesto");
         _tablaModel.addColumn("Marca");
@@ -78,8 +79,8 @@ public class DetalleProformaDAO {
                 String marca = jsonObj.getString("Marca");
                 int idMarcaRepuesto = jsonObj.getInt("idMarcaRespuesto");
                 double precio = jsonObj.getDouble("precio");
-                MarcaRepuesto marcaO = new MarcaRepuesto(idMarcaRepuesto,marca);
-                RepuestoC repuesto = new RepuestoC(idRepuesto, nombre, idMarcaRepuesto,marcaO,precio);
+                MarcaRepuesto marcaO = new MarcaRepuesto(idMarcaRepuesto, marca);
+                RepuestoC repuesto = new RepuestoC(idRepuesto, nombre, idMarcaRepuesto, marcaO, precio);
 
                 DetalleProforma dp = new DetalleProforma(idDetalle, repuesto);
 
@@ -89,7 +90,6 @@ public class DetalleProformaDAO {
                 fila[2] = dp.getRepuesto().getMarcaNombre().getMarca();
                 fila[3] = dp.getRepuesto().getPrecio();
                 fila[4] = dp.getRepuesto().getIdRepuesto();
-                
 
                 _tablaModel.addRow(fila);
 
@@ -104,50 +104,45 @@ public class DetalleProformaDAO {
         }
         return lista;
     }
-    
-    
-    public ArrayList<DetalleProforma> listarDetalleProformasRaw(int codigo){
-    ArrayList<DetalleProforma> lp = new ArrayList<>();
-        Conexion con = new Conexion();
+
+    public ArrayList<DetalleProforma> listarDetalleProformasRaw(int codigo) {
+        ArrayList<DetalleProforma> lp = new ArrayList<>();
         String sql;
 
         sql = "SELECT * FROM `jKM_DetalleProforma` WHERE id_proforma=" + codigo + "";
 
-        con.conectarBD("GET", sql);
-
-        
+        Conexion con = Conexion.conectarBD("GET", sql);
 
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            con.desconectar();
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
 
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonMarca = jsonArray.getJSONObject(i);
-                    int idRepuesto = jsonMarca.getInt("id_detalle");
-                    int idProforma = jsonMarca.getInt("id_proforma");
-                    int idRepuestos = jsonMarca.getInt("id_repuesto");
-                    int idRazon = jsonMarca.getInt("id_razonRechazo");
-                    String pestado = jsonMarca.getString("estado");
-                    DetalleProforma dp = new DetalleProforma(idRepuesto,idProforma,idRepuestos,idRazon,pestado);
-                    lp.add(dp);
-                }
-             
-            } catch (JSONException e) {
-                e.printStackTrace();
-        }      
-        return  lp;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonMarca = jsonArray.getJSONObject(i);
+                int idRepuesto = jsonMarca.getInt("id_detalle");
+                int idProforma = jsonMarca.getInt("id_proforma");
+                int idRepuestos = jsonMarca.getInt("id_repuesto");
+                int idRazon = jsonMarca.getInt("id_razonRechazo");
+                String pestado = jsonMarca.getString("estado");
+                DetalleProforma dp = new DetalleProforma(idRepuesto, idProforma, idRepuestos, idRazon, pestado);
+                lp.add(dp);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return lp;
     }
-    
-    
+
     public void borrarDatos(int idProforma) {
-        Conexion con = new Conexion();
+
         String sql;
 
         sql = "DELETE FROM `jKM_DetalleProforma` WHERE id_proforma=" + idProforma + "";
+        Conexion con = Conexion.conectarBD("GET", sql);
+        con.desconectar();
 
-        con.conectarBD("GET", sql);
-
-        
     }
-    
+
 }
