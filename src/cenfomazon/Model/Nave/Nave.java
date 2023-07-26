@@ -1,21 +1,48 @@
 package cenfomazon.Model.Nave;
 
+import cenfomazon.Model.Categoria.Categoria;
+import cenfomazon.Model.MarcaModelo.MarcaModelo;
+
 public class Nave {
     private int id_nave;
     private int id_usuario;
-    private String categoria;
-    private String marcaModelo;
+ 
     private String codigoIdentificacion;
     private String color;
+    
+    private MarcaModelo marcamodelo;
+    private Categoria categoria;
 
-    public Nave(int id_nave, int id_usuario, String categoria, String marcaModelo, String codigoIdentificacion, String color) {
-        this.id_nave = id_nave;
-        this.id_usuario = id_usuario;
+    public Nave() {
+    }
+
+    public Nave(String codigoIdentificacion, String color, MarcaModelo marcamodelo, Categoria categoria) {
+        this.codigoIdentificacion = codigoIdentificacion;
+        this.color = color;
+        this.marcamodelo = marcamodelo;
         this.categoria = categoria;
-        this.marcaModelo = marcaModelo;
+    }
+
+    
+    
+    
+    public Nave(String codigoIdentificacion, String color) {
+       
         this.codigoIdentificacion = codigoIdentificacion;
         this.color = color;
     }
+
+  
+    
+    
+    public Nave(int id_nave, int id_usuario, String codigoIdentificacion, String color) {
+        this.id_nave = id_nave;
+        this.id_usuario = id_usuario;
+        this.codigoIdentificacion = codigoIdentificacion;
+        this.color = color;
+    }
+
+   
 
     public int getId_nave() {
         return id_nave;
@@ -33,21 +60,6 @@ public class Nave {
         this.id_usuario = id_usuario;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getMarcaModelo() {
-        return marcaModelo;
-    }
-
-    public void setMarcaModelo(String marcaModelo) {
-        this.marcaModelo = marcaModelo;
-    }
 
     public String getCodigoIdentificacion() {
         return codigoIdentificacion;
@@ -65,13 +77,29 @@ public class Nave {
         this.color = color;
     }
 
+    public MarcaModelo getMarcamodelo() {
+        return marcamodelo;
+    }
+
+    public void setMarcamodelo(MarcaModelo marcamodelo) {
+        this.marcamodelo = marcamodelo;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Nave{" +
                 "id_nave=" + id_nave +
                 ", id_usuario=" + id_usuario +
-                ", categoria='" + categoria + '\'' +
-                ", marcaModelo='" + marcaModelo + '\'' +
                 ", codigoIdentificacion='" + codigoIdentificacion + '\'' +
                 ", color='" + color + '\'' +
                 '}';

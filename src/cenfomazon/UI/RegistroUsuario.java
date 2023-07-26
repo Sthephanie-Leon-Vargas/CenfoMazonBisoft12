@@ -162,7 +162,14 @@ public class RegistroUsuario extends javax.swing.JFrame {
         String Telefono = telefono.getText();
         String Username = username.getText();
         String Password = password.getText();
-        Usuario usuario = new Usuario(Nombre, Apellido1, Apellido2, Telefono, Username, Password);
+        
+        
+        if (Nombre.isEmpty() || Apellido1.isEmpty() || Apellido2.isEmpty() || Telefono.isEmpty() || Username.isEmpty() || Password.isEmpty()) {
+        // Display an error message if any of the required fields are empty
+        JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+    } else {
+            
+            Usuario usuario = new Usuario(Nombre, Apellido1, Apellido2, Telefono, Username, Password);
         Gestor gestor = new Gestor();
         gestor.crearUsuario(usuario);
 
@@ -171,6 +178,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
         Login login = new Login();
         login.setVisible(true);
         this.setVisible(false);
+        }
+        
+    
     }//GEN-LAST:event_RegistrarActionPerformed
 
     /**

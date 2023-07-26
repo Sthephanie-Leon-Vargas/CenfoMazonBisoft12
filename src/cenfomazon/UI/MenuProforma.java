@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -344,19 +345,26 @@ public class MenuProforma extends javax.swing.JFrame {
     private DefaultListModel<Object> dlm = new DefaultListModel();
  
     private void btn_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AddActionPerformed
-        
-       
-        Object repuestoS = jList_Repuesto.getSelectedValue();        
-        RepuestoC repuesto = (RepuestoC) repuestoS;
 
+        if (jList_Repuesto.getSelectedValue()== null){
+            JOptionPane.showMessageDialog(this, "No se ha seleccionada ningun item");
+        } else{
+            Object repuestoS = jList_Repuesto.getSelectedValue();        
+            RepuestoC repuesto = (RepuestoC) repuestoS;
+            jList_Agregar.setModel(dlm);
+            dlm.add(0,repuesto);
+        }
         
-        jList_Agregar.setModel(dlm);
-        dlm.add(0,repuesto);
     }//GEN-LAST:event_btn_AddActionPerformed
 
     private void btn_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removerActionPerformed
-        int index = jList_Agregar.getSelectedIndex();
-        dlm.removeElementAt(index);
+        if (jList_Agregar.isSelectionEmpty()){
+            JOptionPane.showMessageDialog(this, "No se ha seleccionada ningun item");
+        }else{
+            int index = jList_Agregar.getSelectedIndex();
+            dlm.removeElementAt(index);
+        }
+
         
     }//GEN-LAST:event_btn_removerActionPerformed
 
