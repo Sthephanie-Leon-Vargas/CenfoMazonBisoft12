@@ -21,7 +21,7 @@ public class RepuestoDAO {
         Conexion con = new Conexion();
         String sql;
 
-        sql = "SELECT id_Repuesto, nombre, id_MarcaRespuesto FROM `jKM_Repuestos` WHERE id_MarcaRespuesto=" + codigo + "";
+        sql = "SELECT id_Repuesto, nombre, id_MarcaRespuesto,precio FROM `jKM_Repuestos` WHERE id_MarcaRespuesto=" + codigo + "";
 
         con.conectarBD("GET", sql);
 
@@ -36,7 +36,8 @@ public class RepuestoDAO {
                     int idRepuesto = jsonMarca.getInt("id_Repuesto");
                     String pnombre = jsonMarca.getString("nombre");
                     int idMarca = jsonMarca.getInt("id_MarcaRespuesto");
-                    RepuestoC repuesto = new RepuestoC(idRepuesto,pnombre,idMarca);
+                    Double precio = jsonMarca.getDouble("precio");
+                    RepuestoC repuesto = new RepuestoC(idRepuesto,pnombre,idMarca,precio);
                     listaRepuesto.add(repuesto);
                 }
              
@@ -116,5 +117,26 @@ public class RepuestoDAO {
            e.printStackTrace();
        }
    }
+   
+   public RepuestoC Buscar_Repuesto(int codigo){
+        String sql;
+        RepuestoC resultado = new RepuestoC();
+        Conexion con = new Conexion();
+        sql = "SELECT * FROM `jKM_Repuestos` WHERE id_Repuesto=" + codigo + "";     
+        con.conectarBD("GET", sql);
+        try {
+           JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
+            JSONObject jsonRepuesto = jsonArray.getJSONObject(0);
+                int idRepuesto = jsonRepuesto.getInt("id_Repuesto");
+                String nombre = jsonRepuesto.getString("nombre");
+                int id_MR = jsonRepuesto.getInt("id_MarcaRespuesto");
+                Double precio = jsonRepuesto.getDouble("precio");
+                resultado = new RepuestoC(idRepuesto,nombre,id_MR,precio);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }  
+        return resultado;
+    }
 
 }

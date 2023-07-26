@@ -1,6 +1,7 @@
 package cenfomazon.Model.DetalleProforma;
 
 import cenfomazon.Creacional.Singleton.Conexion;
+import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
 import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.UI.TablaUI;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class DetalleProformaDAO {
         _tablaModel.addColumn("Marca");
         _tablaModel.addColumn("precio");
         _tablaModel.addColumn("Id Repuesto");
-
+        System.out.println(sql);
         try {
             JSONObject jsonResponse = new JSONObject(jsonSql);
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
@@ -77,15 +78,15 @@ public class DetalleProformaDAO {
                 String marca = jsonObj.getString("Marca");
                 int idMarcaRepuesto = jsonObj.getInt("idMarcaRespuesto");
                 double precio = jsonObj.getDouble("precio");
-
-                RepuestoC repuesto = new RepuestoC(idRepuesto, nombre, idMarcaRepuesto,precio);
+                MarcaRepuesto marcaO = new MarcaRepuesto(idMarcaRepuesto,marca);
+                RepuestoC repuesto = new RepuestoC(idRepuesto, nombre, idMarcaRepuesto,marcaO,precio);
 
                 DetalleProforma dp = new DetalleProforma(idDetalle, repuesto);
 
                 Object fila[] = new Object[5];
                 fila[0] = dp.get_id_detalle();
                 fila[1] = dp.getRepuesto().getNombre();
-                fila[2] = dp.getRepuesto().getMarcaRepuesto();
+                fila[2] = dp.getRepuesto().getMarcaNombre().getMarca();
                 fila[3] = dp.getRepuesto().getPrecio();
                 fila[4] = dp.getRepuesto().getIdRepuesto();
                 

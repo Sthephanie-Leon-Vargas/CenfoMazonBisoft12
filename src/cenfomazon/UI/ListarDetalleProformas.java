@@ -350,8 +350,22 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
     }//GEN-LAST:event_cbo_RepuestosActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        Object marca = cbo_marcaRepuesto.getSelectedItem();
+        MarcaRepuesto marcaNombre = (MarcaRepuesto) marca;
+        Object repuesto = cbo_Repuestos.getSelectedItem();
+        RepuestoC repuestoCodigo = (RepuestoC) repuesto;
+        
+        Object fila[] = new Object[5];
+        fila[0] = "Nueva";
+        fila[1] = repuestoCodigo.getNombre();
+        fila[2] = marcaNombre.getMarca();
+        fila[3] = repuestoCodigo.getPrecio();
+        fila[4] = repuestoCodigo.getIdRepuesto();
+        modelo.addRow(fila);
         txt_Monto.setText(calcular());
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -367,21 +381,38 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
         txt_Monto.setText(calcular());
 
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    Gestor g = new Gestor();
     private void btnRestaurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestaurarActionPerformed
-
-        System.out.println("separar");
-        gm.restaurarMemento();
-        
+        ArrayList<DetalleProforma> DP = new ArrayList<DetalleProforma>();
+        DP = gm.restaurarMemento();        
         limpiarTabla();
-        detalleProformaDao.listarDetalleProformas(jTable1, getIdProformas());
+        
+        //detalleProformaDao.listarDetalleProformas(jTable1, getIdProformas());
+        
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < DP.size(); i++) {
+            DetalleProforma dpO = DP.get(i);            
+            int id_getnombre = dpO.get_id_repuesto();
+            RepuestoC rto = (RepuestoC) g.buscaRepuestoO(id_getnombre);
+            
+            int id_MarcaR = rto.getMarcaRepuesto();
+            System.out.println(id_MarcaR);
+            MarcaRepuesto mR = (MarcaRepuesto) g.Buscar_MarcaRepuesto(id_MarcaR);
+            Object fila[] = new Object[5];
+            fila[0] = dpO.get_id_detalle();
+            fila[1] = rto.getNombre();
+            fila[2] = mR.getMarca();
+            fila[3] = rto.getPrecio();
+            fila[4] = dpO.get_id_repuesto();
+            modelo.addRow(fila);
+        }
         txt_Monto.setText(calcular());
 
     }//GEN-LAST:event_btnRestaurarActionPerformed
 
     public void ocultarColumnas(){
       
-    System.out.println("Se completa el guardar");
+  
     jTable1.getColumnModel().getColumn(4).setMaxWidth(0);
     jTable1.getColumnModel().getColumn(4).setMinWidth(0);
     jTable1.getColumnModel().getColumn(4).setPreferredWidth(0);
@@ -404,7 +435,9 @@ public class ListarDetalleProformas extends javax.swing.JFrame {
           DetalleProforma DP = new DetalleProforma(codigoProforma,codigoRepuesto); 
 
           gestor.registrarDetalleProforma(DP);
+          
         }
+        JOptionPane.showMessageDialog(this, "Se han guardado cambios, volver al menu principal");
         
         
         
