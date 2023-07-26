@@ -69,6 +69,7 @@ public class RegistroNaves extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         categoriaE = new javax.swing.JComboBox<>();
         marcaM = new javax.swing.JComboBox<>();
+        Back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,14 +100,23 @@ public class RegistroNaves extends javax.swing.JFrame {
 
         marcaM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        Back.setText("Regresar");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 98, Short.MAX_VALUE)
+                .addComponent(Back)
+                .addGap(61, 61, 61)
                 .addComponent(RegistrarNave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                .addGap(99, 99, 99))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -129,7 +139,7 @@ public class RegistroNaves extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
                         .addComponent(jLabel1)))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +166,9 @@ public class RegistroNaves extends javax.swing.JFrame {
                     .addComponent(colorN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(RegistrarNave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RegistrarNave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Back))
                 .addContainerGap())
         );
 
@@ -181,6 +193,11 @@ public class RegistroNaves extends javax.swing.JFrame {
     private void categoriaEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaEActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_categoriaEActionPerformed
+
+    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        MenuClientes menuclientes = new MenuClientes();
+                    menuclientes.setVisible(true);
+                    this.setVisible(false);    }//GEN-LAST:event_BackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +236,7 @@ public class RegistroNaves extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Back;
     private java.awt.Button RegistrarNave;
     private javax.swing.JComboBox<Object> categoriaE;
     private javax.swing.JTextField codigoidentificacion;
