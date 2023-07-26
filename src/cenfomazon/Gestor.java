@@ -14,13 +14,27 @@ import cenfomazon.Model.Usuario.UsuarioDAO;
 import cenfomazon.Estructural.Proxy.AccesoReal;
 import cenfomazon.Estructural.Proxy.AcessoUsuarioProxy;
 import cenfomazon.Estructural.Proxy.InterfaceProxy.Acceso;
+import cenfomazon.Model.Categoria.Categoria;
+
 
 
 import cenfomazon.Model.Repuesto.RepuestoC;
 import cenfomazon.Model.Repuesto.RepuestoDAO;
 import cenfomazon.Model.DetalleProforma.DetalleProformaDAO;
+import cenfomazon.Model.Nave.Nave;
+import cenfomazon.Model.Nave.NaveDAO;
 import cenfomazon.Model.TipoRepuesto.TipoRepuesto;
 import cenfomazon.Model.TipoRepuesto.TipoRepuestoDAO;
+import cenfomazon.Model.Categoria.CategoriaDAO;
+import cenfomazon.Model.Marca.Marca;
+import cenfomazon.Model.Marca.MarcaDAO;
+import cenfomazon.Model.MarcaModelo.MarcaModelo;
+import cenfomazon.Model.MarcaModelo.MarcaModeloDAO;
+import cenfomazon.Model.Modelo.Modelo;
+import cenfomazon.Model.Modelo.ModeloDAO;
+
+
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +46,17 @@ public class Gestor {
     private final MarcaRepuestoDAO marcaRepuestoDAO;
     private final RepuestoDAO repuestoDAO;
     private final UsuarioDAO usuarioDAO;
+    private final NaveDAO naveDAO;
+    private final CategoriaDAO categoriaDAO;
+    private final MarcaDAO marcaDAO;
+    private final ModeloDAO modeloDAO;
+    private final MarcaModeloDAO marcamodeloDAO;
+
+
+
     private Usuario UsuarioLogin;
+    
+    
     
     private final DetalleProformaDAO detalleproformaDAO;
     private final TipoRepuestoDAO tipoRepuestoDAO;
@@ -46,8 +70,15 @@ public class Gestor {
         marcaRepuestoDAO = new MarcaRepuestoDAO();
         repuestoDAO = new RepuestoDAO();
         usuarioDAO = new UsuarioDAO();
+        naveDAO = new NaveDAO();
         detalleproformaDAO = new DetalleProformaDAO();
         tipoRepuestoDAO = new TipoRepuestoDAO();
+        categoriaDAO = new CategoriaDAO();
+        marcaDAO = new MarcaDAO();
+        modeloDAO = new ModeloDAO();
+        marcamodeloDAO = new MarcaModeloDAO();
+
+        
 
 
     }
@@ -131,4 +162,36 @@ public class Gestor {
         repuestoDAO.registroRepuesto(repuesto);
 
     }
+    
+   
+    public void registrarNave(Nave nave) {
+        naveDAO.registroNave(nave);
+
+    }
+    
+    public ArrayList<Categoria> listaCategoria(){
+        ArrayList<Categoria> listaCate = new ArrayList<>();
+        listaCate= categoriaDAO.listarCategoria();
+        return listaCate;
+    }
+    
+    public ArrayList<Marca> listaMarca(){
+        ArrayList<Marca> listaMar = new ArrayList<>();
+        listaMar= marcaDAO.listarMarca();
+        return listaMar;
+    }
+    
+      public ArrayList<Modelo> listaModelo(){
+        ArrayList<Modelo> listaMode = new ArrayList<>();
+        listaMode= modeloDAO.listarModelo();
+        return listaMode;
+    }
+      
+       public ArrayList<MarcaModelo> listaMarcaModelo(){
+        ArrayList<MarcaModelo> listaMarcaMode = new ArrayList<>();
+        listaMarcaMode= marcamodeloDAO.listarMarcaModelo();
+        return listaMarcaMode;
+    }
+      
+      
 }

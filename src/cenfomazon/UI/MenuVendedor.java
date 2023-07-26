@@ -33,11 +33,11 @@ public class MenuVendedor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 538, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 138, Short.MAX_VALUE)
         );
 
         pack();
@@ -79,5 +79,21 @@ public class MenuVendedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btn_CrearProforma;
+    private javax.swing.JPanel btn_CrearProforma1;
+    private javax.swing.JPanel btn_CrearProforma2;
+    private javax.swing.JPanel btn_CrearProforma3;
+    private javax.swing.JButton btn_ListaInventario;
+    private javax.swing.JButton btn_ListaInventario1;
+    private javax.swing.JButton btn_ListaInventario2;
+    private javax.swing.JButton btn_ListaInventario3;
+    private javax.swing.JButton btn_RegistrarNaves;
+    private javax.swing.JButton btn_RegistrarNaves1;
+    private javax.swing.JButton btn_RegistrarNaves2;
+    private javax.swing.JButton btn_RegistrarNaves3;
+    private javax.swing.JButton btn_crearProforma;
+    private javax.swing.JButton btn_crearProforma1;
+    private javax.swing.JButton btn_crearProforma2;
+    private javax.swing.JButton btn_crearProforma3;
     // End of variables declaration//GEN-END:variables
 }
