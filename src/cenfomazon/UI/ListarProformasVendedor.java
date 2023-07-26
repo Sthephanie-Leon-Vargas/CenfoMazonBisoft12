@@ -18,20 +18,18 @@ import javax.swing.table.DefaultTableCellRenderer;
  *
  * @author sleon
  */
-public class ListarProformas extends javax.swing.JFrame {
+public class ListarProformasVendedor extends javax.swing.JFrame {
 
     ProformaDAO proformaDao = new ProformaDAO();
     DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
 
     /**
-     * Creates new form ListarProformas
+     * Creates new form ListarProformasVendedor
      */
-    public ListarProformas() {
+    public ListarProformasVendedor() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Lista de Proformas");
-        setDefaultCloseOperation(ListarProformas.DISPOSE_ON_CLOSE);
-        proformaDao.listarProforma(jTable1);
+        proformaDao.listarProformaVendedor(jTable1, Login.getusuario().getId_usuario());
     }
 
     /**
@@ -44,7 +42,7 @@ public class ListarProformas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         txt_Bienvenido1 = new javax.swing.JLabel();
@@ -55,29 +53,48 @@ public class ListarProformas extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id Proforma", "Id Vendedor", "Nombre", "Primer Apellido", "Estado Proforma", "Actualizar"
+                "Id Detalle", "Id Proforma", "Id Repuesto", "Id Vendedor", "Nombre Repuesto", "Estado", "Razon Rechazo", "Nombre de Cliente", "Apellido", "Aceptar", "Cancelar"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTable1.getTableHeader().setResizingAllowed(false);
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTable1, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTable1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
@@ -85,29 +102,33 @@ public class ListarProformas extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
             jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(8).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
 
         txt_Bienvenido1.setFont(new java.awt.Font("Artifakt Element Light", 1, 18)); // NOI18N
         txt_Bienvenido1.setForeground(new java.awt.Color(255, 255, 255));
-        txt_Bienvenido1.setText("Lista de Proformas");
+        txt_Bienvenido1.setText("Lista de Proformas Vendedor");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -115,7 +136,7 @@ public class ListarProformas extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(txt_Bienvenido1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_Bienvenido1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -145,11 +166,6 @@ public class ListarProformas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int clic = jTable1.rowAtPoint(evt.getPoint());
-        String idProforma = "" + jTable1.getValueAt(clic, 0);
-
-        this.idProforma = Integer.parseInt(idProforma);
-
         int col = jTable1.getColumnModel().getColumnIndexAtX(evt.getX());
         int fila = evt.getY() / jTable1.getRowHeight();
         if (fila < jTable1.getRowCount() && fila >= 0 && col < jTable1.getColumnCount() && col >= 0) {
@@ -157,22 +173,17 @@ public class ListarProformas extends javax.swing.JFrame {
             if (valor instanceof JButton) {
                 ((JButton) valor).doClick();
                 JButton boton = (JButton) valor;
-                if (boton.getName().equals("btn_editar")) {
+                if (boton.getName().equals("btn_aceptar")) {
                     //ACCIONES DEL BOTON EDITAR!
-
-                    if (dp != null) {//si existe una ventana, la cierra.
-                        dp.dispose();
-                    }
-                    dp = new ListarDetalleProformas();
-                    dp.setVisible(true);
-                    this.setResizable(true);
-
+                    JOptionPane.showMessageDialog(null, "Click en boton Aceptar!");
+                }
+                if (boton.getName().equals("btn_cancelar")) {
+                    //ACCIONES DEL BOTON EDITAR!
+                    JOptionPane.showMessageDialog(null, "Click en boton Cancelar!");
                 }
             }
         }
     }//GEN-LAST:event_jTable1MouseClicked
-    ListarDetalleProformas dp;
-    public static int idProforma;
 
     /**
      * @param args the command line arguments
@@ -191,14 +202,15 @@ public class ListarProformas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarProformas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarProformasVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarProformas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarProformasVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarProformas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarProformasVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarProformas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarProformasVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -206,15 +218,15 @@ public class ListarProformas extends javax.swing.JFrame {
             public void run() {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    new ListarProformas().setVisible(true);
+                    new ListarProformasVendedor().setVisible(true);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ListarProformas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarProformasVendedor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {
-                    Logger.getLogger(ListarProformas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarProformasVendedor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IllegalAccessException ex) {
-                    Logger.getLogger(ListarProformas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarProformasVendedor.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (UnsupportedLookAndFeelException ex) {
-                    Logger.getLogger(ListarProformas.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ListarProformasVendedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -222,8 +234,8 @@ public class ListarProformas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel txt_Bienvenido1;
     // End of variables declaration//GEN-END:variables

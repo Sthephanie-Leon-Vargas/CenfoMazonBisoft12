@@ -5,6 +5,8 @@
  */
 package cenfomazon.UI;
 
+import cenfomazon.Gestor;
+import cenfomazon.Model.Usuario.Usuario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -19,8 +21,18 @@ public class MenuClientes extends javax.swing.JFrame {
     /**
      * Creates new form MenuClientes
      */
+    Gestor gestor = new Gestor();
     public MenuClientes() {
         initComponents();
+        txt_NombreUsuario.setText(getUserName());
+    }
+    
+     public String getUserName() {
+        String name = "";
+ 
+        Usuario user = Login.getusuario();
+        name = user.getNombre();
+        return name;
     }
 
     /**
@@ -39,6 +51,7 @@ public class MenuClientes extends javax.swing.JFrame {
         btn_crearProforma = new javax.swing.JButton();
         btn_RegistrarNaves = new javax.swing.JButton();
         btn_ListaInventario = new javax.swing.JButton();
+        btn_RegistrarNaves1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +98,11 @@ public class MenuClientes extends javax.swing.JFrame {
 
         btn_RegistrarNaves.setFont(new java.awt.Font("Artifakt Element Light", 0, 12)); // NOI18N
         btn_RegistrarNaves.setText("Registrar naves");
+        btn_RegistrarNaves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegistrarNavesActionPerformed(evt);
+            }
+        });
 
         btn_ListaInventario.setFont(new java.awt.Font("Artifakt Element Light", 0, 12)); // NOI18N
         btn_ListaInventario.setText("Ver proformas");
@@ -94,28 +112,40 @@ public class MenuClientes extends javax.swing.JFrame {
             }
         });
 
+        btn_RegistrarNaves1.setFont(new java.awt.Font("Artifakt Element Light", 0, 12)); // NOI18N
+        btn_RegistrarNaves1.setText("Listar Naves");
+        btn_RegistrarNaves1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RegistrarNaves1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout btn_CrearProformaLayout = new javax.swing.GroupLayout(btn_CrearProforma);
         btn_CrearProforma.setLayout(btn_CrearProformaLayout);
         btn_CrearProformaLayout.setHorizontalGroup(
             btn_CrearProformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_CrearProformaLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(btn_RegistrarNaves, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_RegistrarNaves1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_crearProforma, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_ListaInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap())
         );
         btn_CrearProformaLayout.setVerticalGroup(
             btn_CrearProformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_CrearProformaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(btn_CrearProformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_crearProforma)
-                    .addComponent(btn_RegistrarNaves, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ListaInventario))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(btn_RegistrarNaves)
+                    .addGroup(btn_CrearProformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_crearProforma)
+                        .addComponent(btn_ListaInventario)
+                        .addComponent(btn_RegistrarNaves1)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,18 +153,15 @@ public class MenuClientes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_CrearProforma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(btn_CrearProforma, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btn_CrearProforma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,6 +178,21 @@ public class MenuClientes extends javax.swing.JFrame {
       lstProforma.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btn_ListaInventarioActionPerformed
+
+    private void btn_RegistrarNavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarNavesActionPerformed
+       RegistroNaves rNaves = new RegistroNaves();
+        rNaves.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_RegistrarNavesActionPerformed
+ListarNaves naves;
+    private void btn_RegistrarNaves1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RegistrarNaves1ActionPerformed
+       if (naves != null) {//si existe una ventana, la cierra.
+            naves.dispose();
+        }
+        naves = new ListarNaves(2);
+        naves.setVisible(true);
+        this.setResizable(true);
+    }//GEN-LAST:event_btn_RegistrarNaves1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,6 +244,7 @@ public class MenuClientes extends javax.swing.JFrame {
     private javax.swing.JPanel btn_CrearProforma;
     private javax.swing.JButton btn_ListaInventario;
     private javax.swing.JButton btn_RegistrarNaves;
+    private javax.swing.JButton btn_RegistrarNaves1;
     private javax.swing.JButton btn_crearProforma;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel txt_Bienvenido1;

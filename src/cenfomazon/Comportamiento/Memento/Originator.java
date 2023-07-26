@@ -1,41 +1,35 @@
 package cenfomazon.Comportamiento.Memento;
-import cenfomazon.Comportamiento.Memento.auxiliar.Snapshoot;
+import cenfomazon.Model.DetalleProforma.DetalleProforma;
+import java.util.ArrayList;
 
 public class Originator {
 
-    private Snapshoot _Estado;
+    private ArrayList<DetalleProforma> detalles;
 
-    public Originator() {
-        _Estado = new Snapshoot();
+ 
+    public Originator(ArrayList<DetalleProforma> pdetalles) {
+        this.detalles = pdetalles;
+    }
+   
+    public void setMemento(Memento m) {
+        this.detalles = m.getDetalles();
+    }
+  
+    public Memento createMemento(){
+        return new Memento(detalles);
     }
 
-    public String nuevoEstado(int iddetalle,int idproforma, int idrepuesto, int idrazonRechazo, String estado) {
-        this._Estado.nuevaInstantanea(iddetalle,idproforma,idrepuesto,idrazonRechazo,estado);
-
-        return "Guardo mi objeto de detallepersona";
+    public ArrayList<DetalleProforma> getDetalles() {
+        return detalles;
     }
 
-    public String obtenerEstado(int pIdx) {
-        return null;//this._Estado.obtenerInstantanea().get(pIdx);
+    public void setDetalles(ArrayList<DetalleProforma> detalles) {
+        this.detalles = detalles;
     }
-
-    public String obtenerEstado() {
-        return "Originador> estado actual [" +
-                this._Estado.obtenerInstantanea().get(0) + " ]";
-
-    }
-    /*==========================================================================
-     *		 Seccion donde usamos el memento.
-     ==========================================================================*/
-
-    public void restaurarMemento(Memento m) {
-        //this._Estado.nuevaInstantanea(0, 0, 0, 0, estado);
-    }
-
-    public Memento crearMemento() {
-        return new Memento(Integer.parseInt(this._Estado.obtenerInstantanea().get(0)),Integer.parseInt(this._Estado.obtenerInstantanea().get(1)),Integer.parseInt(this._Estado.obtenerInstantanea().get(2)),Integer.parseInt(this._Estado.obtenerInstantanea().get(3)),this._Estado.obtenerInstantanea().get(4));
-    }
+    
 
 }
+    
+    
 
 
