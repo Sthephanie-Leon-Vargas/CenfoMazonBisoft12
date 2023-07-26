@@ -28,8 +28,11 @@ public class MarcaModelo {
         this.marca = marca;
         this.modelo = modelo;
     }
-    
-    
+
+    public MarcaModelo(Marca marca, Modelo modelo) {
+        this.marca = marca;
+        this.modelo = modelo;
+    }
 
     public int getId_MarcaModelo() {
         return id_MarcaModelo;

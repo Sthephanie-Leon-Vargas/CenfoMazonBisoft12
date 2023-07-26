@@ -7,6 +7,7 @@ package cenfomazon.UI;
 
 import cenfomazon.Model.Nave.NaveDAO;
 import cenfomazon.Model.Repuesto.RepuestoDAO;
+import cenfomazon.Model.Usuario.Usuario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -18,13 +19,18 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class ListarNaves extends javax.swing.JFrame {
 
-    NaveDAO naveDao= new NaveDAO();
+    NaveDAO naveDao = new NaveDAO();
+    int user = Login.getusuario().getId_usuario();
+
     /**
      * Creates new form ListarProformas
      */
-    public ListarNaves() {
+    public ListarNaves(int rolUsuario) {
         initComponents();
+        setDefaultCloseOperation(ListarNaves.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        naveDao.listarNaves(jTable1, rolUsuario, user);
+        System.out.println("us: " + user);
     }
 
     /**
@@ -48,9 +54,7 @@ public class ListarNaves extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Id Nave", "Nombre Usuario", "Categoria", "Marca", "Modelo", "Placa", "Color"
@@ -134,20 +138,7 @@ public class ListarNaves extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-//        int col = jTable1.getColumnModel().getColumnIndexAtX(evt.getX());
-//        int fila = evt.getY() / jTable1.getRowHeight();
-//        if (fila < jTable1.getRowCount() && fila >= 0 && col < jTable1.getColumnCount() && col >= 0) {
-//            Object valor = jTable1.getValueAt(fila, col);
-//            if (valor instanceof JButton) {
-//                ((JButton) valor).doClick();
-//                JButton boton = (JButton) valor;
-//                if (boton.getName().equals("btn_editar")) {
-//                    //ACCIONES DEL BOTON EDITAR!
-//                    JOptionPane.showMessageDialog(null, "Clic en boton Editar!");
-//
-//                }
-//            }
-//        }
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -185,7 +176,7 @@ public class ListarNaves extends javax.swing.JFrame {
             public void run() {
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    new ListarNaves().setVisible(true);
+                    new ListarNaves(1).setVisible(true);
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ListarNaves.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InstantiationException ex) {

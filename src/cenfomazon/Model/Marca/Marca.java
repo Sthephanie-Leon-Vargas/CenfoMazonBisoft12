@@ -21,6 +21,10 @@ public class Marca {
         this.Marca = Marca;
     }
 
+    public Marca(String Marca) {
+        this.Marca = Marca;
+    }
+
     public int getIdMarca() {
         return idMarca;
     }

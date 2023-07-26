@@ -25,7 +25,9 @@ public class Categoria {
         this.id_Categoria = id_Categoria;
     }
 
-    
+    public Categoria(String Categoria) {
+        this.Categoria = Categoria;
+    }
 
     public int getId_Categoria() {
         return id_Categoria;
