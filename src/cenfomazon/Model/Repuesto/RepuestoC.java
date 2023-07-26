@@ -1,15 +1,17 @@
 package cenfomazon.Model.Repuesto;
 
+import cenfomazon.Model.MarcaRepuesto.MarcaRepuesto;
+
 public class RepuestoC {
 
     private int idRepuesto;
     private int tipoRepuesto;
-    private String descTipoRepuesto;
     private String nombre;
     private String descripcion;
     private String categoria;
     private double precio;
     private int marcaRepuesto;
+    private MarcaRepuesto marcaNombre;
 
     public RepuestoC(int idRepuesto, int tipoRepuesto, String nombre, String descripcion, String categoria, double precio, int marcaRepuesto) {
         this.idRepuesto = idRepuesto;
@@ -21,25 +23,15 @@ public class RepuestoC {
         this.marcaRepuesto = marcaRepuesto;
     }
     
-     public RepuestoC(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public RepuestoC(int idRepuesto, String descTipoRepuesto, String nombre, String descripcion, String categoria, double precio) {
-        this.idRepuesto = idRepuesto;
-        this.descTipoRepuesto = descTipoRepuesto;
+     public RepuestoC(String nombre, String descripcion, String categoria, double precio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.precio = precio;
     }
-
-    public String getDescTipoRepuesto() {
-        return descTipoRepuesto;
-    }
-
-    public void setDescTipoRepuesto(String descTipoRepuesto) {
-        this.descTipoRepuesto = descTipoRepuesto;
+    
+    public RepuestoC(String nombreRepuesto){
+        this.nombre = nombreRepuesto;
     }
 
     public int getIdRepuesto() {
@@ -82,6 +74,14 @@ public class RepuestoC {
         this.categoria = categoria;
     }
 
+    public MarcaRepuesto getMarcaNombre() {
+        return marcaNombre;
+    }
+
+    public void setMarcaNombre(MarcaRepuesto marcaNombre) {
+        this.marcaNombre = marcaNombre;
+    }
+
     public double getPrecio() {
         return precio;
     }
@@ -104,6 +104,32 @@ public class RepuestoC {
         this.marcaRepuesto = marcaRepuesto;
 
     }
+
+    public RepuestoC(int idRepuesto, String nombre, double precio) {
+        this.idRepuesto = idRepuesto;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    public RepuestoC(int idRepuesto, String nombre, int marcaRepuesto,MarcaRepuesto marcaNombre, double precio) {
+        this.idRepuesto = idRepuesto;
+        this.nombre = nombre;
+        this.marcaRepuesto = marcaRepuesto;
+        this.marcaNombre = marcaNombre;
+        this.precio = precio;
+  
+        
+    }
+
+    
+       public RepuestoC(int idRepuesto, String nombre, int marcaRepuesto, double precio) {
+        this.idRepuesto = idRepuesto;
+        this.nombre = nombre;
+        this.marcaRepuesto = marcaRepuesto;
+        this.precio = precio;
+        
+    }
+   
 
     public RepuestoC() {
     }

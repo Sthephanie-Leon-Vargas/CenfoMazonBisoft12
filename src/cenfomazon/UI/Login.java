@@ -11,8 +11,13 @@ import cenfomazon.Estructural.Proxy.AcessoUsuarioProxy;
 import cenfomazon.Estructural.Proxy.InterfaceProxy.Acceso;
 import cenfomazon.Model.Usuario.Usuario;
 import cenfomazon.Model.Usuario.UsuarioDAO;
+import java.awt.HeadlessException;
 import java.io.IOException;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import static javax.swing.JOptionPane.showMessageDialog;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -161,10 +166,11 @@ public class Login extends javax.swing.JFrame {
         String username = txtNombreUsuario.getText();
         String password = txtPassword.getText();
 
+        
         this.usuario = gestor.retirarUsuario(username, password);
-
+        
         String pantalla = gestor.darNivelAcceso(usuario);
-
+        
         if (totalIntentos > 0) {
             if (!usuario.equals("false")) {
                 if ("MenuVendedor".equals(pantalla)) {
@@ -193,7 +199,7 @@ public class Login extends javax.swing.JFrame {
             System.exit(0);
         }
      }//GEN-LAST:event_LoginActionPerformed
-
+    public static Usuario Usuario;
     /**
      * @param args the command line arguments
      */

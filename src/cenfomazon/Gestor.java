@@ -163,6 +163,7 @@ public class Gestor {
 
     }
     
+
    
     public void registrarNave(Nave nave) {
         naveDAO.registroNave(nave);
@@ -194,4 +195,18 @@ public class Gestor {
     }
       
       
+
+    public void borrarDetalle(int codigo){
+        detalleproformaDAO.borrarDatos(codigo);
+    }
+    
+    public RepuestoC buscaRepuestoO(int codigo){
+        return repuestoDAO.Buscar_Repuesto(codigo);
+    }
+ 
+    public MarcaRepuesto Buscar_MarcaRepuesto(int codigo){
+        return marcaRepuestoDAO.Buscar_MarcaRepuesto(codigo);
+    
+    }
+
 }
