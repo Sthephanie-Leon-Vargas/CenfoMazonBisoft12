@@ -16,7 +16,6 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
-
 /**
  *
  * @author sleon

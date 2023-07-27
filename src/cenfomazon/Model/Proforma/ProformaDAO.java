@@ -65,7 +65,7 @@ public class ProformaDAO {
         JButton btnEditar = new JButton("Procesar");
         btnEditar.setName("btn_editar");
         try {
-          
+
             JSONObject jsonResponse = new JSONObject(jsonSql);
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -112,16 +112,20 @@ public class ProformaDAO {
         ArrayList<Proforma> lista = new ArrayList<>();
 
         String sql;
-        sql = "SELECT pro.id_Proforma,pro.id_Vendedor, us.nombre, us.apellido1, pro.estado "
-                + "FROM  jKM_Proformas pro, jKM_Usuarios us WHERE pro.id_Cliente=us.id_usuario and us.id_usuario=" + idCliente + ";";
-       
+        sql = "SELECT pro.id_Proforma,pro.id_Vendedor,\n"
+                + "(select us1.nombre from jKM_Usuarios us1 where us1.id_usuario=pro.id_Vendedor) as Nombre_Vendedor, \n"
+                + "(select us1.apellido1 from jKM_Usuarios us1 where us1.id_usuario=pro.id_Vendedor) as apellido1, \n"
+                + "pro.estado\n"
+                + "FROM  jKM_Proformas pro, jKM_Usuarios us WHERE pro.id_Cliente=us.id_usuario\n"
+                + "and us.id_usuario="+idCliente+";";
+
         Conexion con = Conexion.conectarBD("GET", sql);
         String jsonSql = con.getResponse().body();
         con.desconectar();
         _tablaModel.addColumn("Id Proforma");
         _tablaModel.addColumn("Id Vendedor");
-        _tablaModel.addColumn("Nombre");
-        _tablaModel.addColumn("Apellido 1");
+        _tablaModel.addColumn("Nombre Vendedor");
+        _tablaModel.addColumn("Apellido 1 Vendedor");
         _tablaModel.addColumn("Estado Proforma");
         _tablaModel.addColumn("Actualizar");
         JButton btnEditar = new JButton("Editar");
@@ -133,7 +137,7 @@ public class ProformaDAO {
                 JSONObject jsonObj = jsonArray.getJSONObject(i);
                 int idProforma = jsonObj.getInt("id_Proforma");
                 int idVendedor = jsonObj.getInt("id_Vendedor");
-                String nombre = jsonObj.getString("nombre");
+                String nombre = jsonObj.getString("Nombre_Vendedor");
                 String apellido1 = jsonObj.getString("apellido1");
                 String estado = jsonObj.getString("estado");
 
