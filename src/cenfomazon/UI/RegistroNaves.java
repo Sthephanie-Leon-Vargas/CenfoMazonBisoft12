@@ -242,7 +242,7 @@ public class RegistroNaves extends javax.swing.JFrame {
         Nave nave = new Nave (codigoIdentificacion,color,br,dr);
         gestor.registrarNave(nave);
         
-        JOptionPane.showMessageDialog(null, "Nave Regitrada!");
+        JOptionPane.showMessageDialog(null, "Nave Registrada Correctamente.");
 
         }
         

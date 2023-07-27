@@ -23,10 +23,6 @@ public class ModeloDAO {
 
         sql = "select * from jKM_Modelo";
          Conexion con = Conexion.conectarBD("GET", sql);
-        
-        System.out.println("Llego " +con.getResponse().body());
-        
-
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
             con.desconectar();

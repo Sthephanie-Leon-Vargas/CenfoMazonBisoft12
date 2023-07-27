@@ -31,7 +31,8 @@ public class ListarProformas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Lista de Proformas");
         setDefaultCloseOperation(ListarProformas.DISPOSE_ON_CLOSE);
-        proformaDao.listarProforma(jTable1);
+        System.out.println("ID del usuario logeado: "+Login.getusuario().getId_usuario());
+        proformaDao.listarProforma(jTable1, Login.getusuario().getId_usuario());
     }
 
     /**
