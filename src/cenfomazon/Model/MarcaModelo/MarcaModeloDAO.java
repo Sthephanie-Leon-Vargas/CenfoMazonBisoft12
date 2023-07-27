@@ -27,8 +27,6 @@ public class MarcaModeloDAO {
                 + "M.idMarca inner join jKM_Modelo as MO ON MM.id_Modelo = MO.idModelo";
         Conexion con = Conexion.conectarBD("GET", sql);
 
-        System.out.println("Llego " + con.getResponse().body());
-
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
             con.desconectar();

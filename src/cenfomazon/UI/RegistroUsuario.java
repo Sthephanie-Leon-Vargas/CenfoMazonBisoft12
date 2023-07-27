@@ -178,7 +178,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
 
         txt_Bienvenido1.setFont(new java.awt.Font("Artifakt Element Light", 1, 18)); // NOI18N
         txt_Bienvenido1.setForeground(new java.awt.Color(255, 255, 255));
-        txt_Bienvenido1.setText("Registro de Usuario");
+        txt_Bienvenido1.setText("Registro de Usuario (Clientes)");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -186,7 +186,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(txt_Bienvenido1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_Bienvenido1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -238,7 +238,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         Gestor gestor = new Gestor();
         gestor.crearUsuario(usuario);
 
-        JOptionPane.showMessageDialog(null, "Regitrado!");
+        JOptionPane.showMessageDialog(null, "Se ha Registrado Correctamente.");
 
         Login login = new Login();
         login.setVisible(true);

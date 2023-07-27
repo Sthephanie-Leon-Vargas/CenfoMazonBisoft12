@@ -145,12 +145,12 @@ public class MenuClientes extends javax.swing.JFrame {
             btn_CrearProformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(btn_CrearProformaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(btn_CrearProformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_RegistrarNaves)
+                .addGroup(btn_CrearProformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(btn_CrearProformaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btn_crearProforma)
                         .addComponent(btn_ListaInventario)
-                        .addComponent(btn_RegistrarNaves1)))
+                        .addComponent(btn_RegistrarNaves1))
+                    .addComponent(btn_RegistrarNaves))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 

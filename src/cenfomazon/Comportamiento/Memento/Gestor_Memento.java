@@ -26,36 +26,15 @@ public class Gestor_Memento {
         caretaker = new Caretaker();
         //Crea el Memento y asocia al objeto gestor
         caretaker.setMemento(originator.createMemento());
-        System.out.println("Se crea el memento y se muestra");
+       
         //Muestra los datos del creador
         for (int i=0;i < originator.getDetalles().size();i++){
             DetalleProforma DP = originator.getDetalles().get(i);
-            System.out.println(DP.toString());
+           
         
         }
         
-        /*===========================
-        System.out.println("Se modifican los datos y se muestra");
-        // Agrego datos nuevos
-        detalles.add(new DetalleProforma(1,1,1,"Nueva3"));
-        
-        //Muestro los datos del creador de nuevo
-            for (int i=0;i < creador.getDetalles().size();i++){
-                DetalleProforma DP = creador.getDetalles().get(i);
-                System.out.println(DP.toString());
-        
-             }
-        //Restauro el memento
-        System.out.println("Se restaura el objeto inicial");
-        creador.setMemento(vigilante.getMemento());
-        
-       
-        //Muestro los datos del creador de restaurados
-                for (int i=0;i < creador.getDetalles().size();i++){
-            DetalleProforma DP = creador.getDetalles().get(i);
-            System.out.println(DP.toString());
-        
-        }*/
+   
     }
     
     

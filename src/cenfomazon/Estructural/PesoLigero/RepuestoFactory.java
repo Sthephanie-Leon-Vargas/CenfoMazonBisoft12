@@ -17,7 +17,7 @@ public class RepuestoFactory {
         if(gPoolRepuesto.containsKey(key)) {
             data = gPoolRepuesto.get(key);
             util.imprimirIntegranteMapa(key, data, "Repuesto recuperado");
-            System.out.println("----Data recuperada-----");
+          
         } else {
             data = new RepuestoNave(tipoRepuesto, categoria, marcaRepuesto);
             gPoolRepuesto.put(key, data);

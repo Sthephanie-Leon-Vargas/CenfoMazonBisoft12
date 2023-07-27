@@ -56,8 +56,7 @@ public class RepuestoDAO {
                 + "(" + repuesto.getTipoRepuesto() + ",'" + repuesto.getNombre() + "','" + repuesto.getDescripcion() + "','" + repuesto.getCategoria() + "',"
                 + repuesto.getPrecio() + "," + repuesto.getMarcaRepuesto() + ")";
         Conexion con = Conexion.conectarBD("POST", sql);
-        System.out.println("code status: " + con.getCodigoEstado());
-        System.out.println("Response body: " + con.getResponse().body());
+       
         con.desconectar();
     }
 

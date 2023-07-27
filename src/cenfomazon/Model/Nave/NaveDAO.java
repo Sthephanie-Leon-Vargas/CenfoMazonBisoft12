@@ -80,7 +80,6 @@ public class NaveDAO {
                     break;
 
             }
-            System.out.println(sql);
             Conexion con = Conexion.conectarBD("GET", sql);
             String jsonSql = con.getResponse().body();
             con.desconectar();
@@ -145,8 +144,6 @@ public class NaveDAO {
                 + "values(" + Id_usuario + "," + id_categoria + "," + id_MarcaModelo + ",'" + codigoIdentificacion + "','" + color + "')";
 
         Conexion con = Conexion.conectarBD("POST", sql);
-        System.out.println("code status: " + con.getCodigoEstado());
-        System.out.println("Response body: " + con.getResponse().body());
         con.desconectar();
 
     }

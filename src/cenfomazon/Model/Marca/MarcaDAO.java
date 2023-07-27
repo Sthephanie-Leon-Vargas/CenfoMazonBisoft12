@@ -16,17 +16,14 @@ import org.json.JSONObject;
  * @author Daniel Sandoval
  */
 public class MarcaDAO {
-    
-     public ArrayList<Marca> listarMarca() {
+
+    public ArrayList<Marca> listarMarca() {
         ArrayList<Marca> listaNavesM = new ArrayList<>();
-        
+
         String sql;
 
         sql = "select * from jKM_Marca";
         Conexion con = Conexion.conectarBD("GET", sql);
-        
-        System.out.println("Llego " +con.getResponse().body());
-        
 
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
@@ -45,5 +42,5 @@ public class MarcaDAO {
         }
         return listaNavesM;
     }
-    
+
 }

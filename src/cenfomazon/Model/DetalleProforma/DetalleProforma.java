@@ -9,8 +9,17 @@ public class DetalleProforma {
     private int _id_proforma;
     private int _id_repuesto;
     private int _id_razonRechazo;
+    private String razon;
     private String _estado;
     private RepuestoC repuesto;
+
+    public String getRazon() {
+        return razon;
+    }
+
+    public void setRazon(String razon) {
+        this.razon = razon;
+    }
 
     public int get_id_detalle() {
         return _id_detalle;
@@ -65,6 +74,16 @@ public class DetalleProforma {
         this.repuesto = repuesto;
     }
 
+        public DetalleProforma(int _id_detalle, RepuestoC repuesto, int id_razon, String razon, String estado) {
+        this._id_detalle = _id_detalle;
+        this.repuesto = repuesto;
+        this._id_razonRechazo=id_razon;
+        this.razon=razon;
+        this._estado=estado;
+        
+    }
+
+    
     public DetalleProforma(int _id_proforma, int _id_repuesto, int _id_razonRechazo, String _estado) {
        
         this._id_proforma = _id_proforma;
