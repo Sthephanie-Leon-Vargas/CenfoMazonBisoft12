@@ -315,12 +315,12 @@ public class MenuProforma extends javax.swing.JFrame {
           Object vendedorCode = cbo_VendedorList.getSelectedItem();
            Usuario vendedor = (Usuario) vendedorCode;
            vendedorC = vendedor.getId_usuario();
-           System.out.println(vendedorC);
+
         }
         Usuario user = Login.getusuario();
         int idCliente = user.getId_usuario();
         Proforma pProforma = new Proforma(idCliente,vendedorC,"Nueva");        
-//        gestor.crearProforma(pProforma);
+        gestor.crearProforma(pProforma);
         
         try {
             TimeUnit.SECONDS.sleep(5);
@@ -334,7 +334,7 @@ public class MenuProforma extends javax.swing.JFrame {
           int repuestoC = repuesto.getIdRepuesto();
           DetalleProforma DP = new DetalleProforma(codigoProforma,repuestoC); 
 
-//          gestor.registrarDetalleProforma(DP);
+          gestor.registrarDetalleProforma(DP);
         }
         JOptionPane.showMessageDialog(null, "Proforma Guardada.");
         MenuClientes abrir = new MenuClientes();
