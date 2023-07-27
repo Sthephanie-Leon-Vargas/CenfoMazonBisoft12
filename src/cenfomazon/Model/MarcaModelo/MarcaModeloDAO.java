@@ -20,17 +20,18 @@ public class MarcaModeloDAO {
 
     public ArrayList<MarcaModelo> listarMarcaModelo() {
         ArrayList<MarcaModelo> listaNavesMM = new ArrayList<>();
-        Conexion con = new Conexion();
+        
         String sql;
 
         sql = "select * from jKM_MarcaModelo as MM inner join jKM_Marca AS M ON MM.id_Marca = "
                 + "M.idMarca inner join jKM_Modelo as MO ON MM.id_Modelo = MO.idModelo";
-        con.conectarBD("GET", sql);
+        Conexion con = Conexion.conectarBD("GET", sql);
 
         System.out.println("Llego " + con.getResponse().body());
 
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            con.desconectar();
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonNave = jsonArray.getJSONObject(i);

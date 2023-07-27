@@ -15,14 +15,15 @@ public class MarcaRepuestoDAO {
     
     public ArrayList<MarcaRepuesto> listarMarca(){
         ArrayList<MarcaRepuesto> listaMarcaR = new ArrayList<>();
-        Conexion con = new Conexion();
+      
         String sql;
         
         sql = "SELECT * FROM `jKM_MarcaRespuesto`";
-        con.conectarBD("GET",sql);
+        Conexion con = Conexion.conectarBD("GET", sql);
 
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            con.desconectar();
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
             for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject jsonMarca = jsonArray.getJSONObject(i);
@@ -41,11 +42,12 @@ public class MarcaRepuestoDAO {
     public MarcaRepuesto Buscar_MarcaRepuesto(int codigo){
         String sql;
         MarcaRepuesto resultado= new MarcaRepuesto();
-        Conexion con = new Conexion();
+       
         sql = "SELECT * FROM `jKM_MarcaRespuesto` WHERE idMarcaRespuesto="+ codigo +"";                                                                                     
-        con.conectarBD("GET", sql);
+        Conexion con = Conexion.conectarBD("GET", sql);
         try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            con.desconectar();
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
             JSONObject jsonMarca= jsonArray.getJSONObject(0);
                 int idMarcaR = jsonMarca.getInt("idMarcaRespuesto");

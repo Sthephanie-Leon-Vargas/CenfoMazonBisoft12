@@ -20,14 +20,15 @@ public class ProformaDAO {
 
     public void registroProforma(Proforma proforma) {
 
-        Conexion con = new Conexion();
+        
         String sql;
         int pidCliente = proforma.getId_Cliente();
         int pidVendedor = proforma.getId_Vendedor();
         String pestado = "'Nueva'";
 
         sql = "INSERT INTO jKM_Proformas (id_Cliente,id_Vendedor,estado) VALUES (" + pidCliente + "," + pidVendedor + "," + pestado + ")";
-        con.conectarBD("POST", sql);
+        Conexion con = Conexion.conectarBD("POST", sql);
+        con.desconectar();
 
     }
 
@@ -40,13 +41,13 @@ public class ProformaDAO {
             }
         };
         ArrayList<Proforma> lista = new ArrayList<>();
-        Conexion con = new Conexion();
+       
         String sql;
         sql = "SELECT pro.id_Proforma,pro.id_Vendedor, us.nombre, us.apellido1, pro.estado "
             + "FROM  jKM_Proformas pro, jKM_Usuarios us WHERE pro.id_Vendedor=us.id_usuario;";
-        con.conectarBD("GET", sql);
+        Conexion con = Conexion.conectarBD("GET", sql);
         String jsonSql = con.getResponse().body();
-      
+        con.desconectar();
         _tablaModel.addColumn("Id Proforma");
         _tablaModel.addColumn("Id Vendedor");
         _tablaModel.addColumn("Nombre");
@@ -104,7 +105,7 @@ public class ProformaDAO {
                 return false;
             }
         };
-        Conexion con = new Conexion();
+       
         String sql;
         sql = "SELECT \n" +
             "    DP.id_detalle,\n" +
@@ -127,9 +128,9 @@ public class ProformaDAO {
             "ON P.id_Cliente = U.id_usuario\n"
                 + "WHERE P.id_Vendedor = "+ idV +";";
         
-        con.conectarBD("GET", sql);
+        Conexion con = Conexion.conectarBD("GET", sql);
         String jsonSql = con.getResponse().body();
-      
+        con.desconectar();
         _tablaModel.addColumn("Id Detalle");
         _tablaModel.addColumn("Id Proforma");
         _tablaModel.addColumn("Id Repuesto");
@@ -190,14 +191,15 @@ public class ProformaDAO {
     }
     
     public int ultimaProforma() {
-        Conexion con = new Conexion();
+       
         String sql;
         int codigo = 0;
         
         sql = "SELECT id_proforma FROM `jKM_Proformas` ORDER BY id_proforma DESC LIMIT 1;";
-        con.conectarBD("GET",sql);
+        Conexion con = Conexion.conectarBD("GET", sql);
           try {
             JSONObject jsonResponse = new JSONObject(con.getResponse().body());
+            con.desconectar();
             JSONArray jsonArray = jsonResponse.getJSONObject("data").getJSONArray("result");
             
             JSONObject jsonMarca = jsonArray.getJSONObject(0);
